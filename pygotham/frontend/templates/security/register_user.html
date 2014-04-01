@@ -1,0 +1,35 @@
+{% extends 'layouts/base.html' %}
+
+{% from 'foundation_wtf.html' import horizontal_field %}
+
+{% block title %}Sign up - {{ super() }}{% endblock %}
+
+{% block main %}
+  <section class="jumbotron">
+    <h1>Sign up</h1>
+    {% if current_event %}
+      <p>
+        Sign up for an account with {{ current_event }}. You must do this before
+        you can register.
+      </p>
+    {% endif %}
+  </section>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <form action="{{ url_for('security.register') }}" method="POST" name="register_user_form">
+          {{ register_user_form.hidden_tag() }}
+          {{ horizontal_field(register_user_form.email, placeholder='Email address') }}
+          {{ horizontal_field(register_user_form.password, placeholder='Password') }}
+          {% if register_user_form.password_confirm %}
+            {{ horizontal_field(register_user_form.password_confirm, placeholder='Confirm the password') }}
+          {% endif %}
+          <div class="btn-group">
+            <button type="submit" class="btn btn-primary">Sign up</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'layouts/base.html' %}
+
+{% from 'foundation_wtf.html' import horizontal_field %}
+{% from 'security/_macros.html' import render_field, render_field_with_errors %}
+
+{% block title %}Log in - {{ super() }}{% endblock %}
+
+{% block jumbotron %}
+  <section class="jumbotron">
+    <h1>Log in</h1>
+    {% if current_event %}
+      <p>Welcome to {{ current_event }}</p>
+    {% endif %}
+  </section>
+{% endblock %}
+
+{% block main %}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <form action="{{ url_for('security.login') }}" method="POST" name="login_user_form">
+          {{ login_user_form.hidden_tag() }}
+          {{ horizontal_field(login_user_form.email, placeholder='Email address') }}
+          {{ horizontal_field(login_user_form.password, placeholder='Password') }}
+          {{ render_field_with_errors(login_user_form.remember) }}
+          {{ render_field(login_user_form.next) }}
+          <div class="btn-group">
+            <button type="submit" class="btn btn-primary">Log in</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}

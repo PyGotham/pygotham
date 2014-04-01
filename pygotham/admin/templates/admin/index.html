@@ -1,0 +1,45 @@
+{% extends 'admin/master.html' %}
+
+{% block body %}
+  <h1>{{ admin_view.admin.name }}</h1>
+
+  {% for item in admin_view.admin.menu() %}
+    {% if item.name != 'Home' %}
+      <table class="table table-striped table-bordered">
+        <thead>
+          <tr>
+            <th colspan="2">{{ item.name }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% if item.is_category() %}
+            {% set children = item.get_children() %}
+            {% for child in children %}
+              <tr>
+                <td><a href="{{ child.get_url() }}">{{ child.name }}</a></td>
+                <td>
+                  {% if child._view.can_create %}
+                    <a href="{{ url_for('{}.create_view'.format(child._view.endpoint), url=child.get_url()) }}">{{ _gettext('Add new') }}</a>
+                  {% else %}
+                    &nbsp;
+                  {% endif %}
+                </td>
+              </tr>
+            {% endfor %}
+          {% else %}
+            <tr>
+              <td><a href="{{ item.get_url() }}">{{ item.name}}</a></td>
+              <td>
+                {% if item._view.can_create %}
+                  <a href="{{ url_for('{}.create_view'.format(item._view.endpoint), url=item.get_url()) }}">{{ _gettext('Add new') }}</a>
+                {% else %}
+                  &nbsp;
+                {% endif %}
+              </td>
+            </tr>
+          {% endif %}
+        </tbody>
+      </table>
+    {% endif %}
+  {% endfor %}
+{% endblock %}

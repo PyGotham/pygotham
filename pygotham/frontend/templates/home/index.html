@@ -1,0 +1,41 @@
+{% extends 'layouts/base.html' %}
+
+{% block body_class %}{{ super() }} home{% endblock %}
+
+{% block main %}
+  <section class="jumbotron">
+    <h1>{{ current_event }}</h1>
+    <h2>
+      New York City
+      {% if current_event.begins %}
+        &middot; {{ current_event.begins.strftime('%B %-d') }}
+        {% if current_event.ends %}
+          &dash;
+          {% if current_event.begins.month == current_event.ends.month %}
+            {{ current_event.ends.strftime('%-d') }}
+          {% else %}
+            {{ current_event.ends.strftime('%B %-d') }}
+          {% endif %}
+        {% endif %}
+      {% endif %}
+    </h2>
+
+    {% if current_event.is_registration_active %}
+      <div class="register">
+        <a href="{{ current_event.registration_url }}" class="btn btn-primary btn-lg">Register</a>
+      </div>
+    {% endif %}
+  </section>
+
+  {% if sponsors %}
+    <section class="sponsors">
+      <h2>Sponsors</h2>
+    </section>
+  {% endif %}
+
+  {% if announcements %}
+    <section class="announcements">
+      <h2>Announcements</h2>
+    </section>
+  {% endif %}
+{% endblock %}
