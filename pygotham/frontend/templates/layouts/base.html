@@ -7,6 +7,8 @@
 {% block styles %}
   {{ super() }}
 
+  <link href="http://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
+
   {% assets 'css_screen' %}
     <link rel="stylesheet" href="{{ ASSET_URL }}" media="screen, projection">
   {% endassets %}
@@ -18,104 +20,29 @@
 {% block body_attribs %} class="{% block body_class %}{% endblock %}" {% endblock %}
 
 {% block body_content %}
-  {% block navbar %}
-    <header class="fixed">
-      <nav class="top-bar" data-topbar>
-        <ul class="title-area">
-          <li class="name">
-            <h1><a href="{{ url_for('home.index') }}">{{ current_event }}</a></h1>
-          </li>
-          <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
-        </ul>
-
-        <section class="top-bar-section">
-          <ul class="left">
-            <li class="has-dropdown">
-              <a href="#">About</a>
-              <ul class="dropdown">
-                <li><a href="#">What is PyGotham?</a></li>
-                <li><a href="#">Code of Conduct</a></li>
-              </ul>
-            </li>
-
-            <li class="has-dropdown">
-              <a href="#">Speaking</a>
-              <ul class="dropdown">
-                <li><a href="#">Call for Proposals</a></li>
-              </ul>
-            </li>
-
-            <li class="has-dropdown">
-              <a href="#">Sponsors</a>
-              <ul class="dropdown">
-                <li><a href="#">PyGotham Sponsors</a></li>
-                <li><a href="#">Sponsorship Prospectus</a></li>
-                <li><a href="{{ url_for('sponsors.apply') }}">Apply to be a Sponsor</a></li>
-              </ul>
-            </li>
-
-            <!--
-            <li><a href="#">Events</a></li>
-            <li><a href="#">Speaking</a></li>
-            <li><a href="#">Sponsors</a></li>
-            <li><a href="#">Venue</a></li>
-            <li><a href="#">News</a></li>
-            <li><a href="#">Registration</a></li>
-            -->
-          </ul>
-
-          <ul class="right">
-            {% if current_user.is_authenticated() %}
-              <li class="has-dropdown">
-                <a href="#">{{ current_user }}</a>
-                <ul class="dropdown">
-                  <li{% if request.endpoint == 'profile.settings' %} class="active"{% endif %}>
-                    <a href="{{ url_for('profile.settings') }}">Settings</a>
-                  </li>
-                  {% if current_user.has_role('admin') %}
-                    <li><a href="/admin/">Admin</a></li>
-                  {% endif %}
-                  <li><a href="{{ url_for('security.logout') }}">Log out</a></li>
-                </ul>
-              </li>
-            {% else %}
-              <li{% if request.endpoint == 'security.register' %} class="active"{% endif %}>
-                <a href="{{ url_for('security.register') }}">Sign up</a>
-              </li>
-              <li{% if request.endpoint == 'security.login' %} class="active"{% endif %}>
-                <a href="{{ url_for('security.login') }}">Log in</a>
-              </li>
-            {% endif %}
-          </ul>
-        </section>
-      </nav>
-    </header>
-  {% endblock %}
-
-  {% block content %}
-    <div class="content py-content">
-      {% block messages %}
-        {{ messages() }}
-      {% endblock %}
-
-      {% block jumbotron %}{% endblock %}
-
-      {% block main %}{% endblock %}
-    </div>
-
-    {% block footer %}
-      <footer>
-        <h3>{{ current_event }}</h3>
-        <p>
-          {{ current_event }} is a production of <a href="http://bigapplepy.org">Big Apple Py</a>.
-        </p>
-        <p>
-          Site built by <a href="http://nycpython.org">NYC Python</a>. Hosting provided by <a href="http://www.rackspace.com">Rackspace</a>.
-        </p>
-        <p>
-          Questions? Comments? Please contact <a href="mailto:pygotham@googlegroups.com">pygotham@googlegroups.com</a>.
-        </p>
-      </footer>
+  <div id="wrapper">
+    {% block navbar %}
+      <header></header>
     {% endblock %}
-  {% endblock %}
+
+    {% block content %}
+      <div class="content">
+        {% block messages %}
+          {{ messages() }}
+        {% endblock %}
+
+        {% block jumbotron %}{% endblock %}
+
+        {% block main %}{% endblock %}
+      </div>
+
+      {% block footer %}
+        <footer>
+          {{ current_event }} is a production of <a href="http://bigapplepy.org">Big Apple Py</a>.<br>
+          Hosting provided by <a href="http://www.rackspace.com">Rackspace</a>.<br>
+          Questions? Comments? Please contact <a href="mailto:pygotham@googlegroups.com">pygotham@googlegroups.com</a>.<br>
+        </footer>
+      {% endblock %}
+    {% endblock %}
+  </div>
 {% endblock %}

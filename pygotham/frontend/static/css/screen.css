@@ -1,23 +1,40 @@
-div.py-content {
-  margin-bottom: -120px;
-  padding-bottom: 120px;
-  padding-top: 30px;
+body {
+  font-family: 'Latos', sans-serif;
 }
 
-div.py-content .alert {
-  margin-bottom: 0;
-  margin-top: 20px;
+#wrapper {
+  min-height: 100%;
+  position: relative;
+}
+
+header {
+  border-bottom: 1px solid #e5e7e8;
+  height: 50px;
+}
+
+.jumbotron {
+  border-bottom: 1px solid #0e6b6b;
+}
+
+.jumbotron h1, .jumbotron h2 {
+  margin: 0;
+  padding: 0;
+  text-indent: -9999px;
 }
 
 footer {
-  background: #f5f5f5;
+  background: url(../img/bg-footer.png) bottom center;
   bottom: 0;
-  height: 120px;
+  color: #fff;
+  height: 198px;
+  font-size: 14px;
+  line-height: 1.5;
+  padding-top: 111px;
   position: absolute;
   text-align: center;
   width: 100%;
 }
 
-body.home div.py-content {
-  text-align: center;
+footer a {
+  color: #b7dd79;
 }
