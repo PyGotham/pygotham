@@ -2,7 +2,7 @@
 
 {% from 'macros/common.html' import messages %}
 
-{% block title %}{{ current_event }}{% endblock %}
+{% block title %}PyGotham 2014{% endblock %}
 
 {% block styles %}
   {{ super() }}
@@ -38,11 +38,24 @@
 
       {% block footer %}
         <footer>
-          {{ current_event }} is a production of <a href="http://bigapplepy.org">Big Apple Py</a>.<br>
+          PyGotham 2014 is a production of <a href="http://bigapplepy.org">Big Apple Py</a>.<br>
           Hosting provided by <a href="http://www.rackspace.com">Rackspace</a>.<br>
           Questions? Comments? Please contact <a href="mailto:pygotham@googlegroups.com">pygotham@googlegroups.com</a>.<br>
         </footer>
       {% endblock %}
     {% endblock %}
   </div>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-49638124-1', 'pygotham.org');
+      ga('send', 'pageview');
+
+    </script>
 {% endblock %}

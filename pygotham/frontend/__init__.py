@@ -8,7 +8,6 @@ from flask.ext.assets import Bundle, Environment
 from flask.ext.foundation import Foundation
 
 from pygotham import factory
-from pygotham.events import get_current as get_current_event
 
 __all__ = 'create_app', 'route'
 
@@ -29,10 +28,6 @@ def create_app(settings_override=None):
 
     assets.register('css_screen', css_screen)
     assets.register('css_print', css_print)
-
-    @app.context_processor
-    def current_event():
-        return {'current_event': get_current_event()}
 
     if not app.debug:
         for e in (404, 500):
