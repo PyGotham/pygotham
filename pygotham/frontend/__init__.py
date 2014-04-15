@@ -24,11 +24,36 @@ def create_app(settings_override=None):
     assets = Environment(app)
     Foundation(app)
 
-    css_screen = Bundle('css/screen.css', output='gen/css/screen.css')
-    css_print = Bundle('css/print.css', output='gen/css/print.css')
+    css_screen = Bundle(
+        'css/screen.css',
+        filters='cssmin',
+        output='gen/css/screen.min.css',
+    )
+    css_print = Bundle(
+        'css/print.css',
+        filters='cssmin',
+        output='gen/css/print.min.css',
+    )
+
+    css_foundation = Bundle(
+        'foundation/css/normalize.css',
+        'foundation/css/foundation.css',
+        'foundation/css/app.css',
+        filters='cssmin',
+        output='gen/css/foundation.min.css',
+    )
+
+    js_foundation = Bundle(
+        'foundation/js/foundation.min.js',
+        'foundation/js/app.js',
+        filters='jsmin',
+        output='gen/js/foundation.min.js',
+    )
 
     assets.register('css_screen', css_screen)
     assets.register('css_print', css_print)
+    assets.register('css_foundation', css_foundation)
+    assets.register('js_foundation', js_foundation)
 
     @app.context_processor
     def current_event():

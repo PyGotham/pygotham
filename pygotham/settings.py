@@ -13,6 +13,8 @@ def bool_(key, default):
 DEBUG = bool_('DEBUG', False)
 SECRET_KEY = env.get('SECRET_KEY', DOES_NOT_EXIST)
 
+GOOGLE_ANALYTICS_PROFILE_ID = env.get('GOOGLE_ANALYTICS_PROFILE_ID')
+
 # Flask-Assets
 ASSETS_DEBUG = bool_('ASSETS_DEBUG', False)
 

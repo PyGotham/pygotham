@@ -1,10 +1,16 @@
+/*
+  Stylesheet: Screen
+*/
+
 body {
-  font-family: 'Latos', sans-serif;
+  font-family: 'Lato', sans-serif;
+  font-size: 16px;
+  width: 100%;
 }
 
-#wrapper {
-  min-height: 100%;
-  position: relative;
+img {
+  max-width: 100%;
+  height: auto;
 }
 
 header {
@@ -12,8 +18,16 @@ header {
   height: 50px;
 }
 
+/* Jumbotron*/
+
 .jumbotron {
+  background: #79d7db;
   border-bottom: 1px solid #0e6b6b;
+  display: block;
+  height: 500px;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
 }
 
 .jumbotron h1, .jumbotron h2 {
@@ -22,19 +36,184 @@ header {
   text-indent: -9999px;
 }
 
-footer {
-  background: url(../img/bg-footer.png) bottom center;
-  bottom: 0;
-  color: #fff;
-  height: 198px;
-  font-size: 14px;
-  line-height: 1.5;
-  padding-top: 111px;
+section.jumbotron div.pg-logo {
+  background: url(/static/img/pg-logo.png) no-repeat;
+  background-size: 100%;
+  height: 200px;
+  left: 25%;
   position: absolute;
-  text-align: center;
+  top: 20px;
+  width: 400px;
+  max-width: 30%;
+  z-index: 999;
+}
+
+
+.jumbotron div.skyline {
+  background: url(/static/img/pg-city.png) no-repeat;
+  background-size: 100%;
+  float: right;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  top: 15%;
+  width: 600px;
+  max-width: 70%;
+  z-index: 9998;
+}
+
+.jumbotron div.liberty {
+  background: url(/static/img/pg-liberty.png) no-repeat;
+  background-size: 100%;
+  float: left;
+  height: 200px;
+  left: 5%;
+  position: absolute;
+  top: 55%;
+  width: 262px;
+  max-width: 30%;
+  z-index: 9999;
+}
+
+.jumbotron div.river {
+  height: 100%;
+  position: relative;
   width: 100%;
+}
+
+.jumbotron div.river .waves {
+  background: url(/static/img/pg-waves.png) no-repeat;
+  height: 188px;
+  left: 20%;
+  position: absolute;
+  top: 267px;
+  width: 850px;
+  z-index: 999;
+}
+
+.jumbotron div.river .water {
+  background: #289499;
+  bottom: 0;
+  height: 49%;
+  position: absolute;
+  width: 100%;
+  z-index: 99;
+}
+
+.jumbotron div.river .boat {
+  background: url(/static/img/pg-boat.png) no-repeat;
+  height: 35px;
+  left: 25%;
+  position: absolute;
+  top: 60%;
+  width: 100px;
+  z-index: 999;
+}
+
+.jumbotron div.nj {
+  background: url(/static/img/pg-nj.png) no-repeat;
+  height: 100px;
+  left: 10%;
+  position: absolute;
+  top: 173px;
+  width: 1215px;
+}
+
+
+
+footer {
+  background: url(/static/img/bg-footer.png) top center no-repeat;
+  color: #fff;
+  display: block;
+  font-size: 14px;
+  height: 198px;
+  line-height: 1.5;
+  margin-top: 40px;
+  padding-top: 33px;
+  text-align: center;
+}
+
+footer .credits {
+  background: #289399;
+  padding: 20px 0;
+}
+
+footer h4 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 0 40px;
+  text-transform: uppercase;
 }
 
 footer a {
   color: #b7dd79;
+}
+
+
+@media only screen and (max-width: 1340px) {
+  .jumbotron div.liberty {
+    left: -5%;
+  }
+}
+
+@media only screen and (max-width: 1100px) {
+  section.jumbotron div.pg-logo {
+    left: 12%;
+  }
+
+  .jumbotron div.nj {
+    left: -5%;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .jumbotron {
+    height: 400px;
+  }
+
+  .jumbotron div.river .boat {
+    display: none;
+  }
+
+  .jumbotron div.nj {
+    top: 31%;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .jumbotron {
+    height: 450px;
+  }
+
+  section.jumbotron div.pg-logo {
+    max-width: 80%;
+  }
+
+  .jumbotron div.skyline {
+    max-width: 100%;
+    right: -5%;
+    top: 35%;
+  }
+
+  .jumbotron div.river .water {
+    height: 35%;
+  }
+
+  .jumbotron div.liberty {
+    display: none;
+  }
+
+  .jumbotron div.nj {
+    top: 47%;
+  }
+
+  footer {
+    position: relative;
+  }
+}
+
+@media only screen and (max-width: 340px) {
+  .jumbotron {
+    height: 400px;
+  }
 }
