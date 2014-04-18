@@ -35,7 +35,7 @@ setup(
         'Flask-WTF==0.9.5',
         'Jinja2==2.7.2',
         'Mako==0.9.1',
-        'MarkupSafe==0.19',
+        'MarkupSafe==0.21',
         'SQLAlchemy==0.9.4',
         'SQLAlchemy-Utils==0.25.2',
         'WTForms==1.0.5',
