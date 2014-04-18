@@ -38,6 +38,21 @@ class Talk(db.Model):
         db.Enum('novice', 'intermediate', 'advanced', name='level'),
         nullable=False,
     )
+    type = db.Column(
+        db.Enum('talk', 'tutorial', name='type'),
+        nullable=False,
+    )
+    duration = db.Column(
+        db.Enum(
+            '30 minutes',
+            '45 minutes',
+            '60 minutes',
+            '1/2 day',
+            'full day',
+            name='duration',
+        ),
+        nullable=False,
+    )
     recording_release = db.Column(db.Boolean, nullable=False)
 
     abstract = db.Column(db.Text)

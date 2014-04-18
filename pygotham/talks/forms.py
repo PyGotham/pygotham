@@ -24,6 +24,8 @@ class TalkSubmissionForm(ModelForm):
             'name': {'label': 'Title'},
             'description': {'label': 'Description'},
             'level': {'label': 'Experience Level'},
+            'type': {'label': 'Type'},
+            'duration': {'duration': 'Duration'},
             'abstract': {'label': 'Abstract'},
             'objectives': {'label': 'Objectives'},
             'target_audience': {'label': 'Target Audience'},
