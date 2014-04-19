@@ -1,0 +1,23 @@
+{% extends 'layouts/base.html' %}
+
+{% import 'foundation_wtf.html' as wtf %}
+
+{% block title %}Submit a Talk - {{ super() }}{% endblock %}
+
+{% block main %}
+  <div class="row">
+    <form method="POST">
+      {{ form.hidden_tag() }}
+      {{ wtf.form_errors(form, False) }}
+
+      {{ wtf.horizontal_field(form.name, placeholder='Title') }}
+      {{ wtf.horizontal_field(form.description, placeholder='Description') }}
+      {{ wtf.horizontal_field(form.level, placeholder='Level') }}
+      {{ wtf.horizontal_field(form.type, placeholder='Type') }}
+
+      <div class="form-actions">
+        <button type="submit" class="button">Submit</button>
+      </div>
+    </form>
+  </div>
+{% endblock %}
