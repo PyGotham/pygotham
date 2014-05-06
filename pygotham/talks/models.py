@@ -53,7 +53,7 @@ class Talk(db.Model):
         ),
         nullable=False,
     )
-    recording_release = db.Column(db.Boolean, nullable=False)
+    recording_release = db.Column(db.Boolean, nullable=True)
 
     abstract = db.Column(db.Text)
     additional_requirements = db.Column(db.Text)
@@ -68,7 +68,8 @@ class Talk(db.Model):
         'Event', backref=db.backref('talks', lazy='dynamic'),
     )
 
-    category_id = db.Column(db.Integer, db.ForeignKey('categories.id'))
+    category_id = db.Column(
+        db.Integer, db.ForeignKey('categories.id'), nullable=True)
     category = db.relationship(
         'Category', backref=db.backref('talks', lazy='dynamic'),
     )

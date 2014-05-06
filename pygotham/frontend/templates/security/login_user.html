@@ -5,30 +5,36 @@
 
 {% block title %}Log in - {{ super() }}{% endblock %}
 
-{% block jumbotron %}
+{% block main %}
   <section class="jumbotron">
     <h1>Log in</h1>
     {% if current_event %}
       <p>Welcome to {{ current_event }}</p>
     {% endif %}
   </section>
-{% endblock %}
 
-{% block main %}
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <form action="{{ url_for('security.login') }}" method="POST" name="login_user_form">
-          {{ login_user_form.hidden_tag() }}
+  <div class="row">
+    <div class="large-12 columns">
+      <form action="{{ url_for('security.login') }}" method="POST" name="login_user_form">
+        {{ login_user_form.hidden_tag() }}
+
+        <div class="row">
           {{ horizontal_field(login_user_form.email, placeholder='Email address') }}
+        </div>
+        <div class="row">
           {{ horizontal_field(login_user_form.password, placeholder='Password') }}
+        </div>
+        <div class="row">
           {{ render_field_with_errors(login_user_form.remember) }}
+        </div>
+        <div class="row">
           {{ render_field(login_user_form.next) }}
-          <div class="btn-group">
-            <button type="submit" class="btn btn-primary">Log in</button>
+        </div>
+          <div class="form-actions">
+            <button type="submit" class="button radius">Log in</button>
           </div>
-        </form>
-      </div>
+        </div>
+      </form>
     </div>
   </div>
 {% endblock %}

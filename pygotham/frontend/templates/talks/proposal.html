@@ -6,18 +6,49 @@
 
 {% block main %}
   <div class="row">
-    <form method="POST">
-      {{ form.hidden_tag() }}
-      {{ wtf.form_errors(form, False) }}
+    <div class="large-12 columns">
+      <form method="POST">
+        {{ form.hidden_tag() }}
+        {{ wtf.form_errors(form, False) }}
 
-      {{ wtf.horizontal_field(form.name, placeholder='Title') }}
-      {{ wtf.horizontal_field(form.description, placeholder='Description') }}
-      {{ wtf.horizontal_field(form.level, placeholder='Level') }}
-      {{ wtf.horizontal_field(form.type, placeholder='Type') }}
+        <div class="row">
+          {{ wtf.horizontal_field(form.name, placeholder='Title') }}
+        </div>
+        <div class="row">
+          {{ wtf.horizontal_field(form.description, placeholder='Description') }}
+        </div>
+        <div class="row">
+          {{ wtf.horizontal_field(form.level, placeholder='Level') }}
+        </div>
+        <div class="row">
+          {{ wtf.horizontal_field(form.type, placeholder='Type') }}
+        </div>
+        <div class="row">
+          {{ wtf.horizontal_field(form.duration, placeholder='Duration') }}
+        </div>
+        <div class="row">
+          {{ wtf.horizontal_field(form.abstract, placeholder='Abstract') }}
+        </div>
+        <div class="row">
+          {{ wtf.horizontal_field(form.objectives, placeholder='Objectives') }}
+        </div>
+        <div class="row">
+          {{ wtf.horizontal_field(form.target_audience, placeholder='Audience') }}
+        </div>
+        <div class="row">
+          {{ wtf.horizontal_field(form.outline, placeholder='Outline') }}
+        </div>
+        <div class="row">
+          {{ wtf.horizontal_field(form.additional_requirements, placeholder='Additional Requirements') }}
+        </div>
+        <div class="row">
+          {{ wtf.horizontal_field(form.recording_release, placeholder='Recording Release') }}
+        </div>
 
-      <div class="form-actions">
-        <button type="submit" class="button">Submit</button>
-      </div>
-    </form>
+        <div class="form-actions">
+          <button type="submit" class="button radius">Submit</button>
+        </div>
+      </form>
+    </div>
   </div>
 {% endblock %}

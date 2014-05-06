@@ -1,0 +1,31 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}Dashboard - {{ super() }}{% endblock %}
+
+{% block main %}
+  <div class="row">
+    <div class="large-12 columns">
+      <h2>Your Proposals</h2>
+      <table style="width: 100%;">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Type</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for talk in talks %}
+            <tr>
+              <td>{{ talk }}</td>
+              <td>{{ talk.type }}</td>
+              <td>
+                <a href="{{ url_for('talks.edit', pk=talk.id) }}" class="button tiny radius">Edit</a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock %}
