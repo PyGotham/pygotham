@@ -6,13 +6,6 @@
 {% block title %}Log in - {{ super() }}{% endblock %}
 
 {% block main %}
-  <section class="jumbotron">
-    <h1>Log in</h1>
-    {% if current_event %}
-      <p>Welcome to {{ current_event }}</p>
-    {% endif %}
-  </section>
-
   <div class="row">
     <div class="large-12 columns">
       <form action="{{ url_for('security.login') }}" method="POST" name="login_user_form">

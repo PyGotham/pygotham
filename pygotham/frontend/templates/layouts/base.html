@@ -38,12 +38,57 @@
   {% endassets %}
 {% endblock %}
 
-{% block body_attribs %} class="{% block body_class %}{% endblock %}" {% endblock %}
-
 {% block body_content %}
-  <div id="wrapper">
-    {% block navbar %}
-      <header></header>
+  <div id="wrapper" class="{% block body_class %}{% endblock %}">
+    {% block header %}
+      <header>
+        {% block navbar %}
+          <nav class="top-bar" data-topbar>
+            <ul class="title-area">
+              <li class="name">
+                <h1><a href="{{ url_for('home.index') }}">{{ current_event }}</a></h1>
+              </li>
+              <li class="toggle-topbar menu-icon">
+                <a href="#"><span>Menu</span></a>
+              </li>
+            </ul>
+
+            <section class="top-bar-section">
+              <ul class="right">
+                <li class="speaking has-dropdown">
+                  <a href="#">Speaking</a>
+                  <ul class="dropdown">
+                    <li><a href="#coming-soon">Submit a talk</a></li>
+                  </ul>
+                </li>
+                <li><a href="http://bigapplepy.org">Big Apple Py</a></li>
+                <li><a href="#coming-soon">Registration</a></li>
+                {% if current_user.is_authenticated() %}
+                  <li class="has-dropdown">
+                    <a href="#"><strong>Hi, {{ current_user }}</strong></a>
+                    <ul class="dropdown">
+                      <li><a href="#coming-soon">Dashboard</a></li>
+                      {% if current_user.has_role('admin') %}
+                        <li><a href="/admin/">Admin</a></li>
+                      {% endif %}
+                    </ul>
+                  </li>
+                  <li class="login">
+                    <a href="{{ url_for('security.logout') }}" class="button radius">Log out</a>
+                  </li>
+                {% else %}
+                  <li class="login">
+                    <a href="{{ url_for('security.login') }}" class="button radius">Log in</a>
+                  </li>
+                  <li class="register">
+                    <a href="{{ url_for('security.register') }}" class="button radius">Sign up</a>
+                  </li>
+                {% endif %}
+              </ul>
+            </section>
+          </nav>
+        {% endblock %}
+      </header>
     {% endblock %}
 
     {% block content %}
