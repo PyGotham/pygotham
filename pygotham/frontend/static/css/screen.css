@@ -43,6 +43,11 @@ img {
     line-height: 26px;
   }
 
+  header nav.top-bar .top-bar-section li:not(.has-form) a:hover {
+    background: none;
+    color: #fd903b;
+  }
+
   header nav.top-bar .top-bar-section ul.dropdown li {
     background: #c6ebee;
   }
@@ -54,20 +59,7 @@ img {
   header nav.top-bar .top-bar-section ul.dropdown a {
     background: #c6ebee;
     color: #444;
-  }
-
-  header nav.top-bar .top-bar-section ul.dropdown a:hover {
-    color: #fff;
-  }
-
-  header nav.top-bar .top-bar-section li:not(.has-form) a:hover {
-    background: none;
-    color: #fd903b;
-  }
-
-  header nav.top-bar .top-bar-section ul.dropdown a {
-    background: #c6ebee;
-    color: #444;
+    padding: 8px 15px;
   }
 
   header nav.top-bar .top-bar-section ul.dropdown a:hover {
@@ -236,6 +228,10 @@ section.jumbotron div.pg-logo {
 
 div.content {
   padding-top: 13px;
+}
+
+.home div.content {
+  padding-top: 0;
 }
 
 footer {
