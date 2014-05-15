@@ -115,7 +115,7 @@ img {
   }
 
   header nav.top-bar .title-area .name a {
-    background: url(/static/img/header/logo.png) no-repeat;
+    background: url(/static/img/header/logo.png?20140514) no-repeat;
     display: block;
     height: 100px;
     margin-top: 12px;
