@@ -58,7 +58,7 @@
                 <li class="speaking has-dropdown">
                   <a href="#">Speaking</a>
                   <ul class="dropdown">
-                    <li><a href="#coming-soon">Submit a talk</a></li>
+                    <li><a href="{{ url_for('talks.submit') }}">Submit a talk</a></li>
                   </ul>
                 </li>
                 <li><a href="http://bigapplepy.org">Big Apple Py</a></li>
@@ -67,7 +67,7 @@
                   <li class="has-dropdown">
                     <a href="#"><strong>Hi, {{ current_user }}</strong></a>
                     <ul class="dropdown">
-                      <li><a href="#coming-soon">Dashboard</a></li>
+                      <li><a href="{{ url_for('profile.dashboard') }}">Dashboard</a></li>
                       {% if current_user.has_role('admin') %}
                         <li><a href="/admin/">Admin</a></li>
                       {% endif %}

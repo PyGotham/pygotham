@@ -40,6 +40,6 @@ def proposal(pk=None):
 
         flash('You proposal has been submitted.', 'success')
 
-        return redirect(url_for('profile.index'))
+        return redirect(url_for('profile.dashboard'))
 
     return render_template('talks/proposal.html', form=form)
