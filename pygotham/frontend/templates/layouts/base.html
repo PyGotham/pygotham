@@ -55,6 +55,13 @@
 
             <section class="top-bar-section">
               <ul class="right">
+                <li class="about has-dropdown">
+                  <a href="#">About</a>
+                  <ul class="dropdown">
+                    <li><a href="{{ url_for('about.code_of_conduct') }}">Code of Conduct</a></li>
+                    <li><a href="{{ url_for('about.privacy_policy') }}">Privacy Policy</a></li>
+                  </ul>
+                </li>
                 <li class="speaking has-dropdown">
                   <a href="#">Speaking</a>
                   <ul class="dropdown">
