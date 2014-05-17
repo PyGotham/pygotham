@@ -56,6 +56,8 @@ class User(db.Model, UserMixin):
     login_count = db.Column(db.Integer)
     registered_at = db.Column(db.DateTime)
 
+    bio = db.Column(db.Text)
+
     roles = db.relationship(
         'Role',
         secondary=roles_users,
