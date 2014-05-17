@@ -1,26 +1,29 @@
 {% extends 'layouts/base.html' %}
 
-{% from 'bootstrap/wtf.html' import form_field %}
+{% from 'foundation_wtf.html' import horizontal_field %}
 
 {% block title %}Settings - {{ super() }}{% endblock %}
 
 {% block main %}
-  <section class="jumbotron">
-    <h1>My settings</h1>
-  </section>
+  <div class="row">
+    <div class="large-12 columns">
+      <h1>My settings</h1>
+    </div>
+  </div>
 
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <form action="{{ url_for('profile.settings') }}" method="POST">
-          {{ form.hidden_tag() }}
-          {{ form_field(form.name) }}
-          {{ form_field(form.email) }}
-          <div class="btn-group">
-            <button type="submit" class="btn btn-primary">Update settings</button>
-          </div>
-        </form>
-      </div>
+  <div class="row">
+    <div class="large-12 columns">
+      <form action="{{ url_for('profile.settings') }}" method="POST">
+        {{ form.hidden_tag() }}
+        {{ horizontal_field(form.name) }}
+        {{ horizontal_field(form.email) }}
+        {{ horizontal_field(form.bio) }}
+        <div class="form-actions">
+          <button type="submit" class="button radius">Update settings</button>
+        </div>
+      </form>
+
+      <a href="{{ url_for('security.change_password') }}">Change password</a>
     </div>
   </div>
 {% endblock %}
