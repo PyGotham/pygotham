@@ -22,6 +22,11 @@ def proposal(pk=None):
     """Return the talk proposal form."""
     from pygotham.forms import TalkSubmissionForm
 
+    if not (current_user.name and current_user.bio):
+        message = 'Please fill out your speaker profile before continuing.'
+        flash(message, 'warning')
+        return redirect(url_for('profile.settings'))
+
     event = get_current()
 
     if pk:
