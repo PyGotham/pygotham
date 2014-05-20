@@ -42,6 +42,24 @@ class Event(db.Model):
         return self.name
 
     @property
+    def is_call_for_proposals_active(self):
+        """Return whether the call for proposals for an event is active.
+
+        The CFP is active when the current :class:`~datetime.datetime`
+        is greater than or equal to
+        :attribute:`~pygotham.events.models.Event.proposals_begin` and
+        less than
+        :attribute:`~pygotham.events.models.Event.proposals_end`.
+        """
+        now = datetime.utcnow()
+        if not self.proposals_begin or now < self.proposals_begin:
+            return False
+        if self.proposals_end and self.proposals_end < now:
+            return False
+
+        return True
+
+    @property
     def is_registration_active(self):
         """Return whether registration for an event is active.
 
