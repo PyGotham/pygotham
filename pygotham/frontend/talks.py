@@ -6,12 +6,19 @@ from flask.ext.security import login_required
 
 from pygotham.core import db
 from pygotham.events import get_current
-from pygotham.frontend import route
+from pygotham.frontend import direct_to_template, route
 from pygotham.models import Talk
 
 __all__ = 'blueprint'
 
 blueprint = Blueprint('talks', __name__, url_prefix='/talks')
+
+direct_to_template(
+    blueprint,
+    '/call-for-proposals',
+    template='talks/call-for-proposals.html',
+    endpoint='call_for_proposals',
+)
 
 
 @route(

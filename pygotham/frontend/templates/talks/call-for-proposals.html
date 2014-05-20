@@ -1,0 +1,67 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}Call for Proposals - {{ super() }}{% endblock %}
+
+{% block main %}
+  <div class="row">
+    <h1>Call for Proposals</h1>
+
+    <h2>Background</h2>
+
+    <p>{{ current_event }}, New York City's annual Python conference, will take
+    place on Saturday, August 16 and Sunday August 17, 2014 at the AMA
+    Conference Center in New York, NY.</p>
+
+    <p>Anyone interested in speaking is encouraged to submit a proposal for
+    talks and tutorials. There are no restrictions on topics, but we recommend
+    they be of interest to Pythonistas. Talks will fill slots of 30 minutes, 45
+    minutes, and 60 minutes, including time for questions and answers. Tutorials
+    will be three hours long.</p>
+
+    <h2>Who Should Submit?</h2>
+
+    <p>Everyone is encouraged to submit a proposal. We are looking for speakers
+    of all different speaking and Python experience levels, from first-timers to
+    experienced veterans.</p>
+
+    <p>The audience's experience level will be just as diverse, so feel free to
+    cater your talk to a specific experience level.</p>
+
+    <h2>Looking for Ideas?</h2>
+
+    <p>One of the best ways to come up with an idea is to think talk about
+    something you want to learn about. It's a great way to learn about the topic
+    and you'll be able to share your experiences with the audience.</p>
+
+    <p>Another great source of topics is challenges you've recently overcome.
+    Have you recently ported a library from Python 2 to 3? Perhaps you've
+    recently helped your application scale to a greater number of users. Or
+    maybe you recently learned how to use a library to simplify your data
+    analysis. Experiences like these are usually full of great tips and tricks
+    to share.</p>
+
+    <p>Still looking for ideas? Here are some topics from recent
+    <a href="http://nycpython.org">NYC Python</a> and
+    <a href="http://flask-nyc.org">Flask-NYC</a> events:</p>
+
+    <ul>
+      <li>Testing</li>
+      <li>Performance</li>
+      <li>Packaging</li>
+      <li>CPython</li>
+      <li>Data analysis</li>
+      <li>Libraries such as Twisted, asyncio, and scikit-learn</li>
+    </ul>
+
+    <h2>How to Submit</h2>
+    <ol>
+      <li><a href="{{ url_for('security.register') }}">Register</a> for an
+      account.</li>
+      <li>Fill out your <a href="{{ url_for('profile.settings') }}">profile</a>.
+      We need this information so we can tell people how awesome you are.</li>
+      <li>Fill out the <a href="{{ url_for('talks.submit') }}">submission
+        form</a>.  You can submit as many proposals as you'd like.</li>
+      <li>Watch your email for questions from the reviewers.</li>
+    </ol>
+  </div>
+{% endblock %}
