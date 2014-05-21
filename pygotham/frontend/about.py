@@ -1,8 +1,8 @@
 """About PyGotham."""
 
-from flask import Blueprint, render_template
+from flask import Blueprint
 
-from pygotham.frontend import direct_to_template, route
+from pygotham.frontend import direct_to_template
 
 __all__ = 'blueprint',
 
