@@ -72,9 +72,15 @@
                   </ul>
                 </li>
                 <li><a href="http://bigapplepy.org">Big Apple Py</a></li>
-                {% if current_event.is_registration_active %}
-                  <li><a href="{{ current_event.registration_url }}">Registration</a></li>
-                {% endif %}
+                <li class="registration has-dropdown">
+                  <a href="#">Registration</a>
+                  <ul class="dropdown">
+                    <li><a href="{{ url_for('registration.information') }}">Information</a></li>
+                    {% if current_event.is_registration_active %}
+                      <li><a href="{{ current_event.registration_url }}">Registration</a></li>
+                    {% endif %}
+                  </ul>
+                </li>
                 {% if current_user.is_authenticated() %}
                   <li class="has-dropdown">
                     <a href="#"><strong>Hi, {{ current_user }}</strong></a>

@@ -1,0 +1,63 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}Registration information - {{ super() }}{% endblock %}
+
+{% block main %}
+  <div class="row">
+    <div class="large-12 columns">
+      <h1>Registration</h1>
+
+      {% if current_event.is_registration_active %}
+        <p>To register for {{ current_event }}, visit the
+        <a href="{{ current_event.registration_url }}">registration
+        page</a>.</p>
+      {% elif current_event.registration_closed %}
+        <p>Registration for {{ current_event }} is no longer open.
+      {% else %}
+        <p>Registration for {{ current_event}} is not open yet.</p>
+      {% endif %}
+
+      <h2>Prices</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Registration</th>
+            <th>Early Bird Rate</th>
+            <th>Regular Rate</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Corporate</td>
+            <td></td>
+            <td>$300</td>
+          </tr>
+          <tr>
+            <td>Individual</td>
+            <td>$150</td>
+            <td>$200</td>
+          </tr>
+          <tr>
+            <td>Student</td>
+            <td></td>
+            <td>$150</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>What's Included?</h2>
+
+      <p>Along with your conference registration, attendees will receive
+      breakfast, lunch, and break refreshments.</p>
+
+      <h2>Financial Aid</h2>
+
+      <p>There are a number of free tickets available. To request one, please
+      send an email to
+      <a href="mailto:pygotham@googlegroups.com">pygotham@googlegroups.com</a>.</p>
+
+      <p>Travel and lodging expenses cannot be provided at this time.</p>
+    </div>
+  </div>
+{% endblock %}
