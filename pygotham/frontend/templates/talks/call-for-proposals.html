@@ -6,6 +6,16 @@
   <div class="row">
     <h1>Call for Proposals</h1>
 
+    {% if current_event.proposals_end %}
+      <div class="panel callout">
+        <p>The Call for Proposals ends on
+        {{ current_event.proposals_end.strftime('%B') }}
+        {{ current_event.proposals_end.day }},
+        {{ current_event.proposals_end.year }}. Make sure you submit your talk
+        before then.</p>
+      </div>
+    {% endif %}
+
     <h2>Background</h2>
 
     <p>{{ current_event }}, New York City's annual Python conference, will take
