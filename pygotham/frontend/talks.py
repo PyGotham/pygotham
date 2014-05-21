@@ -42,6 +42,12 @@ def proposal(pk=None):
         if talk.user != current_user:
             abort(403)
     else:
+        if not event.is_call_for_proposals_active:
+            # If the current event's CFP is closed, don't allow users to
+            # submit new proposals.
+            message = 'The Call for Proposals is closed at this time.'
+            flash(message, 'warning')
+            return redirect(url_for('home.index'))
         talk = Talk(user_id=current_user.id, event=event)
         db.session.add(talk)
 
