@@ -23,8 +23,16 @@
   {% endif %}
 
   {% if announcements %}
-    <section class="announcements">
-      <h2>Announcements</h2>
+    <section class="row announcements">
+      <h3>Announcements</h3>
+      <ol>
+        {% for announcement in announcements %}
+          <li>
+            <h4>{{ announcement }}</h4>
+            <p>{{ announcement.content|safe }}</p>
+          </li>
+        {% endfor %}
+      </ol>
     </section>
   {% endif %}
 {% endblock %}
