@@ -45,4 +45,8 @@ def index():
     return render_template('sponsors/index.html')
 
 
+direct_to_template(
+    blueprint, 'prospectus', template='sponsors/prospectus.html')
+
+
 direct_to_template(blueprint, '/terms', template='sponsors/terms.html')

@@ -1,0 +1,96 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}Sponsorship Prospectus - {{ super() }}{% endblock %}
+
+{% block main %}
+  <div class="row">
+    <h1>So you want to sponsor {{ event }}</h1>
+
+    <h2>Sponsorship Levels</h2>
+
+    <dl>
+      <dt>Diamond Sponsor ($15000)</dt>
+      <dd>
+        You will receive:
+        <ul>
+          <li>a sponsored room for one day, program subject to approval</li>
+          <li>your logo on a banner at the conference</li>
+          <li>your logo displayed on the
+            <a href="{{ url_for('sponsors.index') }}">sponsors</a> page</li>
+          <li>your logo in media about and at the conference</li>
+          <li>10 tickets</li>
+          <li>15 registration scholarships given on your behalf</li>
+        </ul>
+      </dd>
+
+      <dt>Platinum Sponsor ($7500)</dt>
+      <dd>
+        You will receive:
+        <ul>
+          <li>a booth near the registration area</li>
+          <li>your logo on a banner at the conference</li>
+          <li>your logo displayed on the
+            <a href="{{ url_for('sponsors.index') }}">sponsors</a> page</li>
+          <li>your logo in media about and at the conference</li>
+          <li>7 tickets</li>
+          <li>10 registration scholarships given on your behalf</li>
+        </ul>
+      </dd>
+
+      <dt>Gold Sponsor ($5000)</dt>
+      <dd>
+        You will receive:
+        <ul>
+          <li>a small booth in the lounge area</li>
+          <li>your logo displayed on the
+            <a href="{{ url_for('sponsors.index') }}">sponsors</a> page</li>
+          <li>your logo in media about and at the conference</li>
+          <li>5 tickets</li>
+          <li>5 registration scholarships given on your behalf</li>
+        </ul>
+      </dd>
+
+      <dt>Silver Sponsor ($2500)</dt>
+      <dd>
+        You will receive:
+        <ul>
+          <li>your logo displayed on the
+            <a href="{{ url_for('sponsors.index') }}">sponsors</a> page</li>
+          <li>your logo in media about and at the conference</li>
+          <li>3 tickets</li>
+        </ul>
+      </dd>
+
+      <dt>Supporting Sponsor ($1000)</dt>
+      <dd>
+        You will receive:
+        <ul>
+          <li>your logo displayed on the
+            <a href="{{ url_for('sponsors.index') }}">sponsors</a> page</li>
+          <li>your logo in media about and at the conference</li>
+          <li>1 tickets</li>
+        </ul>
+      </dd>
+
+      <dt>Lanyard Sponsor (cost of lanyards and badge holders)</dt>
+      <dd>
+        You will receive:
+        <ul>
+          <li>your logo displayed on the
+            <a href="{{ url_for('sponsors.index') }}">sponsors</a> page</li>
+          <li>your logo in media about and at the conference</li>
+        </ul>
+      </dd>
+
+      <dt>Media Sponsor</dt>
+      <dd>
+        You will receive:
+        <ul>
+          <li>your logo displayed on the
+            <a href="{{ url_for('sponsors.index') }}">sponsors</a> page</li>
+          <li>your logo in media about and at the conference</li>
+        </ul>
+      </dd>
+    </dl>
+  </div>
+{% endblock %}
