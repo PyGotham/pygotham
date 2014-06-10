@@ -5,29 +5,23 @@
 {% block title %}Sponsorship Application - {{ super() }}{% endblock %}
 
 {% block main %}
-  <section class="jumbotron">
+  <div class="row">
     <h1>Apply to be a Sponsor</h1>
-  </section>
 
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <form action="{{ url_for('sponsors.apply') }}" method="POST">
-          {{ form.hidden_tag() }}
-          {{ horizontal_field(form.name) }}
-          {{ horizontal_field(form.contact_name) }}
-          {{ horizontal_field(form.contact_email) }}
-          {{ horizontal_field(form.level) }}
-          <div class="btn-group">
-            <button type="submit" class="btn btn-primary">Apply</button>
-            <p>
-              By submitting a sponsorship application you are agreeing to the
-              <a href="{{ url_for('sponsors.terms') }}">terms and
-              conditions</a>.
-            </p>
-          </div>
-        </form>
+    <form action="{{ url_for('sponsors.apply') }}" method="POST">
+      {{ form.hidden_tag() }}
+      {{ horizontal_field(form.name) }}
+      {{ horizontal_field(form.contact_name) }}
+      {{ horizontal_field(form.contact_email) }}
+      {{ horizontal_field(form.level) }}
+      <div class="btn-group">
+        <button type="submit" class="btn btn-primary">Apply</button>
+        <p>
+          By submitting a sponsorship application you are agreeing to the
+          <a href="{{ url_for('sponsors.terms') }}">terms and
+          conditions</a>.
+        </p>
       </div>
-    </div>
+    </form>
   </div>
 {% endblock %}
