@@ -17,6 +17,6 @@ TalkModelView = model_view(
     models.Talk,
     'Talks',
     'Talks',
-    column_list=('name', 'status', 'level', 'category'),
+    column_list=('name', 'status', 'level', 'type', 'user'),
     column_searchable_list=('name',),
 )
