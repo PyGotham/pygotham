@@ -46,7 +46,7 @@ def index():
 
 
 direct_to_template(
-    blueprint, 'prospectus', template='sponsors/prospectus.html')
+    blueprint, '/prospectus', template='sponsors/prospectus.html')
 
 
 direct_to_template(blueprint, '/terms', template='sponsors/terms.html')
