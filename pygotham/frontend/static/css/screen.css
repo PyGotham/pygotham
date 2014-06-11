@@ -22,6 +22,7 @@ img {
   .home header nav.top-bar {
     background: #fff;
     height: 51px;
+    z-index: 9999;
   }
 
   .home header nav.top-bar .toggle-topbar a {
