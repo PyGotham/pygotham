@@ -29,7 +29,7 @@
         {% for announcement in announcements %}
           <li>
             <h4>{{ announcement }}</h4>
-            <p>{{ announcement.content|safe }}</p>
+            <p>{{ announcement.content|rst|safe }}</p>
           </li>
         {% endfor %}
       </ol>

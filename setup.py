@@ -47,6 +47,7 @@ setup(
         'blinker==1.3',
         'cssmin==0.2.0',
         'decorator==3.4.0',
+        'docutils==0.11',
         'infinity==1.3',
         'intervals==0.3.0',
         'itsdangerous==0.24',

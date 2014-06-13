@@ -1,5 +1,6 @@
 """Frontend application."""
 
+from docutils import core
 from functools import wraps
 import os
 
@@ -58,6 +59,12 @@ def create_app(settings_override=None):
     @app.context_processor
     def current_event():
         return {'current_event': get_current_event()}
+
+
+    @app.template_filter('rst')
+    def rst_to_html(value):
+        parts = core.publish_parts(source=value, writer_name='html')
+        return parts['body_pre_docinfo'] + parts['fragment']
 
     if not app.debug:
         for e in (404, 500):
