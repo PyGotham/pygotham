@@ -29,6 +29,9 @@
         {% for announcement in announcements %}
           <li>
             <h4>{{ announcement }}</h4>
+            <time datetime="{{ announcement.published }}">
+              {{ announcement.published.strftime('%m.%d.%y') }}
+            </time>
             <p>{{ announcement.content|rst|safe }}</p>
           </li>
         {% endfor %}
