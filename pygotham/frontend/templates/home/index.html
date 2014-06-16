@@ -23,8 +23,19 @@
   {% endif %}
 
   {% if announcements %}
-    <section class="announcements">
-      <h2>Announcements</h2>
+    <section class="row announcements">
+      <h3>Announcements</h3>
+      <ol>
+        {% for announcement in announcements %}
+          <li>
+            <h4>{{ announcement }}</h4>
+            <time datetime="{{ announcement.published }}">
+              {{ announcement.published.strftime('%m.%d.%y') }}
+            </time>
+            <p>{{ announcement.content|rst|safe }}</p>
+          </li>
+        {% endfor %}
+      </ol>
     </section>
   {% endif %}
 {% endblock %}

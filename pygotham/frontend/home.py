@@ -2,6 +2,9 @@
 
 from flask import Blueprint, render_template
 
+from pygotham.core import db
+from pygotham.news import get_active
+
 __all__ = 'blueprint',
 
 blueprint = Blueprint(
@@ -15,4 +18,5 @@ blueprint = Blueprint(
 @blueprint.route('/')
 def index():
     """Return the home page."""
-    return render_template('home/index.html')
+    announcements = get_active()
+    return render_template('home/index.html', announcements=announcements)
