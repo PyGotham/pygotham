@@ -21,14 +21,14 @@ class TalkSubmissionForm(ModelForm):
         exclude = ('status',)
         field_args = {
             'name': {'label': 'Title'},
-            'description': {'label': 'Description'},
+            'description': {'label': 'Please include a brief summary of the talk as it should appear on the site'},
             'level': {'label': 'Experience Level'},
             'type': {'label': 'Type'},
             'duration': {'label': 'Duration'},
-            'abstract': {'label': 'Abstract'},
+            'abstract': {'label': 'Please give a more detailed description of the talk'},
             'objectives': {'label': 'Objectives'},
             'target_audience': {'label': 'Target Audience'},
-            'outline': {'label': 'Outline'},
+            'outline': {'label': 'This outline should cover the sections and key points of the talk (think table of contents'},
             'additional_requirements': {'label': 'Additional Requirements'},
             'recording_release': {
                 'label': 'Recording Release',
