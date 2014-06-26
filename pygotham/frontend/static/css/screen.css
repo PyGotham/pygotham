@@ -235,6 +235,12 @@ div.content {
   padding-top: 0;
 }
 
+form small {
+  color: #999;
+  display: block;
+  margin: -.9rem 0 1rem;
+}
+
 footer {
   background: url(/static/img/bg-footer.png) top center no-repeat;
   color: #fff;
