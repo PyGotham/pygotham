@@ -21,14 +21,44 @@ class TalkSubmissionForm(ModelForm):
         exclude = ('status',)
         field_args = {
             'name': {'label': 'Title'},
-            'description': {'label': 'Please include a brief summary of the talk as it should appear on the site'},
+            'description': {
+                'label': 'Description',
+                'description': (
+                    'If your talk is accepted this will be made public and '
+                    'printed in the program. Should be one paragraph.'
+                ),
+            },
             'level': {'label': 'Experience Level'},
             'type': {'label': 'Type'},
             'duration': {'label': 'Duration'},
-            'abstract': {'label': 'Please give a more detailed description of the talk'},
-            'objectives': {'label': 'Objectives'},
-            'target_audience': {'label': 'Target Audience'},
-            'outline': {'label': 'This outline should cover the sections and key points of the talk (think table of contents'},
+            'abstract': {
+                'label': 'Abstract',
+                'description': (
+                    'Detailed description. Will be made public if your talk '
+                    'is accepted.'
+                ),
+            },
+            'objectives': {
+                'label': 'Objectives',
+                'description': (
+                    'What do you hope to accomplish with this talk?'
+                ),
+            },
+            'target_audience': {
+                'label': 'Target Audience',
+                'description': (
+                    'Who is the intended audience for your talk? (Be '
+                    'specific; "Python programmers" is not a good answer to '
+                    'this question.)'
+                ),
+            },
+            'outline': {
+                'label': 'Outline',
+                'description': (
+                    'Sections and key points of the talk meant to give the '
+                    'committee an overview.'
+                ),
+            },
             'additional_requirements': {'label': 'Additional Requirements'},
             'recording_release': {
                 'label': 'Recording Release',
