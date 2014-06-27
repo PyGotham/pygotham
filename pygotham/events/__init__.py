@@ -1,7 +1,6 @@
 """Events package."""
 
-from datetime import datetime
-
+import arrow
 from sqlalchemy import or_
 
 from pygotham.events.models import Event
@@ -11,7 +10,7 @@ __all__ = 'get_current',
 
 def get_current():
     """Get the current event."""
-    now = datetime.utcnow()
+    now = arrow.utcnow().to('America/New_York')
 
     return Event.query.filter(
         Event.active == True,

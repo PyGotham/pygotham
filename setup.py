@@ -44,6 +44,7 @@ setup(
         'WTForms-Components==0.9.3',
         'Werkzeug==0.9.6',
         'alembic==0.6.5',
+        'arrow==0.4.2',
         'bleach==1.4',
         'blinker==1.3',
         'cssmin==0.2.0',

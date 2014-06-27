@@ -1,6 +1,7 @@
 """Events models."""
 
-from datetime import datetime
+import arrow
+from sqlalchemy_utils.types.arrow import ArrowType
 
 from pygotham.core import db
 
@@ -22,20 +23,20 @@ class Event(db.Model):
 
     # Fields to control when the event is active
     active = db.Column(db.Boolean, nullable=False)
-    activity_begins = db.Column(db.DateTime)
-    activity_ends = db.Column(db.DateTime)
+    activity_begins = db.Column(ArrowType)
+    activity_ends = db.Column(ArrowType)
 
     # Proposal window
-    proposals_begin = db.Column(db.DateTime)
-    proposals_end = db.Column(db.DateTime)
+    proposals_begin = db.Column(ArrowType)
+    proposals_end = db.Column(ArrowType)
 
     # Registration informatino
     registration_closed = db.Column(
         db.Boolean, server_default='false', nullable=False,
     )
     registration_url = db.Column(db.String(255))
-    registration_begins = db.Column(db.DateTime)
-    registration_ends = db.Column(db.DateTime)
+    registration_begins = db.Column(ArrowType)
+    registration_ends = db.Column(ArrowType)
 
     def __str__(self):
         """Return a printable representation."""
@@ -51,7 +52,7 @@ class Event(db.Model):
         less than
         :attribute:`~pygotham.events.models.Event.proposals_end`.
         """
-        now = datetime.utcnow()
+        now = arrow.utcnow().to('America/New_York')
         if not self.proposals_begin or now < self.proposals_begin:
             return False
         if self.proposals_end and self.proposals_end < now:
@@ -82,7 +83,7 @@ class Event(db.Model):
         if not self.registration_url:
             return False
 
-        now = datetime.utcnow()
+        now = arrow.utcnow().to('America/New_York')
         if not self.registration_begins or now < self.registration_begins:
             return False
         if self.registration_ends and self.registration_ends < now:
