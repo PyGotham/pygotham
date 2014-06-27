@@ -1,9 +1,8 @@
 """News models."""
 
-from datetime import datetime
-
 from slugify import slugify
 from sqlalchemy_utils.decorators import generates
+from sqlalchemy_utils.types.arrow import ArrowType
 
 from pygotham.core import db
 
@@ -22,7 +21,7 @@ class Announcement(db.Model):
     content = db.Column(db.Text, nullable=False)
 
     active = db.Column(db.Boolean, nullable=False)
-    published = db.Column(db.DateTime)
+    published = db.Column(ArrowType)
 
     def __str__(self):
         return self.title
