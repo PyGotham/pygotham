@@ -52,10 +52,10 @@ class Event(db.Model):
         less than
         :attribute:`~pygotham.events.models.Event.proposals_end`.
         """
-        now = arrow.utcnow().to('America/New_York')
-        if not self.proposals_begin or now < self.proposals_begin:
+        now = arrow.utcnow().to('America/New_York').naive
+        if not self.proposals_begin or now < self.proposals_begin.naive:
             return False
-        if self.proposals_end and self.proposals_end < now:
+        if self.proposals_end and self.proposals_end.naive < now:
             return False
 
         return True
