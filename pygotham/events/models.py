@@ -83,10 +83,11 @@ class Event(db.Model):
         if not self.registration_url:
             return False
 
-        now = arrow.utcnow().to('America/New_York')
-        if not self.registration_begins or now < self.registration_begins:
+        now = arrow.utcnow().to('America/New_York').naive
+        print(now)
+        if not self.registration_begins or now < self.registration_begins.naive:
             return False
-        if self.registration_ends and self.registration_ends < now:
+        if self.registration_ends and self.registration_ends.naive < now:
             return False
 
         return True

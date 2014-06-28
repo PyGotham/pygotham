@@ -10,7 +10,7 @@ __all__ = 'get_active',
 
 def get_active():
     """Get the active announcements."""
-    now = arrow.utcnow().to('America/New_York')
+    now = arrow.utcnow().to('America/New_York').naive
 
     return Announcement.query.filter(
         Announcement.active == True,
