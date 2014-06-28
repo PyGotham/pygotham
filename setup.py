@@ -57,6 +57,7 @@ setup(
         'jsmin==2.0.9',
         'passlib==1.6.2',
         'psycopg2==2.5.3',
+        'python-dateutil==2.2',
         'python-slugify==0.0.7',
         'six==1.7.2',
         'toolz==0.6.0',
