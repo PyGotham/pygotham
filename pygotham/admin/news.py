@@ -1,5 +1,7 @@
 """Admin for news-related models."""
 
+import wtforms
+
 from pygotham.admin.utils import model_view
 from pygotham.news import models
 
@@ -13,4 +15,7 @@ AnnouncementModelView = model_view(
     column_default_sort='published',
     column_list=('title', 'published', 'active'),
     form_columns=('title', 'content', 'active', 'published'),
+    form_overrides={
+        'published': wtforms.DateTimeField,
+    },
 )

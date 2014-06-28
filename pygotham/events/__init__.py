@@ -10,7 +10,7 @@ __all__ = 'get_current',
 
 def get_current():
     """Get the current event."""
-    now = arrow.utcnow().to('America/New_York')
+    now = arrow.utcnow().to('America/New_York').naive
 
     return Event.query.filter(
         Event.active == True,
