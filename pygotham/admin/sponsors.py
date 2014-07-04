@@ -14,7 +14,7 @@ LevelModelView = model_view(
     CATEGORY,
     column_default_sort=('order', 'name'),
     column_list=('name', 'order'),
-    form_columns=('name', 'description', 'order'),
+    form_columns=('name', 'description', 'cost', 'order', 'limit'),
 )
 
 

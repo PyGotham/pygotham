@@ -126,6 +126,11 @@ img {
   }
 }
 
+dl.sponsor-levels span.label {
+  background: #289299;
+  top: -2px;
+}
+
 /* Jumbotron*/
 
 .jumbotron {

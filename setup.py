@@ -47,6 +47,7 @@ setup(
         'arrow==0.4.2',
         'bleach==1.4',
         'blinker==1.3',
+        'cached-property==0.1.5',
         'cssmin==0.2.0',
         'decorator==3.4.0',
         'docutils==0.11',

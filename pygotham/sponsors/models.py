@@ -1,5 +1,7 @@
 """Sponsors models."""
 
+from cached_property import cached_property
+
 from pygotham.core import db
 
 _all__ = 'Level', 'Sponsor'
@@ -15,9 +17,17 @@ class Level(db.Model):
     name = db.Column(db.String(255), nullable=False)
     description = db.Column(db.Text)
     order = db.Column(db.Integer, default=0)
+    cost = db.Column(db.String, default=0)  # This isn't always money.
+    limit = db.Column(db.Integer, default=0)
 
     def __str__(self):
         return self.name
+
+    @cached_property
+    def is_sold_out(self):
+        """Return whether the level is sold out."""
+        sponsors = self.sponsors.filter(Sponsor.accepted == True)
+        return 0 < self.limit <= sponsors.count()
 
 
 class Sponsor(db.Model):

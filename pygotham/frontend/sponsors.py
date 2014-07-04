@@ -6,7 +6,7 @@ from flask.ext.security import login_required
 
 from pygotham.core import db
 from pygotham.frontend import direct_to_template, route
-from pygotham.models import Sponsor
+from pygotham.models import Level, Sponsor
 
 __all__ = 'blueprint',
 
@@ -45,8 +45,11 @@ def index():
     return render_template('sponsors/index.html')
 
 
-direct_to_template(
-    blueprint, '/prospectus', template='sponsors/prospectus.html')
+@route(blueprint, '/prospectus')
+def prospectus():
+    """Return the sponsorship prospectus."""
+    levels = Level.query.order_by(Level.order)
+    return render_template('sponsors/prospectus.html', levels=levels)
 
 
 direct_to_template(blueprint, '/terms', template='sponsors/terms.html')
