@@ -126,6 +126,52 @@ img {
   }
 }
 
+#wrapper.sponsors [class*="column"] + [class*="column"]:last-child {
+  float: left;
+}
+
+#wrapper.sponsors h2 {
+  text-align: center;
+}
+
+#wrapper.sponsors ul.sponsors {
+  list-style: none;
+  overflow: hidden;
+}
+
+#wrapper.sponsors ul.sponsors li div {
+  border: 1px solid #999;
+  border-radius: 3px;
+  height: 320px;
+  margin-bottom: 30px;
+  overflow: auto;
+  padding: 15px;
+  text-align: center;
+}
+
+#wrapper.sponsors ul.sponsors li img {
+  width: 185px;
+}
+
+#wrapper.sponsors ul.sponsors li p {
+  margin-bottom: .5rem;
+}
+
+@media only screen and (min-width: 40.063em) {
+  h2 {
+    font-size: 1.6875rem;
+  }
+
+  h4 {
+    font-size: 1.1125rem
+  }
+}
+
+dl.sponsor-levels span.label {
+  background: #289299;
+  top: -2px;
+}
+
 /* Jumbotron*/
 
 .jumbotron {
