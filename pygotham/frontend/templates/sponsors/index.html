@@ -1,0 +1,34 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}Sponsors - {{ super() }}{% endblock %}
+
+{% block body_class %}{{ super() }} sponsors{% endblock %}
+
+{% block main %}
+  <div class="row">
+    <h1>{{ current_event }} Sponsors</h1>
+
+    {% for level in levels %}
+      {% if level.accepted_sponsors.count() %}
+        <div class="row">
+          <h2>{{ level }}</h2>
+
+          <ul class="sponsors">
+            {% for sponsor in level.accepted_sponsors.order_by('name').all() %}
+              <li class="columns large-4">
+                <div>
+                  <a href="{{ sponsor.url }}">
+                    <img src="{{ sponsor.logo }}" alt="{{ sponsor.name }}">
+                  </a>
+                  <h4>{{ sponsor }}</h4>
+                  <p><a href="{{ sponsor.url }}">{{ sponsor.url }}</a></p>
+                  {{ sponsor.description|rst|safe }}
+                </div>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+{% endblock %}

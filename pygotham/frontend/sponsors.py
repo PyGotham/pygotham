@@ -42,7 +42,8 @@ def apply():
 @route(blueprint, '')
 def index():
     """Return the sponsors."""
-    return render_template('sponsors/index.html')
+    levels = Level.query.order_by(Level.order)
+    return render_template('sponsors/index.html', levels=levels)
 
 
 @route(blueprint, '/prospectus')
