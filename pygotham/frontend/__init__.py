@@ -1,10 +1,10 @@
 """Frontend application."""
 
-from docutils import core
 from functools import wraps
 import os
 
 import bleach
+from docutils import core
 from flask import render_template
 from flask.ext.assets import Bundle, Environment
 from flask.ext.foundation import Foundation
