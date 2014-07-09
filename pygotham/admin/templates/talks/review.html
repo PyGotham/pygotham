@@ -1,0 +1,27 @@
+{% extends 'admin/master.html' %}
+
+{% block body %}
+  <h1>{{ form.name.data }}</h1>
+
+  <h4>Level:</h4> {{ form.level.data|rst|safe }}
+  <h4>Type:</h4> {{ form.type.data|rst|safe }}
+  <h4>Duration:</h4> {{ form.duration.data|rst|safe }}
+
+  <h4>Description:</h4>
+  {{ form.description.data|rst|safe }}
+
+  <h4>Abstract:</h4>
+  {{ form.abstract.data|rst|safe }}
+
+  <h4>Objectives:</h4>
+  {{ form.objectives.data|rst|safe }}
+
+  <h4>Target audience:</h4>
+  {{ form.target_audience.data|rst|safe }}
+
+  <h4>Outline:</h4>
+  {{ form.outline.data|rst|safe }}
+
+  <h4>Additional requirements:</h4>
+  {{ form.additional_requirements.data|rst|safe }}
+{% endblock %}
