@@ -8,7 +8,7 @@ from flask.ext.admin.base import AdminIndexView, MenuLink
 from flask.ext.admin.contrib.sqla import ModelView
 from flask.ext.login import current_user
 
-from pygotham import factory
+from pygotham import factory, filters
 
 __all__ = 'create_app',
 
@@ -28,6 +28,8 @@ def create_app(settings_override=None):
 
     """
     app = factory.create_app(__name__, __path__, settings_override)
+
+    app.jinja_env.filters['rst'] = filters.rst_to_html
 
     # Because the admin is being wrapped inside an app, the url needs to
     # be overridden to use / instead of the default of /admin/. One of

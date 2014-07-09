@@ -1,20 +1,16 @@
 """Frontend application."""
 
-from docutils import core
 from functools import wraps
 import os
 
-import bleach
 from flask import render_template
 from flask.ext.assets import Bundle, Environment
 from flask.ext.foundation import Foundation
 
-from pygotham import factory
+from pygotham import factory, filters
 from pygotham.events import get_current as get_current_event
 
 __all__ = 'create_app', 'route'
-
-_ALLOWED_TAGS = bleach.ALLOWED_TAGS + ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p']
 
 
 def create_app(settings_override=None):
@@ -63,12 +59,7 @@ def create_app(settings_override=None):
     def current_event():
         return {'current_event': get_current_event()}
 
-
-    @app.template_filter('rst')
-    def rst_to_html(value):
-        parts = core.publish_parts(source=value, writer_name='html')
-        return bleach.clean(
-            parts['body_pre_docinfo'] + parts['fragment'], tags=_ALLOWED_TAGS)
+    app.jinja_env.filters['rst'] = filters.rst_to_html
 
     if not app.debug:
         for e in (404, 500):
