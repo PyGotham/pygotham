@@ -1,6 +1,7 @@
 """Sponsors models."""
 
 from cached_property import cached_property
+from slugify import slugify
 
 from pygotham.core import db
 
@@ -62,3 +63,7 @@ class Sponsor(db.Model):
 
     def __str__(self):
         return self.name
+
+    @cached_property
+    def slug(self):
+        return slugify(self.name)

@@ -16,6 +16,7 @@
           <ul class="sponsors">
             {% for sponsor in level.accepted_sponsors.order_by('name').all() %}
               <li class="columns large-4">
+                <a name="{{ sponsor.slug }}"></a>
                 <div>
                   <a href="{{ sponsor.url }}">
                     <img src="{{ sponsor.logo }}" alt="{{ sponsor.name }}">
