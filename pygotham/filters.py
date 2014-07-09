@@ -5,7 +5,9 @@ from docutils import core
 
 __all__ = 'rst_to_html'
 
-_ALLOWED_TAGS = bleach.ALLOWED_TAGS + ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p']
+_ALLOWED_TAGS = bleach.ALLOWED_TAGS + [
+    'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'dl', 'dt', 'dd', 'cite',
+]
 
 
 def rst_to_html(value):
