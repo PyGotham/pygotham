@@ -16,26 +16,39 @@
     <div class="nj"></div>
   </section>
 
-  {% if sponsors %}
-    <section class="sponsors">
-      <h2>Sponsors</h2>
-    </section>
-  {% endif %}
+  {% if sponsors or announcements %}
+    <div class="row">
+      <section class="sponsors columns large-8">
+        {% if sponsors %}
+          <h2>Sponsors</h2>
+          <ul class="large-block-grid-4 medium-block-grid-3 small-block-grid-2">
+            {% for sponsor in sponsors %}
+              <li>
+                <a href="{{ url_for('sponsors.index') }}#{{ sponsor.slug }}">
+                  <img src="{{ sponsor.logo }}" alt="{{ sponsor.name }}">
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </section>
 
-  {% if announcements %}
-    <section class="row announcements">
-      <h3>Announcements</h3>
-      <ol>
-        {% for announcement in announcements %}
-          <li>
-            <h4>{{ announcement }}</h4>
-            <time datetime="{{ announcement.published }}">
-              {{ announcement.published.strftime('%m.%d.%y') }}
-            </time>
-            <p>{{ announcement.content|rst|safe }}</p>
-          </li>
-        {% endfor %}
-      </ol>
-    </section>
+      <aside class="announcements columns offset-1 large-3">
+        {% if announcements %}
+          <h3>Announcements</h3>
+          <ol>
+            {% for announcement in announcements %}
+              <li>
+                <h4>{{ announcement }}</h4>
+                <time datetime="{{ announcement.published }}">
+                  {{ announcement.published.strftime('%m.%d.%y') }}
+                </time>
+                <p>{{ announcement.content|rst|safe }}</p>
+              </li>
+            {% endfor %}
+          </ol>
+        {% endif %}
+      </aside>
+    </div>
   {% endif %}
 {% endblock %}
