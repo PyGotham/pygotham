@@ -4,6 +4,7 @@ from flask import Blueprint, render_template
 
 from pygotham.core import db
 from pygotham.news import get_active
+from pygotham.sponsors import get_accepted
 
 __all__ = 'blueprint',
 
@@ -19,4 +20,6 @@ blueprint = Blueprint(
 def index():
     """Return the home page."""
     announcements = get_active()
-    return render_template('home/index.html', announcements=announcements)
+    sponsors = get_accepted()
+    return render_template(
+        'home/index.html', announcements=announcements, sponsors=sponsors)

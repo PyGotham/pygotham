@@ -126,6 +126,18 @@ img {
   }
 }
 
+#wrapper.home div.content .sponsors h2 {
+  font-size: 2.75rem;
+}
+
+#wrapper.home div.content .sponsors ul li {
+  text-align: center;
+}
+
+#wrapper.home div.content .sponsors ul li img {
+  max-width: 150px;
+}
+
 #wrapper.sponsors [class*="column"] + [class*="column"]:last-child {
   float: left;
 }
@@ -382,8 +394,10 @@ footer a {
   margin-top: 20px;
 }
 
-.announcements h3 {
-  font-size: 2.75rem;
+@media only screen and (max-width: 1024px) {
+  .announcements h3 {
+    font-size: 2.75rem;
+  }
 }
 
 .announcements ol {
