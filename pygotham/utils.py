@@ -5,7 +5,7 @@ import pkgutil
 
 from flask import Blueprint
 
-__all__ = 'check_required_settings', 'register_blueprints',
+__all__ = ('check_required_settings', 'register_blueprints',)
 
 DOES_NOT_EXIST = '!@DNE@!'  # Placeholder value to use for missing settings.
 REQUIRED_SETTINGS = 'SECRET_KEY', 'SECURITY_PASSWORD_SALT'

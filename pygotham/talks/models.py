@@ -2,7 +2,7 @@
 
 from pygotham.core import db
 
-__all__ = 'Category', 'Talk',
+__all__ = ('Category', 'Talk')
 
 
 class Category(db.Model):

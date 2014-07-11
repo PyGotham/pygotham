@@ -5,7 +5,7 @@ from sqlalchemy_utils.types.arrow import ArrowType
 
 from pygotham.core import db
 
-__all__ = 'Event',
+__all__ = ('Event',)
 
 
 class Event(db.Model):
@@ -85,9 +85,11 @@ class Event(db.Model):
 
         now = arrow.utcnow().to('America/New_York').naive
         print(now)
-        if not self.registration_begins or now < self.registration_begins.naive:
+        begins = self.registration_begins
+        if not begins or now < begins.naive:
             return False
-        if self.registration_ends and self.registration_ends.naive < now:
+        ends = self.registration_ends
+        if ends and ends.naive < now:
             return False
 
         return True

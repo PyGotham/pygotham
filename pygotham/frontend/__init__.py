@@ -10,7 +10,7 @@ from flask.ext.foundation import Foundation
 from pygotham import factory, filters
 from pygotham.events import get_current as get_current_event
 
-__all__ = 'create_app', 'route'
+__all__ = ('create_app', 'route')
 
 
 def create_app(settings_override=None):

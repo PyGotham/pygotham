@@ -8,7 +8,7 @@ from pygotham.core import db
 from pygotham.frontend import direct_to_template, route
 from pygotham.models import Level, Sponsor
 
-__all__ = 'blueprint',
+__all__ = ('blueprint',)
 
 blueprint = Blueprint('sponsors', __name__, url_prefix='/sponsors')
 

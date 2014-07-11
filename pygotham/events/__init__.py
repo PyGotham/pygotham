@@ -5,7 +5,7 @@ from sqlalchemy import or_
 
 from pygotham.events.models import Event
 
-__all__ = 'get_current',
+__all__ = ('get_current',)
 
 
 def get_current():

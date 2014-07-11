@@ -4,7 +4,7 @@ from flask import Blueprint
 
 from pygotham.frontend import direct_to_template
 
-__all__ = 'blueprint',
+__all__ = ('blueprint',)
 
 blueprint = Blueprint('about', __name__, url_prefix='/about')
 

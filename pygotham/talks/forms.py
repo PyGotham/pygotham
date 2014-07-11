@@ -1,13 +1,12 @@
 """Talks forms."""
 
 from flask.ext.wtf import Form
-from wtforms import HiddenField
 from wtforms.validators import Optional
 from wtforms_alchemy import model_form_factory
 
 from pygotham.talks.models import Talk
 
-__all__ = 'TalkSubmissionForm',
+__all__ = ('TalkSubmissionForm',)
 
 ModelForm = model_form_factory(Form)
 

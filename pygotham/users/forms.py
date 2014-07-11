@@ -7,7 +7,7 @@ from wtforms_alchemy import Unique, model_form_factory
 
 from pygotham.models import User
 
-__all__ = 'ProfileForm',
+__all__ = ('ProfileForm',)
 
 ModelForm = model_form_factory(Form)
 

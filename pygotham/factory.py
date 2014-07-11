@@ -7,7 +7,7 @@ from pygotham.core import db, mail, migrate, security
 from pygotham.models import Role, User
 from pygotham.utils import check_required_settings, register_blueprints
 
-__all__ = 'create_app',
+__all__ = ('create_app',)
 
 
 def create_app(package_name, package_path, settings_override=None,
@@ -21,7 +21,6 @@ def create_app(package_name, package_path, settings_override=None,
                                          Flask-Security blueprints.
 
     """
-
     app = Flask(package_name, instance_relative_config=True)
 
     app.config.from_object('pygotham.settings')

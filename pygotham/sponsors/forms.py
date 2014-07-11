@@ -7,14 +7,14 @@ from wtforms_alchemy import model_form_factory
 
 from pygotham.models import Level, Sponsor
 
-__all__ = 'SponsorApplicationForm',
+__all__ = ('SponsorApplicationForm',)
 
 ModelForm = model_form_factory(Form)
 
 
 class SponsorApplicationForm(ModelForm):
 
-    """Form for creating :class:`~pygotham.models.Sponsor`. instances"""
+    """Form for creating :class:`~pygotham.models.Sponsor` instances."""
 
     level = QuerySelectField(query_factory=Level.query.all)
 

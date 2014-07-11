@@ -9,7 +9,7 @@ from pygotham.events import get_current
 from pygotham.frontend import direct_to_template, route
 from pygotham.models import Talk
 
-__all__ = 'blueprint'
+__all__ = ('blueprint',)
 
 blueprint = Blueprint('talks', __name__, url_prefix='/talks')
 
@@ -22,7 +22,11 @@ direct_to_template(
 
 
 @route(
-    blueprint, '/new', defaults={'pk': None}, endpoint='submit', methods=('GET', 'POST'))
+    blueprint,
+    '/new',
+    defaults={'pk': None},
+    endpoint='submit',
+    methods=('GET', 'POST'))
 @route(blueprint, '/<int:pk>/edit', endpoint='edit', methods=('GET', 'POST',))
 @login_required
 def proposal(pk=None):

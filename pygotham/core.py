@@ -5,7 +5,7 @@ from flask.ext.migrate import Migrate
 from flask.ext.security import Security
 from flask.ext.sqlalchemy import SQLAlchemy
 
-__all__ = 'db',
+__all__ = ('db',)
 
 db = SQLAlchemy()
 mail = Mail()

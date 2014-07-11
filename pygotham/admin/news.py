@@ -5,7 +5,7 @@ import wtforms
 from pygotham.admin.utils import model_view
 from pygotham.news import models
 
-__all__ = 'AnnouncementModelView',
+__all__ = ('AnnouncementModelView',)
 
 
 AnnouncementModelView = model_view(
