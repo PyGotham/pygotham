@@ -4,7 +4,7 @@ from flask.ext.security import RoleMixin, UserMixin
 
 from pygotham.core import db
 
-__all__ = 'Role', 'User',
+__all__ = ('Role', 'User')
 
 roles_users = db.Table(
     'roles_users',

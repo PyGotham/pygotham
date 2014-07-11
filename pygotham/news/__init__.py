@@ -5,7 +5,7 @@ import arrow
 from pygotham.core import db
 from pygotham.news.models import Announcement
 
-__all__ = 'get_active',
+__all__ = ('get_active',)
 
 
 def get_active():

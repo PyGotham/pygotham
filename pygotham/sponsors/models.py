@@ -22,6 +22,7 @@ class Level(db.Model):
     limit = db.Column(db.Integer, default=0)
 
     def __str__(self):
+        """Return a printable representation."""
         return self.name
 
     @cached_property
@@ -62,8 +63,10 @@ class Sponsor(db.Model):
     applicant = db.relationship('User')
 
     def __str__(self):
+        """Return a printable representation."""
         return self.name
 
     @cached_property
     def slug(self):
+        """Return the slug for the sponsor."""
         return slugify(self.name)

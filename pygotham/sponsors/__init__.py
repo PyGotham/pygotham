@@ -2,7 +2,7 @@
 
 from pygotham.sponsors.models import Level, Sponsor
 
-__all__ = 'get_accepted',
+__all__ = ('get_accepted',)
 
 
 def get_accepted():

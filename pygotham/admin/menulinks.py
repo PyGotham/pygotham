@@ -4,7 +4,7 @@ from flask.ext.admin.base import MenuLink
 
 from pygotham.admin.utils import menu_link
 
-__all__ = 'Login', 'Logout'
+__all__ = ('Login', 'Logout')
 
 # Go back to the main site. Use '/' because the view is in a completely
 # different app.

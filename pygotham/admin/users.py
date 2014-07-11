@@ -3,7 +3,7 @@
 from pygotham.admin.utils import model_view
 from pygotham.users import models
 
-__all__ = 'RoleModelView', 'UserModelView'
+__all__ = ('RoleModelView', 'UserModelView')
 
 
 RoleModelView = model_view(models.Role, 'Roles', 'Users')

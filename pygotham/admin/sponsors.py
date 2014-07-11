@@ -3,7 +3,7 @@
 from pygotham.admin.utils import model_view
 from pygotham.sponsors import models
 
-__all__ = 'LevelModelView', 'SponsorModelView'
+__all__ = ('LevelModelView', 'SponsorModelView')
 
 CATEGORY = 'Sponsors'
 

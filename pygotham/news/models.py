@@ -6,7 +6,7 @@ from sqlalchemy_utils.types.arrow import ArrowType
 
 from pygotham.core import db
 
-__all__ = 'Announcement',
+__all__ = ('Announcement',)
 
 
 class Announcement(db.Model):
@@ -24,8 +24,10 @@ class Announcement(db.Model):
     published = db.Column(ArrowType)
 
     def __str__(self):
+        """Return a printable representation."""
         return self.title
 
     @generates(slug)
     def _create_slug(self):
+        """Return the slug for the announcement."""
         return slugify(self.title)

@@ -3,7 +3,7 @@
 from pygotham.admin.utils import model_view
 from pygotham.talks import models
 
-__all__ = 'CategoryModelView', 'TalkModelView', 'TalkReviewModelView',
+__all__ = ('CategoryModelView', 'TalkModelView', 'TalkReviewModelView')
 
 
 CategoryModelView = model_view(

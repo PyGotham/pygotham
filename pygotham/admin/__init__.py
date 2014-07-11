@@ -10,7 +10,7 @@ from flask.ext.login import current_user
 
 from pygotham import factory, filters
 
-__all__ = 'create_app',
+__all__ = ('create_app',)
 
 
 class HomeView(AdminIndexView):

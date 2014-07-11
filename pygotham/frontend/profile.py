@@ -8,7 +8,7 @@ from pygotham.core import db
 from pygotham.frontend import route
 from pygotham.models import Talk
 
-__all__ = 'blueprint',
+__all__ = ('blueprint',)
 
 blueprint = Blueprint('profile', __name__, url_prefix='/profile')
 

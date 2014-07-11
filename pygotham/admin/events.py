@@ -5,7 +5,7 @@ import wtforms
 from pygotham.admin.utils import model_view
 from pygotham.events import models
 
-__all__ = 'EventModelView',
+__all__ = ('EventModelView',)
 
 
 EventModelView = model_view(
