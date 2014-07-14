@@ -1,0 +1,22 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}Talk List - {{ super() }}{% endblock %}
+
+{% block main %}
+  <div class="row">
+    <h1>Accepted Talks</h1>
+
+    <ol class="accepted-talks">
+      {% for talk in current_event.accepted_talks %}
+        <li>
+          <h3><a href="{{ url_for('talks.detail', pk=talk.id) }}">{{ talk }}</a></h3>
+          <h4>
+            {{ talk.user }}
+            {% if talk.category %} in {{ talk.category }} {% endif %}
+          </h4>
+          {{ talk.description|rst|safe }}
+        </li>
+      {% endfor %}
+    </ol>
+  </div>
+{% endblock %}

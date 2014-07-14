@@ -19,7 +19,7 @@
             <tr>
               <td>
                 {{ talk }}
-                {% if talk.is_accepted %}
+                {% if talk.is_accepted and current_event.talks_are_published %}
                   <span class="label radius">accepted</span>
                 {% endif %}
               </td>

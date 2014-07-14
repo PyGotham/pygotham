@@ -1,9 +1,11 @@
 """Events models."""
 
 import arrow
+from cached_property import cached_property
 from sqlalchemy_utils.types.arrow import ArrowType
 
 from pygotham.core import db
+from pygotham.talks.models import Talk
 
 __all__ = ('Event',)
 
@@ -30,6 +32,9 @@ class Event(db.Model):
     proposals_begin = db.Column(ArrowType)
     proposals_end = db.Column(ArrowType)
 
+    # When to publish the talks
+    talk_list_begins = db.Column(ArrowType)
+
     # Registration informatino
     registration_closed = db.Column(
         db.Boolean, server_default='false', nullable=False,
@@ -41,6 +46,11 @@ class Event(db.Model):
     def __str__(self):
         """Return a printable representation."""
         return self.name
+
+    @cached_property
+    def accepted_talks(self):
+        """Return the accepted :class:`~pygotham.models.Talk` list."""
+        return self.talks.filter(Talk.status == 'accepted').order_by(Talk.name)
 
     @property
     def is_call_for_proposals_active(self):
@@ -92,4 +102,12 @@ class Event(db.Model):
         if ends and ends.naive < now:
             return False
 
+        return True
+
+    @property
+    def talks_are_published(self):
+        """Return whether the talk list for an event is published."""
+        now = arrow.utcnow().to('America/New_York').naive
+        if not self.talk_list_begins or self.talk_list_begins.naive > now:
+            return False
         return True
