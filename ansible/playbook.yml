@@ -1,0 +1,94 @@
+---
+- hosts: all
+  sudo: yes
+  tasks:
+    - name: create pygotham user
+      user: name=pygotham home=/home/pygotham state=present
+
+    - name: update apt cache
+      apt: update_cache=yes
+
+
+- hosts: web
+  sudo: yes
+  tasks:
+    - name: install system packages
+      apt: pkg={{ item }} state=present
+      with_items:
+        - git
+        - nginx
+        - postgresql-server-dev-9.3 # required to install psycopg2
+        - python-virtualenv
+        - python3.4
+        - python3-pip
+        - uwsgi
+        - uwsgi-plugin-python3
+
+    - name: clone pygotham
+      git: repo=https://github.com/PyGotham/pygotham.git dest=~/pygotham
+      sudo_user: pygotham
+
+    - name: create virtualenv
+      shell: virtualenv -p $(which python3) ~/venv creates=~/venv
+      sudo_user: pygotham
+
+    - name: install virtualenv dependencies
+      pip: executable=pip3 name={{ item }} virtualenv=~/venv state=present
+      with_items:
+        - ~/pygotham
+      sudo_user: pygotham
+    
+    - name: run db migrations
+      command: ~/venv/bin/python manage.py db upgrade chdir=~/pygotham
+      environment:
+        DATABASE_URL: postgresql://pygotham:123456@192.168.50.4:5432/pygotham
+        SECRET_KEY: super-secret
+        SECURITY_PASSWORD_SALT: super-super-secret
+      sudo_user: pygotham
+
+    - name: copy uwsgi.ini
+      copy: src=templates/uwsgi/uwsgi.ini dest=~/uwsgi.ini
+      sudo_user: pygotham
+
+    - name: copy nginx config
+      copy: src=templates/nginx/pygotham.org dest=/etc/nginx/sites-enabled/pygotham.org
+
+    - name: reload nginx
+      command: /etc/init.d/nginx reload
+
+    - name: start web service
+      command: uwsgi uwsgi.ini chdir=~/ creates=/tmp/pygotham.pid
+      environment:
+        DATABASE_URL: postgresql://pygotham:123456@192.168.50.4:5432/pygotham
+        SECRET_KEY: super-secret
+        SECURITY_PASSWORD_SALT: super-super-secret
+      sudo_user: pygotham
+
+
+- hosts: db
+  sudo: yes
+  tasks:
+    - name: install system packages
+      apt: pkg={{ item }} state=present
+      with_items:
+        - postgresql-9.3
+        - postgresql-server-dev-9.3
+        - python-psycopg2
+
+    - name: create database
+      postgresql_db: name=pygotham
+      sudo_user: postgres
+
+    - name: create database user
+      postgresql_user: db=pygotham name=pygotham password=123456 priv=ALL
+      sudo_user: postgres
+
+    - name: db user privs
+      postgresql_user: name=pygotham role_attr_flags=NOSUPERUSER,NOCREATEDB
+      sudo_user: postgres
+
+    - name: set database config
+      copy: src=templates/postgresql/ dest=/etc/postgresql/9.3/main/
+
+    - name: restart postgres
+      command: service postgresql restart
