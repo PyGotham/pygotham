@@ -6,7 +6,7 @@
   <div class="row">
     <div class="large-12 columns">
       <h2>Your Proposals</h2>
-      <table style="width: 100%;">
+      <table class="proposals">
         <thead>
           <tr>
             <th>Title</th>
@@ -17,7 +17,12 @@
         <tbody>
           {% for talk in talks %}
             <tr>
-              <td>{{ talk }}</td>
+              <td>
+                {{ talk }}
+                {% if talk.is_accepted %}
+                  <span class="label radius">accepted</span>
+                {% endif %}
+              </td>
               <td>{{ talk.type }}</td>
               <td>
                 <a href="{{ url_for('talks.edit', pk=talk.id) }}" class="button tiny radius">Edit</a>

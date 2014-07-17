@@ -173,8 +173,14 @@ img {
   }
 }
 
+table.proposals {
+  width: 100%;
+}
+
+table.proposals span.label,
 dl.sponsor-levels span.label {
   background: #289299;
+  margin-left: 2px;
   top: -2px;
 }
 
