@@ -80,3 +80,8 @@ class Talk(db.Model):
     def __str__(self):
         """Return a printable representation."""
         return self.name
+
+    @property
+    def is_accepted(self):
+        """Return whether the instance is accepted."""
+        return self.status == 'accepted'
