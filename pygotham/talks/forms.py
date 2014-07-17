@@ -23,8 +23,8 @@ class TalkSubmissionForm(ModelForm):
             'description': {
                 'label': 'Description',
                 'description': (
-                    'If your talk is accepted this will be made public and '
-                    'printed in the program. Should be one paragraph.'
+                    'If your talk is accepted this will be made public. '
+                    'Should be one paragraph.'
                 ),
             },
             'level': {'label': 'Experience Level'},
@@ -33,8 +33,8 @@ class TalkSubmissionForm(ModelForm):
             'abstract': {
                 'label': 'Abstract',
                 'description': (
-                    'Detailed description. Will be made public if your talk '
-                    'is accepted.'
+                    'Detailed overview. Will be made public if your talk is '
+                    'accepted.'
                 ),
             },
             'objectives': {
