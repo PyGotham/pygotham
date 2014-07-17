@@ -20,3 +20,9 @@ direct_to_template(
     template='about/privacy-policy.html',
     endpoint='privacy_policy',
 )
+direct_to_template(
+    blueprint,
+    '/faq',
+    template='about/faq.html',
+    endpoint='faq',
+)
