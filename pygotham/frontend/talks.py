@@ -42,10 +42,7 @@ def index():
     if not event.talks_are_published:
         abort(404)
 
-    if not event.accepted_talks.count():
-        return redirect('home.index')
-    else:
-        return render_template('talks/index.html', talks=event.accepted_talks)
+    return render_template('talks/index.html', talks=event.accepted_talks)
 
 
 @route(
