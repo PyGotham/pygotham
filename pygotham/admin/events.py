@@ -20,5 +20,6 @@ EventModelView = model_view(
         'proposals_end': wtforms.DateTimeField,
         'registration_begins': wtforms.DateTimeField,
         'registration_ends': wtforms.DateTimeField,
+        'talk_list_begins': wtforms.DateTimeField,
     },
 )

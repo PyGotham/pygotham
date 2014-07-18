@@ -5,7 +5,7 @@ from flask.ext.login import current_user
 from flask.ext.security import login_required
 
 from pygotham.core import db
-from pygotham.events import get_current
+from pygotham.events import get_current as get_current_event
 from pygotham.frontend import direct_to_template, route
 from pygotham.models import Talk
 
@@ -19,6 +19,33 @@ direct_to_template(
     template='talks/call-for-proposals.html',
     endpoint='call_for_proposals',
 )
+
+
+@route(blueprint, '/<int:pk>')
+def detail(pk):
+    """Return the talk detail view."""
+    event = get_current_event()
+    if not event.talks_are_published:
+        abort(404)
+
+    talk = Talk.query.filter(
+        Talk.id == pk,
+        Talk.event == event,
+        Talk.status == 'accepted').first_or_404()
+    return render_template('talks/detail.html', talk=talk)
+
+
+@route(blueprint, '/')
+def index():
+    """Return the talk list."""
+    event = get_current_event()
+    if not event.talks_are_published:
+        abort(404)
+
+    if not event.accepted_talks.count():
+        return redirect('home.index')
+    else:
+        return render_template('talks/index.html', talks=event.accepted_talks)
 
 
 @route(
@@ -38,7 +65,7 @@ def proposal(pk=None):
         flash(message, 'warning')
         return redirect(url_for('profile.settings'))
 
-    event = get_current()
+    event = get_current_event()
 
     if pk:
         talk = Talk.query.filter(

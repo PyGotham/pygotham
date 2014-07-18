@@ -1,0 +1,26 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}Talk - {{ talk }} - {{ super() }}{% endblock %}
+
+{% block main %}
+  <div class="row">
+    <h1>{{ talk }}</h1>
+
+    <h4>{{ talk.user }}</h4>
+
+    <dl>
+      <dt>Audience level:
+      <dd>{{ talk.level }}
+      {% if talk.category %}
+        <dt>Category:
+        <dd>{{ talk.category }}
+      {% endif %}
+    </dl>
+
+    <h3>Description</h3>
+    {{ talk.description|rst|safe }}
+
+    <h3>Abstract</h3>
+    {{ talk.abstract|rst|safe }}
+  </div>
+{% endblock %}
