@@ -20,7 +20,9 @@
     <h3>Description</h3>
     {{ talk.description|rst|safe }}
 
-    <h3>Abstract</h3>
-    {{ talk.abstract|rst|safe }}
+    {% if talk.abstract %}
+      <h3>Abstract</h3>
+      {{ talk.abstract|rst|safe }}
+    {% endif %}
   </div>
 {% endblock %}
