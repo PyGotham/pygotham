@@ -25,6 +25,7 @@ SponsorModelView = model_view(
     column_filters=('level', 'accepted'),
     column_list=(
         'name', 'level', 'contact_name', 'contact_email', 'accepted',
+        'payment_received',
     ),
     column_searchable_list=('name', 'contact_name'),
 )

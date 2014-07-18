@@ -50,6 +50,7 @@ class Sponsor(db.Model):
     contact_name = db.Column(db.String(255))
     contact_email = db.Column(db.String(255))
     accepted = db.Column(db.Boolean)
+    payment_received = db.Column(db.Boolean)
     level_id = db.Column(
         db.Integer, db.ForeignKey('sponsor_levels.id'), nullable=False,
     )
