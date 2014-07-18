@@ -30,6 +30,7 @@ def apply():
         form.populate_obj(sponsor)
         sponsor.applicant_id = current_user.id
 
+        db.session.add(sponsor)
         db.session.commit()
 
         flash('Your application has been submitted.', 'success')
