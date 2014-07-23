@@ -1,8 +1,10 @@
 """Users models."""
 
+from cached_property import cached_property
 from flask.ext.security import RoleMixin, UserMixin
 
 from pygotham.core import db
+from pygotham.talks.models import Talk
 
 __all__ = ('Role', 'User')
 
@@ -76,3 +78,13 @@ class User(db.Model, UserMixin):
 
     def __ne__(self, other):
         return self.id != getattr(other, 'id', None)
+
+    @cached_property
+    def accepted_talks(self):
+        """Return the user's accepted talks."""
+        return self.talks.filter(Talk.status == 'accepted').order_by(Talk.name)
+
+    @cached_property
+    def has_accepted_talks(self):
+        """Return whether the user has accepted talks."""
+        return self.accepted_talks.count() > 0

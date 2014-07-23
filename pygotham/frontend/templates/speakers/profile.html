@@ -1,0 +1,21 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}{{ user }} - Profile - {{ super() }}{% endblock %}
+
+{% block body_class %}{{ super() }} speaker{% endblock %}
+
+{% block main %}
+  <div class="row">
+    <h1>{{ user }}</h1>
+
+    {{ user.bio|rst|safe }}
+
+    <h3>Presentations</h3>
+
+    <ul class="presentations">
+      {% for talk in user.accepted_talks %}
+        <li><a href="{{ url_for('talks.detail', pk=talk.id) }}">{{ talk }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}
