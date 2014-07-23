@@ -441,3 +441,8 @@ footer a {
   overflow: auto;
   padding: 15px;
 }
+
+.speaker .presentations {
+  list-style: none;
+  margin: 0;
+}

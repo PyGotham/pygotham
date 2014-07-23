@@ -6,7 +6,11 @@
   <div class="row">
     <h1>{{ talk }}</h1>
 
-    <h4>{{ talk.user }}</h4>
+    <h4>
+      <a href="{{ url_for('speakers.profile', pk=talk.user.id) }}">
+        {{ talk.user }}
+      </a>
+    </h4>
 
     <dl>
       <dt>Audience level:
