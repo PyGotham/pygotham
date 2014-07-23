@@ -14,5 +14,5 @@ UserModelView = model_view(
     'Users',
     column_list=('name', 'email', 'active'),
     column_searchable_list=('name', 'email'),
-    form_columns=('name', 'email', 'active', 'roles'),
+    form_columns=('name', 'email', 'bio', 'active', 'roles'),
 )
