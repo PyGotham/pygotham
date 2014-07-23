@@ -35,7 +35,7 @@ def detail(pk):
     return render_template('talks/detail.html', talk=talk)
 
 
-@route(blueprint, '/')
+@route(blueprint, '')
 def index():
     """Return the talk list."""
     event = get_current_event()
