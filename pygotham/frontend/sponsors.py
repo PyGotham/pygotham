@@ -3,8 +3,8 @@
 from flask import Blueprint, flash, redirect, render_template, request, url_for
 from flask.ext.login import current_user
 from flask.ext.security import login_required
+from sqlalchemy import inspect
 
-from pygotham.core import db
 from pygotham.frontend import direct_to_template, route
 from pygotham.models import Level, Sponsor
 
@@ -30,8 +30,10 @@ def apply():
         form.populate_obj(sponsor)
         sponsor.applicant_id = current_user.id
 
-        db.session.add(sponsor)
-        db.session.commit()
+        # form.populate_obj already associated the instance with a
+        # session.
+        session = inspect(sponsor).session
+        session.commit()
 
         flash('Your application has been submitted.', 'success')
 
