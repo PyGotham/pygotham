@@ -84,7 +84,7 @@ def proposal(pk=None):
         form.populate_obj(talk)
         db.session.commit()
 
-        flash('You proposal has been submitted.', 'success')
+        flash('Your proposal has been submitted.', 'success')
 
         return redirect(url_for('profile.dashboard'))
 
