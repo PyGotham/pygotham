@@ -3,34 +3,72 @@
 {% block title %}Dashboard - {{ super() }}{% endblock %}
 
 {% block main %}
-  <div class="row">
-    <div class="large-12 columns">
-      <h2>Your Proposals</h2>
-      <table class="proposals">
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Type</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for talk in talks %}
+  {% if talks %}
+    <div class="row">
+      <div class="large-12 columns">
+        <h2>Your Proposals</h2>
+        <table class="proposals">
+          <thead>
             <tr>
-              <td>
-                {{ talk }}
-                {% if talk.is_accepted and current_event.talks_are_published %}
-                  <span class="label radius">accepted</span>
-                {% endif %}
-              </td>
-              <td>{{ talk.type }}</td>
-              <td>
-                <a href="{{ url_for('talks.edit', pk=talk.id) }}" class="button tiny radius">Edit</a>
-              </td>
+              <th>Title</th>
+              <th>Type</th>
+              <th>Actions</th>
             </tr>
-          {% endfor %}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {% for talk in talks %}
+              <tr>
+                <td>
+                  {{ talk }}
+                  {% if talk.is_accepted and current_event.talks_are_published %}
+                    <span class="label radius">accepted</span>
+                  {% endif %}
+                </td>
+                <td>{{ talk.type }}</td>
+                <td>
+                  <a href="{{ url_for('talks.edit', pk=talk.id) }}" class="button tiny radius">Edit</a>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
     </div>
-  </div>
+  {% endif %}
+
+  {% if sponsors %}
+    <div class="row">
+      <div class="large-12 columns">
+        <h2>Your Sponsorship Applications</h2>
+        <table class="sponsorships">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Level</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for sponsor in sponsors %}
+              <tr>
+                <td>{{ sponsor }}</td>
+                <td>{{ sponsor.level }}</td>
+                <td>
+                  {% if sponsor.accepted %}
+                    <span class="label radius">accepted</span>
+                  {% else %}
+                    <span class="label radius secondary">pending</span>
+                  {% endif %}
+                </td>
+                <td>
+                  <a href="{{ url_for('sponsors.edit', pk=sponsor.id) }}" class="button tiny radius">Edit</a>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  {% endif %}
 {% endblock %}

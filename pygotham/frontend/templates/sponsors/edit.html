@@ -1,0 +1,26 @@
+{% extends 'layouts/base.html' %}
+
+{% from 'foundation_wtf.html' import horizontal_field %}
+
+{% block title %}Sponsorship Update - {{ super() }}{% endblock %}
+
+{% block main %}
+  <div class="row">
+    <h1>Update Your Sponsorship Application</h1>
+
+    <form action="{{ url_for('sponsors.edit', pk=sponsor.id) }}" method="POST">
+      {{ form.hidden_tag() }}
+      {{ horizontal_field(form.name) }}
+      {{ horizontal_field(form.contact_name) }}
+      {{ horizontal_field(form.contact_email) }}
+      <div class="btn-group">
+        <button type="submit" class="btn btn-primary">Update</button>
+        <p>
+          By submitting a sponsorship application you are agreeing to the
+          <a href="{{ url_for('sponsors.terms') }}">terms and
+          conditions</a>.
+        </p>
+      </div>
+    </form>
+  </div>
+{% endblock %}
