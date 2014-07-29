@@ -1,10 +1,13 @@
 """PyGotham sponsor profiles."""
 
-from flask import Blueprint, flash, redirect, render_template, request, url_for
+from flask import (
+    abort, Blueprint, flash, redirect, render_template, request, url_for,
+)
 from flask.ext.login import current_user
 from flask.ext.security import login_required
 from sqlalchemy import inspect
 
+from pygotham.core import db
 from pygotham.frontend import direct_to_template, route
 from pygotham.models import Level, Sponsor
 
@@ -40,6 +43,28 @@ def apply():
         return redirect(url_for('sponsors.apply'))
 
     return render_template('sponsors/apply.html', form=form)
+
+
+@route(blueprint, '/edit/<int:pk>', methods=('GET', 'POST'))
+@login_required
+def edit(pk):
+    """Return the sponsor edit form."""
+    sponsor = Sponsor.query.get_or_404(pk)
+    if sponsor.applicant != current_user:
+        abort(403)
+
+    from pygotham.forms import SponsorEditForm
+
+    form = SponsorEditForm(obj=sponsor)
+    if form.validate_on_submit():
+        form.populate_obj(sponsor)
+        db.session.commit()
+
+        flash('Your application has been updated.', 'success')
+
+        return redirect(url_for('profile.dashboard'))
+
+    return render_template('sponsors/edit.html', form=form, sponsor=sponsor)
 
 
 @route(blueprint, '')
