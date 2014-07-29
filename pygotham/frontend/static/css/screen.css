@@ -177,15 +177,35 @@ img {
   }
 }
 
-table.proposals {
+table.proposals,
+table.sponsorships {
   width: 100%;
 }
 
-table.proposals span.label,
-dl.sponsor-levels span.label {
+table.proposals a.button,
+table.sponsorships a.button {
   background: #289299;
+}
+
+table.proposals span.label,
+table.sponsorships span.label,
+dl.sponsor-levels span.label {
   margin-left: 2px;
   top: -2px;
+}
+
+dl.sponsor-levels span.label {
+  background: #289299;
+}
+
+table.proposals span.label,
+table.sponsorships span.label {
+  background: #c5ebee;
+  color: #000;
+}
+
+table.sponsorships span.label.secondary {
+  background: #e7e7e7;
 }
 
 /* Jumbotron*/
