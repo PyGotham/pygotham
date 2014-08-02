@@ -32,6 +32,7 @@ SlotModelView = model_view(
     models.Slot,
     'Slots',
     CATEGORY,
+    column_list=('day', 'rooms', 'kind', 'start', 'end'),
     form_columns=('day', 'rooms', 'kind', 'start', 'end', 'content_override'),
 )
 
