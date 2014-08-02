@@ -27,7 +27,7 @@
                   <td class="presentation slot-{{ slot.kind }}" colspan="{{ slot.colspan }}" rowspan="{{ slot.rowspan }}">
                     {% if slot.content_override %}
                       {{ slot.content_override }}
-                    {% else %}
+                    {% elif slot.presentation %}
                       <a href="{{ url_for('talks.detail', pk=slot.presentation.talk.id) }}">
                         {{ slot.presentation }}
                       </a>
