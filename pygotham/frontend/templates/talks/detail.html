@@ -6,6 +6,10 @@
   <div class="row">
     <h1>{{ talk }}</h1>
 
+    {% if talk.presentation %}
+      <small>{{ talk.presentation.slot }}</small>
+    {% endif %}
+
     <h4>
       <a href="{{ url_for('speakers.profile', pk=talk.user.id) }}">
         {{ talk.user }}

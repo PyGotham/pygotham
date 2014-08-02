@@ -164,9 +164,10 @@ class Slot(db.Model):
 
     def __str__(self):
         """Return a printable representation."""
-        date = self.start.strftime('%I:%M %p')
+        start = self.start.strftime('%I:%M %p')
+        end = self.end.strftime('%I:%M %p')
         rooms = ', '.join(map(str, self.rooms))
-        return '{} in {} on {}'.format(date, rooms, self.day)
+        return '{} - {} on {}, {}'.format(start, end, self.day, rooms)
 
     @cached_property
     def duration(self):
