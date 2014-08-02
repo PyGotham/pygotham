@@ -7,7 +7,7 @@ from flask.ext.security import login_required
 from pygotham.core import db
 from pygotham.events import get_current as get_current_event
 from pygotham.frontend import direct_to_template, route
-from pygotham.models import Talk
+from pygotham.models import Day, Room, Talk
 
 __all__ = ('blueprint',)
 
@@ -89,3 +89,14 @@ def proposal(pk=None):
         return redirect(url_for('profile.dashboard'))
 
     return render_template('talks/proposal.html', form=form)
+
+
+@route(blueprint, '/schedule')
+def schedule():
+    event = get_current_event()
+    if not event.talks_are_published:
+        abort(404)
+
+    days = Day.query.filter(Day.event == event).order_by(Day.date)
+
+    return render_template('talks/schedule.html', schedule=days)

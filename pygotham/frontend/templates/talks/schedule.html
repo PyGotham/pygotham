@@ -1,0 +1,45 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}Talk Schedule - {{ super() }}{% endblock %}
+
+{% block main %}
+  <div class="row">
+    <div class="large-12 columns">
+      <h1>Talk Schedule</h1>
+
+      {% for day in schedule %}
+        <h3>{{ day }}</h3>
+
+        <table class="schedule">
+          <thead>
+            <tr>
+              <th></th>
+              {% for room in day.rooms %}
+                <th>{{ room }}</th>
+              {% endfor %}
+          </thead>
+
+          <tbody>
+            {% for row in day %}
+              <tr>
+                <td class="time">{{ row['time'].strftime('%I:%M %p') }}</td>
+                {% for slot in row['slots'] %}
+                  <td class="presentation slot-{{ slot.kind }}" colspan="{{ slot.colspan }}" rowspan="{{ slot.rowspan }}">
+                    {% if slot.content_override %}
+                      {{ slot.content_override }}
+                    {% else %}
+                      <a href="{{ url_for('talks.detail', pk=slot.presentation.talk.id) }}">
+                        {{ slot.presentation }}
+                      </a>
+                      {{ slot.presentation.talk.user }}
+                    {% endif %}
+                  </td>
+                {% endfor %}
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}
