@@ -178,6 +178,7 @@ img {
 }
 
 table.proposals,
+table.schedule,
 table.sponsorships {
   width: 100%;
 }
@@ -206,6 +207,28 @@ table.sponsorships span.label {
 
 table.sponsorships span.label.secondary {
   background: #e7e7e7;
+}
+
+table.schedule th {
+  text-align: center;
+}
+
+table.schedule td,
+table.schedule th {
+  border: 1px solid #ddd;
+}
+
+table.schedule td.time {
+  vertical-align: top;
+  width: 83px;
+}
+
+table.schedule td.presentation {
+  text-align: center;
+}
+
+table.schedule td.presentation a {
+  display: block;
 }
 
 /* Jumbotron*/
