@@ -186,7 +186,7 @@ class Presentation(db.Model):
     slot = db.relationship(
         'Slot', backref=db.backref('presentation', uselist=False))
 
-    talk_id = db.Column(db.Integer, db.ForeignKey('talks.id'), nullable=True)
+    talk_id = db.Column(db.Integer, db.ForeignKey('talks.id'), nullable=False)
     talk = db.relationship(
         'Talk', backref=db.backref('presentation', uselist=False))
 
