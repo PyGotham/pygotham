@@ -16,6 +16,11 @@ img {
   height: auto;
 }
 
+address {
+  font-style: normal;
+  white-space: pre;
+}
+
 @media only screen and (min-width: 700px) {
   header nav.top-bar {
     background: #c5ebee;
@@ -488,4 +493,9 @@ footer a {
 .speaker .presentations {
   list-style: none;
   margin: 0;
+}
+
+.venue iframe {
+  display: block;
+  margin: 20px auto 0;
 }
