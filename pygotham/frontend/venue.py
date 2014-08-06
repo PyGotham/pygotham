@@ -9,4 +9,4 @@ __all__ = ('blueprint',)
 blueprint = Blueprint('venue', __name__, url_prefix='/venue')
 
 direct_to_template(
-    blueprint, '/', template='venue/index.html', endpoint='index')
+    blueprint, '', template='venue/index.html', endpoint='index')
