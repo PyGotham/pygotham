@@ -40,12 +40,14 @@ class TalkModelView(ModelView, actions.ActionsMixin):
             talk.status = 'rejected'
         self.session.commit()
 
+
 CategoryModelView = model_view(
     models.Category,
     'Categories',
     CATEGORY,
     form_columns=('name', 'slug'),
 )
+
 
 talk_model_view = TalkModelView(
     models.Talk, db.session, 'Talks', CATEGORY, 'talks')
