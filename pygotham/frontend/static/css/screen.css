@@ -232,7 +232,7 @@ table.schedule td.presentation {
   text-align: center;
 }
 
-table.schedule td.presentation a {
+table.schedule td.presentation a.block {
   display: block;
 }
 
