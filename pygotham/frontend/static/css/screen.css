@@ -232,6 +232,10 @@ table.schedule td.presentation {
   text-align: center;
 }
 
+table.schedule td.presentation a {
+  display: block;
+}
+
 /* Jumbotron*/
 
 .jumbotron {
