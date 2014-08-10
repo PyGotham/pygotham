@@ -8,3 +8,4 @@ The following folks have helped contribute to making this website possible.
 * Jon Banafato (`@jonafato <https://github.com/jonafato>`_)
 * Gloria W (`@gloriajw <https://github.com/gloriajw>`_)
 * Celia La (`@celiala <https://github.com/celiala>`_)
+* Paul Logston (`@logston <https://github.com/logston>`_)
