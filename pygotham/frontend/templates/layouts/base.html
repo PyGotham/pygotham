@@ -4,6 +4,15 @@
 
 {% block title %}{{ current_event }}{% endblock %}
 
+{% block meta %}
+  {{ super() }}
+
+  <meta name="msapplication-TileColor" content="#79d6db">
+  <meta name="msapplication-TileImage" content="{{ url_for('static', filename='img/metro-icon.png') }}">
+  <link rel="apple-touch-icon-precomposed" href="{{ url_for('static', filename='img/apple-touch-icon.png') }}">
+  <link rel="icon" href="{{ url_for('static', filename='img/favicon.png') }}">
+{% endblock %}
+
 {% block foundation_styles %}
   {% assets 'css_foundation' %}
     <link rel="stylesheet" href="{{ ASSET_URL }}">
