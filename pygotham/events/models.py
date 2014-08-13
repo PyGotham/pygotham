@@ -94,7 +94,6 @@ class Event(db.Model):
             return False
 
         now = arrow.utcnow().to('America/New_York').naive
-        print(now)
         begins = self.registration_begins
         if not begins or now < begins.naive:
             return False
