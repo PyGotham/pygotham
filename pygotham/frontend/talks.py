@@ -7,7 +7,7 @@ from flask.ext.security import login_required
 from pygotham.core import db
 from pygotham.events import get_current as get_current_event
 from pygotham.frontend import direct_to_template, route
-from pygotham.models import Day, Room, Talk
+from pygotham.models import Day, Talk
 
 __all__ = ('blueprint',)
 
