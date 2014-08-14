@@ -10,7 +10,7 @@
       {% if current_event.is_registration_active %}
         <p>To register for {{ current_event }}, visit the
         <a href="{{ current_event.registration_url }}">registration
-        page</a>.</p>
+          page</a>.</p>
       {% elif current_event.registration_closed %}
         <p>Registration for {{ current_event }} is no longer open.
       {% else %}
@@ -53,6 +53,19 @@
 
       <p>Along with your conference registration, attendees will receive
       breakfast, lunch, and break refreshments.</p>
+
+      <h2>Refund Policy</h2>
+
+      <p> We apologize that within 48 hours of the event, catering and capacity
+        numbers will be locked in. We will not be able to provide a refund at
+        that time.</p>
+
+      {% if current_event.is_registration_active %}
+        <p> In the event of cancellation, you may request a refund of your
+        registration by visiting the
+        <a href="{{ current_event.registration_url }}">registration
+          page</a>.</p>
+      {% endif %}
     </div>
   </div>
 {% endblock %}
