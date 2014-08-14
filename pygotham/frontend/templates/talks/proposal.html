@@ -43,6 +43,13 @@
         </div>
         <div class="row">
           {{ wtf.horizontal_field(form.recording_release, placeholder='Recording Release') }}
+          <small>
+            By submitting your talk proposal, you agree to give permission to
+            Big Apple Py to record, edit, and release audio and/or video of your
+            presentation. If you do not agree to this, please uncheck this box.
+            See <a href="{{ url_for('talks.recording_release') }}">Recording
+              Release</a> for details.
+          </small>
         </div>
 
         <div class="form-actions">

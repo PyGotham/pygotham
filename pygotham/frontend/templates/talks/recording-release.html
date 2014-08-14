@@ -1,0 +1,78 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}Recording Release - {{ super() }}{% endblock %}
+
+{% block main %}
+  <div class="row">
+    <h1>Recording Release</h1>
+
+    <p>Part of the motivation for {{ current_event }} is to help with Python
+      education and advocacy in New York City. Accordingly, we intend to record
+      all {{ current_event }} presentations and release the recordings on the
+      web (see <a href="http://pyvideo.org">http://pyvideo.org</a>).</p>
+
+    <p>By submitting your talk or tutorial proposal, or by signing up to give a
+      lightning talk, you agree to give permission to Big Apple Py to record,
+      edit, and release audio and/or video of your presentation.</p>
+
+    <p>By default, the recording release checkbox is checked when submitting a
+      proposal. If you wish to opt-out, uncheck the release checkbox, note that
+      while a recording of your talk will be made, it will be destroyed during
+      post production. You cannot opt out of recording for lightning talks.</p>
+
+    <p>You agree to the following legalese, which certifies that you are the
+      author of your presentation (or otherwise allowed to present it at {{
+      current_event }}), and which allows Big Apple Py 1) to perform the
+      necessary audio and video editing needed to prepare your presentation, and
+      2) to distribute the recordings to other people, including on YouTube, or
+      video sites. It also allows other people to watch the recordings.</p>
+
+    <p>Legalese:</p>
+
+    <pre>
+      I certify that I, the Submitter, am authorized to license this proposal
+      and its associated presentation (the "User Submission") to Big Apple Py
+      ("BAP") for use in association with {{ current_event }}. Specifically:
+
+      - I, the Submitter, certify that I am either the copyright owner of the
+      User Submission or an authorized licensee of the copyright owner. If I am
+      an authorized licensee of the copyright owner, I certify that I have
+      sublicensable distribution rights.
+
+      - I, the Submitter, hereby grant BAP a worldwide, royalty-free, fully
+      paid-up, non-exclusive, perpetual (for the duration of the applicable
+      copyright), sublicensable and transferable license to exercise the rights
+      in the User Submission as follows:
+
+      1) BAP is granted a license to reproduce the User Submission, to
+      incorporate the User Submission into one or more Collective Works, and to
+      reproduce the User Submission as incorporated in the Collective Works;
+
+      2) BAP is granted a license to create and reproduce Derivative Works;
+
+      3) BAP is granted a license to distribute copies or phonorecords of,
+      display publicly, perform publicly, and perform publicly by means of a
+      digital audio transmission the User Submission including as incorporated
+      in Collective Works; and
+
+      4) BAP is granted a license to distribute copies or phonorecords of,
+      display publicly, perform publicly, and perform publicly by means of a
+      digital audio transmission Derivative Works.
+
+      - I, the Submitter, waive the exclusive right to collect, whether
+      individually or via a performance-rights society, royalties for the public
+      digital performance of the User Submission, subject to the compulsory
+      license created by 17 U.S.C. Section 114 (or the equivalent in other
+      jurisdictions).
+
+      - I, the Submitter, specifically affirm the right to perform the User
+      Submissions on BAP's web sites or on other web sites designated by BAP
+      (including, but not necessarily limited to YouTube).
+
+      - I, the Submitter, also hereby grant each person receiving the User
+      Submission distributed by BAP a non-exclusive license to access, use,
+      display, and perform the User Submission in a non-commercial, private
+      context.
+    </pre>
+  </div>
+{% endblock %}

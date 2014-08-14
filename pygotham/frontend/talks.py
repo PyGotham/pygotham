@@ -91,6 +91,14 @@ def proposal(pk=None):
     return render_template('talks/proposal.html', form=form)
 
 
+direct_to_template(
+    blueprint,
+    '/recording',
+    template='talks/recording-release.html',
+    endpoint='recording_release',
+)
+
+
 @route(blueprint, '/schedule')
 def schedule():
     event = get_current_event()

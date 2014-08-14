@@ -348,6 +348,7 @@ div.content {
 form small {
   color: #999;
   display: block;
+  font-size: 90%;
   margin: -.9rem 0 1rem;
 }
 
