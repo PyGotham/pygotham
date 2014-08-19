@@ -19,6 +19,7 @@ class TalkModelView(ModelView, actions.ActionsMixin):
     column_filters = ('status', 'duration', 'level')
     column_list = ('name', 'status', 'duration', 'level', 'type', 'user')
     column_searchable_list = ('name',)
+    form_excluded_columns = ('presentation',)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
