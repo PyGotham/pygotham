@@ -23,6 +23,10 @@
         <dt>Category:
         <dd>{{ talk.category }}
       {% endif %}
+      {% if talk.video_url %}
+        <dt>Watch:
+        <dd><a href="{{ talk.video_url }}">{{ talk.video_url }}</a>
+      {% endif %}
     </dl>
 
     <h3>Description</h3>

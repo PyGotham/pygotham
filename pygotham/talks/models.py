@@ -77,6 +77,8 @@ class Talk(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     user = db.relationship('User', backref=db.backref('talks', lazy='dynamic'))
 
+    video_url = db.Column(db.String(255))
+
     def __str__(self):
         """Return a printable representation."""
         return self.name
