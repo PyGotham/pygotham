@@ -1,5 +1,6 @@
 """Convenience module for models."""
 
+from pygotham.about.models import *
 from pygotham.events.models import *
 from pygotham.news.models import *
 from pygotham.schedule.models import *
