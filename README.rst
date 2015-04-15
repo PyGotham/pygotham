@@ -15,8 +15,9 @@ Requirements
 Setting up your virtualenv
 ==========================
 
-We recommend you use pyenv and virtualenvwrapper. Note that in order for pyenv and virtualenvwrapper to play nice
-together, you'll want to add the follwing to your ~/.bash_profile::
+We recommend you use pyenv and virtualenvwrapper. Note that in order for pyenv
+and virtualenvwrapper to play nice together, you'll want to add the follwing to
+your ~/.bash_profile::
 
     export WORKON_HOME="$HOME/.virtualenvs/"
 
@@ -30,7 +31,8 @@ To setup your virtual environment (only need to do once)::
     pyenv local 3.4.3
     mkvirtualenv pygotham
 
-To activate your virtual env (whenever you want to start working the on PyGotham project)::
+To activate your virtual env (whenever you want to start working the on PyGotham
+project)::
 
     workon python
 
@@ -43,12 +45,14 @@ Open up PostgreSQL and execute the following::
     create database pygotham;
     grant all on database pygotham to pygotham;
 
-Now you'll need to initalize your database. In your terminal shell, run the following commands::
+Now you'll need to initalize your database. In your terminal shell, run the
+following commands::
 
     python manage.py db upgrade
     python manage.py shell
 
-The last command should have opened up a python shell. In the python shell, run the following::
+The last command should have opened up a python shell. In the python shell, run
+the following::
 
     from pygotham.models import Event
     from datetime import datetime
