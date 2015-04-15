@@ -54,10 +54,9 @@ following commands::
 The last command should have opened up a python shell. In the python shell, run
 the following::
 
-    from pygotham.models import Event
-    from datetime import datetime
     from datetime import datetime, timedelta
     from pygotham.core import db
+    from pygotham.models import Event
     e = Event(name='PyGotham Test', begins=datetime.now(), ends=(datetime.now() + timedelta(days=365)), active=True)
     db.session.add(e)
     db.session.commit()
