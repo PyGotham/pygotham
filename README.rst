@@ -13,7 +13,7 @@ Requirements
 - PostgreSQL
 
 Setting up your virtualenv
-============
+==========================
 
 We recommend you use pyenv and virtualenvwrapper. Note that in order for pyenv and virtualenvwrapper to play nice
 together, you'll want to add the follwing to your ~/.bash_profile::
@@ -35,7 +35,7 @@ To activate your virtual env (whenever you want to start working the on PyGotham
     workon python
 
 Database Initialization
-============
+=======================
 
 Open up PostgreSQL and execute the following::
 
@@ -59,7 +59,7 @@ The last command should have opened up a python shell. In the python shell, run 
     db.session.commit()
 
 Project configuration file
-============
+==========================
 
 To create your config settings file, copy the example settings file::
 
@@ -67,7 +67,7 @@ To create your config settings file, copy the example settings file::
 
 
 Running the site locally
-============
+========================
 
 Now you're ready to start your PyGotham server::
 
