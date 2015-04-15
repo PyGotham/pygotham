@@ -15,9 +15,10 @@ Requirements
 Setting up your virtualenv
 ==========================
 
-We recommend you use pyenv and virtualenvwrapper. Note that in order for pyenv
-and virtualenvwrapper to play nice together, you'll want to add the follwing to
-your ~/.bash_profile::
+We recommend you use pyenv and pyenv-virtualenvwrapper. Note that in order for
+pyenv and virtualenvwrapper to play nice together, you'll want to add the
+follwing to your ~/.bash_profile (assuming you've installed pyenv and
+pyenv-virtualenvwrapper via `Homebrew <http://brew.sh/>`_)::
 
     export WORKON_HOME="$HOME/.virtualenvs/"
 
@@ -34,16 +35,16 @@ To setup your virtual environment (only need to do once)::
 To activate your virtual env (whenever you want to start working the on PyGotham
 project)::
 
-    workon python
+    workon pygotham
 
 Database Initialization
 =======================
 
-Open up PostgreSQL and execute the following::
+Open up psql and execute the following::
 
-    create user pygotham with password 'pygotham';
-    create database pygotham;
-    grant all on database pygotham to pygotham;
+    CREATE USER pygotham WITH PASSWORD 'pygotham';
+    CREATE DATABASE pygotham;
+    GRANT ALL ON DATABASE pygotham TO pygotham;
 
 Now you'll need to initalize your database. In your terminal shell, run the
 following commands::
