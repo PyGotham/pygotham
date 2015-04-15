@@ -1,3 +1,6 @@
+.. image:: https://badge.waffle.io/pygotham/pygotham.png?label=ready&title=Ready 
+ :target: https://waffle.io/pygotham/pygotham
+ :alt: 'Stories in Ready'
 =============
 PyGotham 2015
 =============
