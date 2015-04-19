@@ -1,0 +1,19 @@
+db:
+  image: postgres
+  ports:
+    - "5432:5432"
+  environment:
+    - POSTGRES_USER=pygotham
+    - POSTGRES_PASSWORD=pygotham
+
+web:
+  build: .
+  command: python wsgi.py
+  ports:
+    - "5000:5000"
+  volumes:
+    - .:/code
+  links:
+    - db
+  environment:
+    - PYTHONUNBUFFERED=1

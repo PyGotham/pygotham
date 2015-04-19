@@ -9,66 +9,75 @@ PyGotham 2015
 Requirements
 ============
 
+- Docker_
+
+or
+
 - Python 3.4
-- PostgreSQL
+- PostgreSQL_
 
-Setting up your virtualenv
-==========================
+Getting started
+===============
 
-We recommend you use pyenv and pyenv-virtualenvwrapper. Note that in order for
-pyenv and virtualenvwrapper to play nice together, you'll want to add the
-follwing to your ~/.bash_profile (assuming you've installed pyenv and
-pyenv-virtualenvwrapper via `Homebrew <http://brew.sh/>`_)::
+The simplest way to create an environment for working on PyGotham is to use
+Docker and `Docker Compose`_. Installing Docker is beyond the scope of these
+instructions, but once you have each tool installed, a new environment can be
+created by executing the following commands from within the folder where you've
+closed this repository::
 
-    export WORKON_HOME="$HOME/.virtualenvs/"
+    $ docker-compose build
+    $ docker-compose up -d
 
-    if which pyenv > /dev/null; then
-        eval "$(pyenv init -)"
-        pyenv virtualenvwrapper
-    fi
+Alternate setup
+---------------
 
-To setup your virtual environment (only need to do once)::
+If you choose not to use Docker, you'll need access to Python 3.4 and
+PostgreSQL.
 
-    pyenv local 3.4.3
-    mkvirtualenv pygotham
+The easiest way to manage multiple versions of Python is with pyenv_. A
+``.python-version`` file is included in this repository to ensure that the
+correct version is always used with the project. Just make sure you install the
+appropriate version::
 
-To activate your virtual env (whenever you want to start working the on PyGotham
-project)::
+    $ pyenv install 3.4.3
 
-    workon pygotham
+We recommend using a virtual environment to install PyGotham's dependencies. The
+easiest way to manage your virtual environments is with virtualenvwrapper_. If
+you are using pyenv, you'll want to install pyenv-virtualenvwrapper_.
 
-Database Initialization
+Project configuration
+=====================
+
+An example configuration file is included in the repository. It can be used as
+the basis for your local settings::
+
+    $ cp instance/example_settings.cfg instance/settings.cfg
+
+If you are using Docker, this file can be used as-is. If you aren't, make sure
+you update ``SQLALCHEMY_DATABASE_URI`` to include the correct URI for your
+database.
+
+Database initialization
 =======================
 
-Open up psql and execute the following::
+If you are using Docker, make sure to run the commands in this section through
+``docker-compose run web``.
 
-    CREATE USER pygotham WITH PASSWORD 'pygotham';
-    CREATE DATABASE pygotham;
-    GRANT ALL ON DATABASE pygotham TO pygotham;
+When you first get started, you'll need to create the database::
 
-Now you'll need to initalize your database. In your terminal shell, run the
-following commands::
+    $ createdb pygotham
 
-    python manage.py db upgrade
-    python manage.py shell
+.. note:: If you are using Docker, you'll also need to specify the host
+   ``docker-compose run web createdb pygotham -h db``.
 
-The last command should have opened up a python shell. In the python shell, run
-the following::
+Then you'll need to create the tables::
 
-    from datetime import datetime, timedelta
-    from pygotham.core import db
-    from pygotham.models import Event
-    e = Event(name='PyGotham Test', begins=datetime.now(), ends=(datetime.now() + timedelta(days=365)), active=True)
-    db.session.add(e)
-    db.session.commit()
+    $ python manage.py db upgrade
 
-Project configuration file
-==========================
+The last thing you'll need to do is create a user account. To create a user with
+access to the admin::
 
-To create your config settings file, copy the example settings file::
-
-    cp instance/example_settings.cfg instance/settings.cfg
-
+    $ python manage.py create_admin
 
 Running the site locally
 ========================
@@ -79,5 +88,14 @@ Now you're ready to start your PyGotham server::
 
 You should see the PyGotham site at::
 
-    http://localhost:5000
+    http://0.0.0.0:5000
 
+If you're using Docker, Compose will take care of running the site for you.
+
+
+.. _Docker: https://www.docker.com/
+.. _Docker Compose: https://docs.docker.com/compose/
+.. _PostgreSQL: http://www.postgresql.org/
+.. _pyenv: https://github.com/yyuu/pyenv
+.. _pyenv-virtualenvwrapper: https://github.com/yyuu/pyenv-virtualenvwrapper
+.. _virtualenvwrapper: https://virtualenvwrapper.rtfd.org
