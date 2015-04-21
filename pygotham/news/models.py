@@ -1,7 +1,7 @@
 """News models."""
 
 from slugify import slugify
-from sqlalchemy_utils.decorators import generates
+from sqlalchemy_utils import observes
 from sqlalchemy_utils.types.arrow import ArrowType
 
 from pygotham.core import db
@@ -27,7 +27,7 @@ class Announcement(db.Model):
         """Return a printable representation."""
         return self.title
 
-    @generates(slug)
-    def _create_slug(self):
-        """Return the slug for the announcement."""
-        return slugify(self.title)
+    @observes('title')
+    def _create_slug(self, title):
+        """Create a slug from the title of the announcement."""
+        self.slug = slugify(self.title)
