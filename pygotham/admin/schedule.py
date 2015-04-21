@@ -33,7 +33,11 @@ SlotModelView = model_view(
     'Slots',
     CATEGORY,
     column_default_sort='start',
-    column_list=('day', 'rooms', 'kind', 'start', 'end'),
+    column_filters=('day',),
+    column_list=(
+        'day', 'rooms', 'kind', 'start', 'end', 'presentation',
+        'content_override',
+    ),
     form_columns=('day', 'rooms', 'kind', 'start', 'end', 'content_override'),
 )
 
