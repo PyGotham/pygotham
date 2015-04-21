@@ -6,6 +6,7 @@ import os
 from flask import render_template
 from flask.ext.assets import Bundle, Environment
 from flask.ext.foundation import Foundation
+from raven.contrib.flask import Sentry
 
 from pygotham import factory, filters
 from pygotham.events import get_current as get_current_event
@@ -23,6 +24,7 @@ def create_app(settings_override=None):
 
     assets = Environment(app)
     Foundation(app)
+    Sentry(app)
 
     css_screen = Bundle(
         'css/screen.css',

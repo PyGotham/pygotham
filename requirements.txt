@@ -37,6 +37,7 @@ passlib==1.6.2
 psycopg2==2.5.3
 python-dateutil==2.2
 python-slugify==0.0.7
+raven==5.2.0
 six==1.7.3
 toolz==0.7.0
 validators==0.6.0
