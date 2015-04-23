@@ -76,7 +76,8 @@ def proposal(pk=None):
             message = 'The Call for Proposals is closed at this time.'
             flash(message, 'warning')
             return redirect(url_for('home.index'))
-        talk = Talk(user_id=current_user.id, event=event)
+        talk = Talk(
+            user_id=current_user.id, event=event, recording_release=True)
         db.session.add(talk)
 
     form = TalkSubmissionForm(obj=talk)
