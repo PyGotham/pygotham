@@ -49,6 +49,12 @@ CategoryModelView = model_view(
     form_columns=('name', 'slug'),
 )
 
+DurationModelView = model_view(
+    models.Duration,
+    'Durations',
+    CATEGORY,
+)
+
 
 talk_model_view = TalkModelView(
     models.Talk, db.session, 'Talks', CATEGORY, 'talks')
