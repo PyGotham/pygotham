@@ -16,6 +16,7 @@ class SponsorApplicationForm(ModelForm):
 
     """Form for creating :class:`~pygotham.models.Sponsor` instances."""
 
+    # TODO: Filter by event.
     level = QuerySelectField(query_factory=Level.query.all)
 
     class Meta:
