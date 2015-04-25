@@ -23,6 +23,11 @@ class Announcement(db.Model):
     active = db.Column(db.Boolean, nullable=False)
     published = db.Column(ArrowType)
 
+    event_id = db.Column(
+        db.Integer, db.ForeignKey('events.id'), nullable=True)
+    event = db.relationship(
+        'Event', backref=db.backref('announcements', lazy='dynamic'))
+
     def __str__(self):
         """Return a printable representation."""
         return self.title

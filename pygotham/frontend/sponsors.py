@@ -53,6 +53,8 @@ def edit(pk):
     if sponsor.applicant != current_user:
         abort(403)
 
+    # TODO: Restrict by event.
+
     from pygotham.forms import SponsorEditForm
 
     form = SponsorEditForm(obj=sponsor)
@@ -70,6 +72,7 @@ def edit(pk):
 @route(blueprint, '')
 def index():
     """Return the sponsors."""
+    # TODO: Filter by event.
     levels = Level.query.order_by(Level.order)
     return render_template('sponsors/index.html', levels=levels)
 
@@ -77,6 +80,7 @@ def index():
 @route(blueprint, '/prospectus')
 def prospectus():
     """Return the sponsorship prospectus."""
+    # TODO: Filter by event.
     levels = Level.query.order_by(Level.order)
     return render_template('sponsors/prospectus.html', levels=levels)
 

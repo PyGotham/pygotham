@@ -18,6 +18,7 @@ def profile(pk):
     if not event.talks_are_published:
         abort(404)
 
+    # TODO: Filter by event.
     user = User.query.get_or_404(pk)
     if not user.has_accepted_talks:
         abort(404)

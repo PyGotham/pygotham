@@ -82,9 +82,11 @@ class User(db.Model, UserMixin):
     @cached_property
     def accepted_talks(self):
         """Return the user's accepted talks."""
+        # TODO: Filter by event.
         return self.talks.filter(Talk.status == 'accepted').order_by(Talk.name)
 
     @cached_property
     def has_accepted_talks(self):
         """Return whether the user has accepted talks."""
+        # TODO: Filter by event.
         return self.accepted_talks.count() > 0

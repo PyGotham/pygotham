@@ -21,6 +21,11 @@ class Level(db.Model):
     cost = db.Column(db.String, default=0)  # This isn't always money.
     limit = db.Column(db.Integer, default=0)
 
+    event_id = db.Column(
+        db.Integer, db.ForeignKey('events.id'), nullable=True)
+    event = db.relationship(
+        'Event', backref=db.backref('sponsor_levels', lazy='dynamic'))
+
     def __str__(self):
         """Return a printable representation."""
         return self.name
