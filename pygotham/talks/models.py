@@ -2,7 +2,7 @@
 
 from pygotham.core import db
 
-__all__ = ('Category', 'Talk')
+__all__ = ('Category', 'Duration', 'Talk')
 
 
 class Category(db.Model):
@@ -14,6 +14,26 @@ class Category(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), nullable=False)
     slug = db.Column(db.String(75), unique=True, nullable=False)
+
+    def __str__(self):
+        """Return a printable representation."""
+        return self.name
+
+
+class Duration(db.Model):
+
+    """Talk duration."""
+
+    __tablename__ = 'durations'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(255), nullable=False)
+    duration = db.Column(db.Integer, nullable=False)
+    inactive = db.Column(db.Boolean, default=False)
+
+    __mapper_args__ = {
+        'order_by': (inactive, duration),
+    }
 
     def __str__(self):
         """Return a printable representation."""
@@ -42,17 +62,8 @@ class Talk(db.Model):
         db.Enum('talk', 'tutorial', name='type'),
         nullable=False,
     )
-    duration = db.Column(
-        db.Enum(
-            '30 minutes',
-            '45 minutes',
-            '60 minutes',
-            '1/2 day',
-            'full day',
-            name='duration',
-        ),
-        nullable=False,
-    )
+    duration_id = db.Column(db.ForeignKey('durations.id'), nullable=False)
+    duration = db.relationship('Duration')
     recording_release = db.Column(db.Boolean, nullable=True)
 
     abstract = db.Column(db.Text)

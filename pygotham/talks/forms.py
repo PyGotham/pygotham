@@ -1,14 +1,20 @@
 """Talks forms."""
 
 from flask.ext.wtf import Form
+from wtforms.ext.sqlalchemy.fields import QuerySelectField
 from wtforms.validators import Optional
 from wtforms_alchemy import model_form_factory
 
-from pygotham.talks.models import Talk
+from pygotham.talks.models import Duration, Talk
 
 __all__ = ('TalkSubmissionForm',)
 
 ModelForm = model_form_factory(Form)
+
+
+def duration_query_factory():
+    """Return available :class:`~pygotha.models.Duration` instances."""
+    return Duration.query.filter(Duration.inactive == False)
 
 
 class TalkSubmissionForm(ModelForm):
@@ -64,3 +70,5 @@ class TalkSubmissionForm(ModelForm):
                 'validators': (Optional(),),
             },
         }
+
+    duration = QuerySelectField(query_factory=duration_query_factory)
