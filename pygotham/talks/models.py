@@ -31,6 +31,10 @@ class Duration(db.Model):
     duration = db.Column(db.Integer, nullable=False)
     inactive = db.Column(db.Boolean, default=False)
 
+    __mapper_args__ = {
+        'order_by': (inactive, duration),
+    }
+
     def __str__(self):
         """Return a printable representation."""
         return self.name
