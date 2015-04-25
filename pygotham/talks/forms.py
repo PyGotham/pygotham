@@ -14,7 +14,7 @@ ModelForm = model_form_factory(Form)
 
 def duration_query_factory():
     """Return available :class:`~pygotha.models.Duration` instances."""
-    return Duration.query.filter(Duration.inactive == False).all()
+    return Duration.query.filter(Duration.inactive == False)
 
 
 class TalkSubmissionForm(ModelForm):
