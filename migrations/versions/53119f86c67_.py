@@ -1,4 +1,4 @@
-"""empty message
+"""Add cost and limit to sponsor levels.
 
 Revision ID: 53119f86c67
 Revises: f34e9df528

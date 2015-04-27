@@ -1,4 +1,4 @@
-"""empty message
+"""Add indicator of sponsor payment receipt.
 
 Revision ID: 3bda3a710eb
 Revises: 4175dff441

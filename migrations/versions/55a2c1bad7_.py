@@ -1,4 +1,4 @@
-"""empty message
+"""Add a video URL to talks.
 
 Revision ID: 55a2c1bad7
 Revises: 141c85333cb

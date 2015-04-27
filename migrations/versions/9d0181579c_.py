@@ -1,4 +1,4 @@
-"""empty message
+"""Require email addresses for users.
 
 Revision ID: 9d0181579c
 Revises: 22ec375d28e

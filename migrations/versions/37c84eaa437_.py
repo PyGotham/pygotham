@@ -1,4 +1,4 @@
-"""empty message
+"""Add talk schedule.
 
 Revision ID: 37c84eaa437
 Revises: 3bda3a710eb

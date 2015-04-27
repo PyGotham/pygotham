@@ -1,4 +1,4 @@
-"""empty message
+"""Add announcements.
 
 Revision ID: f34e9df528
 Revises: 3a8f2b6a733

@@ -1,4 +1,4 @@
-"""empty message
+"""Require talks for presentations.
 
 Revision ID: 141c85333cb
 Revises: 37c84eaa437

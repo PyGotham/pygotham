@@ -1,4 +1,4 @@
-"""empty message
+"""Add duration and type to talks.
 
 Revision ID: b8dc37a1f5
 Revises: 9d0181579c

@@ -1,4 +1,4 @@
-"""empty message
+"""Move talk duration to a separate table.
 
 Revision ID: 32dc1be3b22
 Revises: 55a2c1bad7

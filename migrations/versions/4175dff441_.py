@@ -1,4 +1,4 @@
-"""empty message
+"""Add a start date for an event's talk list.
 
 Revision ID: 4175dff441
 Revises: 53119f86c67

@@ -1,4 +1,4 @@
-"""empty message
+"""Add speaker bio.
 
 Revision ID: 3a8f2b6a733
 Revises: 4275b4cb207

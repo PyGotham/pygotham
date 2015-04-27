@@ -1,4 +1,4 @@
-"""empty message
+"""Add categories and recording release to talks.
 
 Revision ID: 4275b4cb207
 Revises: b8dc37a1f5
