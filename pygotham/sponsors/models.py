@@ -22,7 +22,7 @@ class Level(db.Model):
     limit = db.Column(db.Integer, default=0)
 
     event_id = db.Column(
-        db.Integer, db.ForeignKey('events.id'), nullable=True)
+        db.Integer, db.ForeignKey('events.id'), nullable=False)
     event = db.relationship(
         'Event', backref=db.backref('sponsor_levels', lazy='dynamic'))
 

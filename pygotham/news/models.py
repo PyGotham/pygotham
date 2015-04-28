@@ -24,7 +24,7 @@ class Announcement(db.Model):
     published = db.Column(ArrowType)
 
     event_id = db.Column(
-        db.Integer, db.ForeignKey('events.id'), nullable=True)
+        db.Integer, db.ForeignKey('events.id'), nullable=False)
     event = db.relationship(
         'Event', backref=db.backref('announcements', lazy='dynamic'))
 
