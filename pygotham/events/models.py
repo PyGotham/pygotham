@@ -2,6 +2,8 @@
 
 import arrow
 from cached_property import cached_property
+from slugify import slugify
+from sqlalchemy_utils import observes
 from sqlalchemy_utils.types.arrow import ArrowType
 
 from pygotham.core import db
@@ -18,6 +20,7 @@ class Event(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), unique=True, nullable=False)
+    slug = db.Column(db.String(75), unique=True, nullable=True)
 
     # Event dates
     begins = db.Column(db.Date)
@@ -51,6 +54,12 @@ class Event(db.Model):
     def accepted_talks(self):
         """Return the accepted :class:`~pygotham.models.Talk` list."""
         return self.talks.filter(Talk.status == 'accepted').order_by(Talk.name)
+
+    @observes('name')
+    def _create_slug(self, title):
+        """Create a slug from the name of the event."""
+        if not self.slug:
+            self.slug = slugify(self.name)
 
     @property
     def is_call_for_proposals_active(self):
