@@ -11,7 +11,7 @@ __all__ = ('EventModelView',)
 EventModelView = model_view(
     models.Event,
     'Events',
-    column_list=('name', 'begins', 'ends', 'active'),
+    column_list=('name', 'slug', 'begins', 'ends', 'active'),
     form_excluded_columns=('talks,'),
     form_overrides={
         'activity_begins': wtforms.DateTimeField,
