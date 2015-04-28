@@ -1,12 +1,14 @@
 {% extends 'layouts/base.html' %}
 
-{% import 'foundation_wtf.html' as wtf %}
+{% import 'macros/forms.html' as wtf %}
 
 {% block title %}Submit a Talk - {{ super() }}{% endblock %}
 
-{% block main %}
+{% block content %}
   <div class="row">
     <div class="large-12 columns">
+      <h1>Talk Proposal</h1>
+
       <form method="POST">
         {{ form.hidden_tag() }}
         {{ wtf.form_errors(form, False) }}

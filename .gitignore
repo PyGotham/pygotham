@@ -2,7 +2,7 @@
 instance/settings.cfg
 
 # Frontend preprocessors
-**/static/gen
+**/static/*/gen
 .sass-cache
 .webassets-cache
 

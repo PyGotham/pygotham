@@ -8,8 +8,6 @@ decorator==3.4.2
 docutils==0.12
 Flask==0.10.1
 Flask-Admin==1.1.0
-Flask-Assets==0.10
-Flask-Foundation==2.1
 Flask-Login==0.2.11
 Flask-Mail==0.9.1
 Flask-Migrate==1.3.1
@@ -37,7 +35,6 @@ SQLAlchemy-Utils==0.30.0
 toolz==0.7.1
 Unidecode==0.4.17
 validators==0.7
-webassets==0.10.1
 Werkzeug==0.10.4
 WTForms==2.0.2
 WTForms-Alchemy==0.13.1

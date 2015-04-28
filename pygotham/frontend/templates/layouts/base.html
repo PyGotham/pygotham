@@ -1,143 +1,83 @@
-{% extends 'foundation_base.html' %}
-
 {% from 'macros/common.html' import messages %}
 
-{% block title %}{{ current_event }}{% endblock %}
+<!doctype html>
+<html>
+  <head>
+    <title>{% block title %}{{ current_event }}{% endblock%}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
+    <script src=" {{ url_for('static', filename='bower_components/modernizr/modernizr.js') }}"></script>
+  </head>
+  <body class="{% block body_class %}{% endblock %}">
+    <nav class="top-bar" data-topbar data-options="mobile_show_parent_link: false">
+      <ul class="title-area">
+        <li class="name">
+          <h1><a href="{{ url_for('home.index') }}">{{ current_event }}</a></h1>
+        </li>
+        <li class="toggle-topbar menu-icon">
+          <a href="#"><span>Menu</span></a>
+        </li>
+      </ul>
 
-{% block meta %}
-  {{ super() }}
-
-  <meta name="msapplication-TileColor" content="#79d6db">
-  <meta name="msapplication-TileImage" content="{{ url_for('static', filename='img/metro-icon.png') }}">
-  <link rel="apple-touch-icon-precomposed" href="{{ url_for('static', filename='img/apple-touch-icon.png') }}">
-  <link rel="icon" href="{{ url_for('static', filename='img/favicon.png') }}">
-{% endblock %}
-
-{% block foundation_styles %}
-  {% assets 'css_foundation' %}
-    <link rel="stylesheet" href="{{ ASSET_URL }}">
-  {% endassets %}
-
-  {% if config['FOUNDATION_USE_ICONS'] %}
-    <link rel="stylesheet" href="{{ url_for('foundation.static', filename='css/foundation-icons.css') }}">
-  {% endif %}
-{% endblock %}
-
-{% block foundation_js_bottom %}
-  <script src="//cdnjs.cloudflare.com/ajax/libs/fastclick/0.6.11/fastclick.min.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.{% if config['FOUNDATION_USE_MINIFIED'] %}min.{% endif %}js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.0/jquery.cookie.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-placeholder/2.0.7/jquery.placeholder.min.js"></script>
-
-  {% assets 'js_foundation' %}
-    <script src="{{ ASSET_URL }}"></script>
-  {% endassets %}
-{% endblock %}
-
-{% block styles %}
-  {{ super() }}
-
-  <link href="http://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
-
-  {% assets 'css_screen' %}
-    <link rel="stylesheet" href="{{ ASSET_URL }}" media="screen, projection">
-  {% endassets %}
-  {% assets 'css_print' %}
-    <link rel="stylesheet" href="{{ ASSET_URL }}" media="print">
-  {% endassets %}
-{% endblock %}
-
-{% block body_content %}
-  <div id="wrapper" class="{% block body_class %}{% endblock %}">
-    {% block header %}
-      <header>
-        {% block navbar %}
-          <nav class="top-bar" data-topbar>
-            <ul class="title-area">
-              <li class="name">
-                <h1><a href="{{ url_for('home.index') }}">{{ current_event }}</a></h1>
-              </li>
-              <li class="toggle-topbar menu-icon">
-                <a href="#"><span>Menu</span></a>
-              </li>
-            </ul>
-
-            <section class="top-bar-section">
-              <ul class="right">
-                {% for section, links in navbar %}
-                  <li class="{{ section }} has-dropdown">
-                    <a href="#">{{ section }}</a>
-                    <ul class="dropdown">
-                      {% for link, url in links %}
-                      <li><a href="{{ url }}">{{ link }}</a></li>
-                      {% endfor %}
-                    </ul>
-                  </li>
+      <section class="top-bar-section">
+        <ul class="right">
+          {% for section, links in navbar %}
+            <li class="{{ section }} has-dropdown">
+              <a href="#">{{ section }}</a>
+              <ul class="dropdown">
+                {% for link, url in links %}
+                <li><a href="{{ url }}">{{ link }}</a></li>
                 {% endfor %}
-                {% if current_user.is_authenticated() %}
-                  <li class="has-dropdown">
-                    <a href="#"><strong>Hi, {{ current_user }}</strong></a>
-                    <ul class="dropdown">
-                      <li><a href="{{ url_for('profile.dashboard') }}">Dashboard</a></li>
-                      <li><a href="{{ url_for('profile.settings') }}">Settings</a></li>
-                      {% if current_user.has_role('admin') %}
-                        <li><a href="/admin/">Admin</a></li>
-                      {% endif %}
-                    </ul>
-                  </li>
-                  <li class="login">
-                    <a href="{{ url_for('security.logout') }}" class="button radius">Log out</a>
-                  </li>
-                {% else %}
-                  <li class="login">
-                    <a href="{{ url_for('security.login') }}" class="button radius">Log in</a>
-                  </li>
-                  <li class="register">
-                    <a href="{{ url_for('security.register') }}" class="button radius">Sign up</a>
-                  </li>
+              </ul>
+            </li>
+          {% endfor %}
+
+          {% if current_user.is_authenticated() %}
+            <li class="has-dropdown">
+              <a href="#"><strong>Hi, {{ current_user }}</strong></a>
+              <ul class="dropdown">
+                <li><a href="{{ url_for('profile.dashboard') }}">Dashboard</a></li>
+                <li><a href="{{ url_for('profile.settings') }}">Settings</a></li>
+                {% if current_user.has_role('admin') %}
+                  <li><a href="/admin/">Admin</a></li>
                 {% endif %}
               </ul>
-            </section>
-          </nav>
-        {% endblock %}
-      </header>
-    {% endblock %}
+            </li>
 
-    {% block content %}
-      <div class="content">
-        {% block messages %}
-          {{ messages() }}
-        {% endblock %}
+            <li class="login">
+              <a href="{{ url_for('security.logout') }}" class="button radius">Log out</a>
+            </li>
+          {% else %}
+            <li class="login">
+              <a href="{{ url_for('security.login') }}" class="button radius">Log in</a>
+            </li>
+            <li class="register">
+              <a href="{{ url_for('security.register') }}" class="button radius">Sign up</a>
+            </li>
+          {% endif %}
+        </ul>
+      </section>
+    </nav>
 
-        {% block jumbotron %}{% endblock %}
-
-        {% block main %}{% endblock %}
-      </div>
-
-      {% block footer %}
-        <footer>
-          <h4>PyGotham 2014</h4>
-          <section class="credits">
-            PyGotham 2014 is a production of <a href="http://bigapplepy.org">Big Apple Py</a>.<br>
-            Design by <a href="http://sonjaleix.com">Sonja Leix</a>. Hosting provided by <a href="http://www.rackspace.com">Rackspace</a>.<br>
-            Questions? Comments? Please contact <a href="mailto:pygotham@googlegroups.com">pygotham@googlegroups.com</a>.<br>
-          </section>
-        </footer>
+    <div id="content">
+      {% block messages %}
+        {{ messages() }}
       {% endblock %}
-    {% endblock %}
-  </div>
-{% endblock %}
 
-{% block scripts %}
-  {% if config['GOOGLE_ANALYTICS_PROFILE_ID'] %}
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      {% block content %}{% endblock %}
+    </div>
 
-      ga('create', '{{ config['GOOGLE_ANALYTICS_PROFILE_ID'] }}', 'pygotham.org');
-      ga('send', 'pageview');
-    </script>
-  {% endif %}
-{% endblock %}
+    <footer>
+      <section class="credits">
+        {{ current_event }} is a production of <a href="http://bigapplepy.org">Big Apple Py</a>.<br>
+        Design by <a href="http://www.jessiesima.com">Jessie Sima</a>. Hosting provided by <a href="http://www.rackspace.com">Rackspace</a>.<br>
+        Questions? Comments? Please contact <a href="mailto:organizers@pygotham.org">organizers@pygotham.org</a>.<br>
+      </section>
+    </footer>
+
+    <script src="{{ url_for('static', filename='bower_components/jquery/dist/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='bower_components/foundation/js/foundation.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+  </body>
+</html>

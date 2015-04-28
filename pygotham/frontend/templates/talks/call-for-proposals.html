@@ -2,7 +2,7 @@
 
 {% block title %}Call for Proposals - {{ super() }}{% endblock %}
 
-{% block main %}
+{% block content %}
   <div class="row">
     <h1>Call for Proposals</h1>
 
@@ -19,14 +19,14 @@
     <h2>Background</h2>
 
     <p>{{ current_event }}, New York City's annual Python conference, will take
-    place on Saturday, August 16 and Sunday August 17, 2014 at the AMA
-    Conference Center in New York, NY.</p>
+    place from {{ current_event.begins.strftime('%A, %B %d') }} through
+    {{ current_event.ends.strftime('%A, %B %d, %Y') }} at the AMA Conference
+    Center in New York, NY.</p>
 
     <p>Anyone interested in speaking is encouraged to submit a proposal for
     talks and tutorials. There are no restrictions on topics, but we recommend
-    they be of interest to Pythonistas. Talks will fill slots of 30 minutes, 45
-    minutes, and 60 minutes, including time for questions and answers. Tutorials
-    will be three hours long.</p>
+    they be of interest to Pythonistas. Talks will fill slots of 25 minutes and
+    55 minutes, including time for questions and answers.</p>
 
     <h2>Who Should Submit?</h2>
 
@@ -69,8 +69,13 @@
       account.</li>
       <li>Fill out your <a href="{{ url_for('profile.settings') }}">profile</a>.
       We need this information so we can tell people how awesome you are.</li>
-      <li>Fill out the <a href="{{ url_for('talks.submit') }}">submission
-        form</a>.  You can submit as many proposals as you'd like.</li>
+      <li>Fill out the
+        {% if current_event.is_call_for_proposals_active %}
+          <a href="{{ url_for('talks.submit') }}">submission form</a>
+        {%- else %}
+          submission form starting
+          {{ current_event.proposals_begin.strftime('%A, %B %-d') }}
+        {%- endif %}.  You can submit as many proposals as you'd like.</li>
       <li>Watch your email for questions from the reviewers.</li>
     </ol>
   </div>

@@ -1,0 +1,26 @@
+{%- macro horizontal_field(field) %}
+  <div{% if field.errors %} class="error"{% endif %}>
+    {{ field.label() }}
+    {{ field(**kwargs)|safe }}
+    {%- if field.errors %}
+      {%- for error in field.errors %}
+        <small>{{error}}</small>
+      {%- endfor %}
+    {%- elif field.description -%}
+      <small>{{ field.description|safe }}</small>
+    {%- endif %}
+  </div>
+{% endmacro %}
+
+{% macro form_errors(form, hiddens=True) %}
+  {%- if form.errors %}
+    {%- for fieldname in form.errors %}
+      {%- if (form[fieldname]|is_hidden_field and hiddens) or
+              (form[fieldname]|is_hidden_field and hiddens != 'only') %}
+        {%- for error in form.errors[fieldname] %}
+          <small class="error">{{error}}</small>
+        {%- endfor %}
+      {%- endif %}
+    {%- endfor %}
+  {%- endif %}
+{%- endmacro %}

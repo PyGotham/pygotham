@@ -1,5 +1,7 @@
 """PyGotham talks."""
 
+from collections import defaultdict
+
 from flask import (abort, Blueprint, g, flash, redirect, render_template,
                    url_for)
 from flask.ext.login import current_user
@@ -122,13 +124,18 @@ def get_nav_links():
     Omits certain urls based on talk submission status.
     """
     event = g.current_event
-    links = {
+
+    links = defaultdict(dict)
+
+    links['Speaking'] = {
         # FIXME: CFP should probably be database-backed reST content
         'Call For Proposals': url_for('talks.call_for_proposals'),
     }
-    if event.talks_are_published:
-        links['Index'] = url_for('talks.index')
-        links['Schedule'] = url_for('talks.schedule')
     if event.is_call_for_proposals_active:
-        links['Submit'] = url_for('talks.submit')
-    return {'Speaking': links}
+        links['Speaking']['Submit a Talk'] = url_for('talks.submit')
+
+    if event.talks_are_published:
+        links['Events']['Talk List'] = url_for('talks.index')
+        links['Events']['Talk Schedule'] = url_for('talks.schedule')
+
+    return links

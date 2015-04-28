@@ -2,7 +2,7 @@
 
 {% block title %}Sponsorship Prospectus - {{ super() }}{% endblock %}
 
-{% block main %}
+{% block content %}
   <div class="row">
     <h1>So you want to sponsor {{ current_event }}</h1>
 
@@ -10,16 +10,18 @@
 
     <p>{{ current_event }} is New York City's largest gathering of Python
     developers.  Brought to you by the same people who organize <a
-      href="http://nycpython.org">NYC Python</a> and <a
-      href="http://flask-nyc.org">Flask-NYC</a>, {{ current_event }} draws a
-    diverse crowd with backgrounds in many different industries.</p>
+      href="http://nycpython.org">NYC Python</a>, <a
+      href="http://flask-nyc.org">Flask-NYC</a>, and <a
+      href="http://learn.nycpython.org">Learn Python NYC</a>,
+    {{ current_event }} draws a diverse crowd with backgrounds in many different
+    industries.</p>
 
     <p>In order to keep the registration costs as low as possible, we need your
     help. Several different levels of sponsorship are available. If you have any
     questions, you can contact us directly.</p>
 
-    <p>Once you're ready, go ahead and <a href="{{ url_for('sponsors.apply')
-      }}">apply.</a></p>
+    <p>Once you're ready, go ahead and
+    <a href="mailto:sponsors@pygotham.org">send us an email</a>.
 
     <h3>Contact</h3>
 

@@ -1,10 +1,10 @@
 """PyGotham registration information."""
 
-from flask import Blueprint
+from flask import Blueprint, g, url_for
 
 from pygotham.frontend import direct_to_template
 
-__all__ = ('blueprint',)
+__all__ = ('blueprint', 'get_nav_links')
 
 blueprint = Blueprint(
     'registration',
@@ -14,3 +14,13 @@ blueprint = Blueprint(
 
 direct_to_template(
     blueprint, '/information', template='registration/information.html')
+
+
+def get_nav_links():
+    """Return registration-related menu items."""
+    links = {
+        'Information': url_for('registration.information'),
+    }
+    if g.current_event.is_registration_active:
+        links['Register'] = g.current_event.registration_url
+    return {'Registration': links}

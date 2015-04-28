@@ -1,0 +1,147 @@
+@import "settings";
+@import "foundation";
+
+$dividing-width: 640px;
+
+@mixin tablet {
+  @media only screen and (max-width: 640px) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media only screen and (min-width: 640px) {
+    @content;
+  }
+}
+
+table.proposals,
+table.schedule {
+  width: 100%;
+}
+
+.top-bar {
+
+  li.name {
+    background: url(../img/logo.png) no-repeat 50% 50%;
+    background-size: 35px 35px;
+    height: 45px;
+    overflow: hidden;
+    text-indent: -9999px;
+    width: 45px;
+
+    body.home & {
+      @include desktop {
+        display: none;
+      }
+    }
+  }
+}
+
+.top-bar-section {
+  .has-dropdown > a:after {
+    border-color: $teal rgba($black, 0) rgba($black, 0);
+  }
+
+  ul li {
+    &.login, &.register {
+      background: $white;
+    }
+
+    &.login > a {
+      background: $teal;
+    }
+
+    &.register > a {
+      background: $gold;
+    }
+  }
+}
+
+#content {
+  border-top: 3px solid $teal;
+}
+
+.jumbotron {
+  background: $dark-blue;
+  color: $teal;
+  overflow: hidden;
+  padding: 2em;
+  text-align: center;
+
+  h1 {
+    background: url(../img/home/logo.png) no-repeat 50% 50%;
+    text-indent: -9999px;
+    width: 100%;
+
+    @include tablet {
+      background-size: 80%;
+    }
+  }
+
+  em {
+    font-size: $h3-font-size;
+    font-style: normal;
+  }
+}
+
+.cta {
+  font-size: $h1-font-size;
+  padding: 2em;
+  text-align: center;
+}
+
+footer {
+  background: $dark-blue;
+  color: $white;
+  display: block;
+  font-size: 10pt;
+  line-height: 1.5;
+  text-align: center;
+
+  .credits {
+    padding: 20px 0;
+  }
+
+  a {
+    color: $gold;
+  }
+}
+
+// Or selectively include components
+// @import
+//   "foundation/components/accordion",
+//   "foundation/components/alert-boxes",
+//   "foundation/components/block-grid",
+//   "foundation/components/breadcrumbs",
+//   "foundation/components/button-groups",
+//   "foundation/components/buttons",
+//   "foundation/components/clearing",
+//   "foundation/components/dropdown",
+//   "foundation/components/dropdown-buttons",
+//   "foundation/components/flex-video",
+//   "foundation/components/forms",
+//   "foundation/components/grid",
+//   "foundation/components/inline-lists",
+//   "foundation/components/joyride",
+//   "foundation/components/keystrokes",
+//   "foundation/components/labels",
+//   "foundation/components/magellan",
+//   "foundation/components/orbit",
+//   "foundation/components/pagination",
+//   "foundation/components/panels",
+//   "foundation/components/pricing-tables",
+//   "foundation/components/progress-bars",
+//   "foundation/components/reveal",
+//   "foundation/components/side-nav",
+//   "foundation/components/split-buttons",
+//   "foundation/components/sub-nav",
+//   "foundation/components/switches",
+//   "foundation/components/tables",
+//   "foundation/components/tabs",
+//   "foundation/components/thumbs",
+//   "foundation/components/tooltips",
+//   "foundation/components/top-bar",
+//   "foundation/components/type",
+//   "foundation/components/offcanvas",
+//   "foundation/components/visibility";
