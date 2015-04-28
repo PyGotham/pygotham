@@ -1,6 +1,6 @@
 """Admin for talk-related models."""
 
-from flask.ext.admin import actions
+from flask_admin import actions
 from flask.ext.admin.contrib.sqla import ModelView
 
 from pygotham.admin.utils import model_view

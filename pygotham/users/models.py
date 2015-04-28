@@ -1,7 +1,7 @@
 """Users models."""
 
 from cached_property import cached_property
-from flask.ext.security import RoleMixin, UserMixin
+from flask_security import RoleMixin, UserMixin
 
 from pygotham.core import db
 from pygotham.talks.models import Talk

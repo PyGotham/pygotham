@@ -1,8 +1,8 @@
 """Admin application helper utilities."""
 
-from flask.ext.admin.base import MenuLink
+from flask_admin.base import MenuLink
 from flask.ext.admin.contrib.sqla import ModelView
-from flask.ext.login import current_user
+from flask_login import current_user
 
 from pygotham.core import db
 
