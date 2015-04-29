@@ -1,6 +1,7 @@
 """Talks models."""
 
 from pygotham.core import db
+from pygotham.events.query import EventQuery
 
 __all__ = ('Category', 'Duration', 'Talk')
 
@@ -45,6 +46,7 @@ class Talk(db.Model):
     """Talk."""
 
     __tablename__ = 'talks'
+    query_class = EventQuery
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), nullable=False)

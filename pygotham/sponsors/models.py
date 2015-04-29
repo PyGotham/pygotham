@@ -4,6 +4,7 @@ from cached_property import cached_property
 from slugify import slugify
 
 from pygotham.core import db
+from pygotham.events.query import EventQuery
 
 _all__ = 'Level', 'Sponsor'
 
@@ -13,6 +14,7 @@ class Level(db.Model):
     """Sponsorship level."""
 
     __tablename__ = 'sponsor_levels'
+    query_class = EventQuery
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), nullable=False)
@@ -46,6 +48,7 @@ class Sponsor(db.Model):
     """Sponsor."""
 
     __tablename__ = 'sponsors'
+    query_class = EventQuery
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), nullable=False)

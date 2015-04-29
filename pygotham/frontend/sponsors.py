@@ -72,16 +72,14 @@ def edit(pk):
 @route(blueprint, '')
 def index():
     """Return the sponsors."""
-    # TODO: Filter by event.
-    levels = Level.query.order_by(Level.order)
+    levels = Level.query.current.order_by(Level.order)
     return render_template('sponsors/index.html', levels=levels)
 
 
 @route(blueprint, '/prospectus')
 def prospectus():
     """Return the sponsorship prospectus."""
-    # TODO: Filter by event.
-    levels = Level.query.order_by(Level.order)
+    levels = Level.query.current.order_by(Level.order)
     return render_template('sponsors/prospectus.html', levels=levels)
 
 

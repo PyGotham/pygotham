@@ -12,9 +12,8 @@ def get_active():
     """Get the active announcements."""
     now = arrow.utcnow().to('America/New_York').naive
 
-    # TODO: Filter by event.
-    # Possibly display old announcements if the current event has none.
-    return Announcement.query.filter(
+    # TODO: Possibly display old announcements if the current event has none.
+    return Announcement.query.current.filter(
         Announcement.active == True,
         Announcement.published < now,
     ).order_by(db.desc(Announcement.published)).all()
