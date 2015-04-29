@@ -7,8 +7,6 @@ import pkgutil
 import os
 
 from flask import g, render_template, url_for
-from flask_assets import Bundle, Environment
-from flask_foundation import Foundation
 from raven.contrib.flask import Sentry
 from sqlalchemy import or_
 
