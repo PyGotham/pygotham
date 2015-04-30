@@ -11,7 +11,7 @@ from pygotham.core import db
 from pygotham.frontend import direct_to_template, route
 from pygotham.models import Level, Sponsor
 
-__all__ = ('blueprint',)
+__all__ = ('blueprint', 'get_nav_links')
 
 blueprint = Blueprint('sponsors', __name__, url_prefix='/sponsors')
 
@@ -82,3 +82,13 @@ def prospectus():
 
 
 direct_to_template(blueprint, '/terms', template='sponsors/terms.html')
+
+
+def get_nav_links():
+    """Return sponsor-related titles and urls for use in the navbar."""
+    links = {
+        'Sponsors': url_for('sponsors.index'),
+        'Apply to be a Sponsor': url_for('sponsors.apply'),
+        'Sponsorship Prospectus': url_for('sponsors.prospectus'),
+    }
+    return {'Sponsors': links}
