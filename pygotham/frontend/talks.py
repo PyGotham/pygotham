@@ -119,10 +119,8 @@ def get_nav_links():
     """
     event = get_current_event()
     links = {
-        # FIXME: CFP and recording release should probably be database-backed
-        # reST content
+        # FIXME: CFP should probably be database-backed reST content
         'Call For Proposals': url_for('talks.call_for_proposals'),
-        'Recording Release': url_for('talks.recording_release'),
     }
     if event.talks_are_published:
         links['Index'] = url_for('talks.index')
