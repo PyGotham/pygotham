@@ -43,4 +43,5 @@ class AboutPage(db.Model):
     @observes('title')
     def _create_slug(self, title):
         """Create the slug for the page."""
-        self.slug = slugify(self.title)
+        if not self.slug:
+            self.slug = slugify(self.title)
