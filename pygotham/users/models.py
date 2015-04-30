@@ -82,7 +82,8 @@ class User(db.Model, UserMixin):
     @cached_property
     def accepted_talks(self):
         """Return the user's accepted talks."""
-        return self.talks.filter(Talk.status == 'accepted').order_by(Talk.name)
+        return Talk.query.current.filter(
+            Talk.status == 'accepted', Talk.user == self).order_by(Talk.name)
 
     @cached_property
     def has_accepted_talks(self):

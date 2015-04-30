@@ -17,8 +17,9 @@ blueprint = Blueprint('profile', __name__, url_prefix='/profile')
 @login_required
 def dashboard():
     """Return the user's dashboard."""
-    sponsors = Sponsor.query.filter(Sponsor.applicant == current_user)
-    talks = Talk.query.filter(Talk.user == current_user)
+    sponsors = Sponsor.query.current.filter(Sponsor.applicant == current_user)
+    # TODO: Optionally, old proposals should be shown in a read-only mode.
+    talks = Talk.query.current.filter(Talk.user == current_user)
     return render_template(
         'profile/dashboard.html', talks=talks, sponsors=sponsors)
 
@@ -27,6 +28,9 @@ def dashboard():
 @login_required
 def settings():
     """Return the user's settings."""
+    # TODO: How should this be handled? Should a speaker's bio be stored
+    # as a snapshot from event to event? It could be stored as part of a
+    # talks.models.Presentation.
     from pygotham.forms import ProfileForm
 
     form = ProfileForm(request.form, obj=current_user)
