@@ -38,7 +38,7 @@ class Event(db.Model):
     # When to publish the talks
     talk_list_begins = db.Column(ArrowType)
 
-    # Registration informatino
+    # Registration information
     registration_closed = db.Column(
         db.Boolean, server_default='false', nullable=False,
     )
