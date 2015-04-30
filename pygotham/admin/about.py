@@ -12,5 +12,5 @@ AboutPageModelView = model_view(
     'About',
     column_default_sort='title',
     column_list=('title', 'navbar_section', 'event', 'active'),
-    form_columns=('title', 'navbar_section', 'content', 'event', 'active'),
+    form_columns=('title', 'slug', 'navbar_section', 'content', 'event', 'active'),
 )
