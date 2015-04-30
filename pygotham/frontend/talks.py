@@ -121,12 +121,12 @@ def get_nav_links():
     links = {
         # FIXME: CFP and recording release should probably be database-backed
         # reST content
-        'call_for_proposals': url_for('talks.call_for_proposals'),
-        'recording_release': url_for('talks.recording_release'),
+        'Call For Proposals': url_for('talks.call_for_proposals'),
+        'Recording Release': url_for('talks.recording_release'),
     }
     if event.talks_are_published:
-        links['index'] = url_for('talks.index')
-        links['schedule'] = url_for('talks.schedule')
+        links['Index'] = url_for('talks.index')
+        links['Schedule'] = url_for('talks.schedule')
     if event.is_call_for_proposals_active:
-        links['submit'] = url_for('talks.submit')
-    return {'talks': links}
+        links['Submit'] = url_for('talks.submit')
+    return {'Speaking': links}

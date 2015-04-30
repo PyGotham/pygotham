@@ -85,29 +85,35 @@ def create_app(settings_override=None):
             missing_args = required_args.difference(provided_args)
             if get_allowed and not missing_args:
                 rule_name = rule.endpoint.split('.')[1]
+                rule_name = rule_name.replace('_', ' ').title()
                 navbar_links[section_name][rule_name] = url_for(rule.endpoint)
 
         # Find module-specific overrides and update the routes
         for _, name, _ in pkgutil.iter_modules(__path__):
             m = importlib.import_module('{}.{}'.format(__name__, name))
             if hasattr(m, 'get_nav_links'):
-                for section, override_links in m.get_nav_links().items():
-                    navbar_links[section].update(override_links)
+                try:
+                    del navbar_links[name]
+                except KeyError:
+                    # We need to do this before the update in case the
+                    # section name has been changed
+                    pass
+                navbar_links.update(m.get_nav_links())
 
         # Exclude certain sections whose links are exposed elsewhere
         for section in ('home', 'security', 'profile'):
             try:
                 del navbar_links[section]
             except KeyError:
+                # This links are displayed elsewhere, so remove the sections
+                # from the navbar entirely
                 pass
 
         nav = []
         # Normalize, hoist, and sort
         for section, links in navbar_links.items():
-            index_link = links.pop('index', None) or links.pop('home', None)
-            subnav = [(title.replace('_', ' ').title(), link) for
-                      title, link in links.items()]
-            subnav.sort(key=lambda item: item[0])
+            index_link = links.pop('Index', None) or links.pop('Home', None)
+            subnav = sorted(links.items(), key=lambda item: item[0])
             if index_link:
                 subnav.insert(0, ('Home', index_link))
             nav.append((section.title(), subnav))

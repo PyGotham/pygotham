@@ -21,7 +21,7 @@ class AboutPage(db.Model):
     title = db.Column(db.String(255), nullable=False)
     content = db.Column(db.Text, nullable=False)
     active = db.Column(db.Boolean, nullable=False)
-    
+
     event_id = db.Column(
         db.Integer, db.ForeignKey('events.id'), nullable=False,
     )

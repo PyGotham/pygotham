@@ -1,7 +1,5 @@
 """Admin for AboutPage models."""
 
-import wtforms
-
 from pygotham.admin.utils import model_view
 from pygotham.about import models
 
@@ -13,6 +11,6 @@ AboutPageModelView = model_view(
     'About Pages',
     'About',
     column_default_sort='title',
-    column_list=('event', 'navbar_section', 'title', 'active'),
-    form_columns=('event', 'navbar_section', 'title', 'content', 'active'),
+    column_list=('title', 'navbar_section', 'event', 'active'),
+    form_columns=('title', 'navbar_section', 'content', 'event', 'active'),
 )
