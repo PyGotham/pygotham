@@ -1,9 +1,12 @@
 """Frontend application."""
 
+from collections import defaultdict
 from functools import wraps
+import importlib
+import pkgutil
 import os
 
-from flask import render_template
+from flask import render_template, url_for
 from flask.ext.assets import Bundle, Environment
 from flask.ext.foundation import Foundation
 from raven.contrib.flask import Sentry
@@ -60,6 +63,56 @@ def create_app(settings_override=None):
     @app.context_processor
     def current_event():
         return {'current_event': get_current_event()}
+
+    @app.context_processor
+    def generate_navbar():
+        """Autodiscover links that should populate the site's navbar."""
+        # navbar_links is a dict of the form
+        # {section_name: {link_name: link_value, ...}, ...}
+        navbar_links = defaultdict(dict)
+
+        # First, autogenerate a list based on available routes
+        # Available routes are any that have a GET method and have all
+        # arguments (if any) provided default values
+        for rule in app.url_map.iter_rules():
+            section_name = rule.endpoint.split('.')[0]
+            get_allowed = 'get' in (method.lower() for method in rule.methods)
+            required_args = set(rule.arguments)
+            try:
+                provided_args = set(rule.defaults.keys())
+            except AttributeError:
+                provided_args = set()
+            missing_args = required_args.difference(provided_args)
+            if get_allowed and not missing_args:
+                rule_name = rule.endpoint.split('.')[1]
+                navbar_links[section_name][rule_name] = url_for(rule.endpoint)
+
+        # Find module-specific overrides and update the routes
+        for _, name, _ in pkgutil.iter_modules(__path__):
+            m = importlib.import_module('{}.{}'.format(__name__, name))
+            if hasattr(m, 'get_nav_links'):
+                for section, override_links in m.get_nav_links().items():
+                    navbar_links[section].update(override_links)
+
+        # Exclude certain sections whose links are exposed elsewhere
+        for section in ('home', 'security', 'profile'):
+            try:
+                del navbar_links[section]
+            except KeyError:
+                pass
+
+        nav = []
+        # Normalize, hoist, and sort
+        for section, links in navbar_links.items():
+            index_link = links.pop('index', None) or links.pop('home', None)
+            subnav = [(title.replace('_', ' ').title(), link) for
+                      title, link in links.items()]
+            subnav.sort(key=lambda item: item[0])
+            if index_link:
+                subnav.insert(0, ('Home', index_link))
+            nav.append((section.title(), subnav))
+        nav.sort(key=lambda item: item[0])
+        return {'navbar': nav}
 
     app.jinja_env.filters['rst'] = filters.rst_to_html
 

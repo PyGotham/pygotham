@@ -64,56 +64,16 @@
 
             <section class="top-bar-section">
               <ul class="right">
-                <li class="about has-dropdown">
-                  <a href="#">About</a>
-                  <ul class="dropdown">
-                    <li><a href="{{ url_for('about.faq') }}">FAQ</a></li>
-                    <li><a href="{{ url_for('about.code_of_conduct') }}">Code of Conduct</a></li>
-                    <li><a href="{{ url_for('about.privacy_policy') }}">Privacy Policy</a></li>
-                  </ul>
-                </li>
-                {% if current_event.talks_are_published %}
-                  <li class="events has-dropdown">
-                    <a href="#">Events</a>
+                {% for section, links in navbar %}
+                  <li class="{{ section }} has-dropdown">
+                    <a href="#">{{ section }}</a>
                     <ul class="dropdown">
-                      <li><a href="{{ url_for('talks.index') }}">Talk List</a></li>
-                      <li><a href="{{ url_for('talks.schedule') }}">Talk Schedule</a></li>
-                      <li>
-                        <a href="https://pygotham2014socialevent.eventbrite.com">
-                          Unnamed Social Event
-                        </a>
-                      </li>
+                      {% for link, url in links %}
+                      <li><a href="{{ url }}">{{ link }}</a></li>
+                      {% endfor %}
                     </ul>
                   </li>
-                {% endif %}
-                <li class="speaking has-dropdown">
-                  <a href="#">Speaking</a>
-                  <ul class="dropdown">
-                    <li><a href="{{ url_for('talks.call_for_proposals') }}">Call for Proposals</a></li>
-                    {% if current_event.is_call_for_proposals_active %}
-                      <li><a href="{{ url_for('talks.submit') }}">Submit a Talk</a></li>
-                    {% endif %}
-                  </ul>
-                </li>
-                <li><a href="{{ url_for('venue.index') }}">Venue</a></li>
-                <li class="sponsors has-dropdown">
-                  <a href="#">Sponsors</a>
-                  <ul class="dropdown">
-                    <li><a href="{{ url_for('sponsors.index') }}">Sponsors</a></li>
-                    <li><a href="{{ url_for('sponsors.apply') }}">Apply to be a Sponsor</a></li>
-                    <li><a href="{{ url_for('sponsors.prospectus') }}">Sponsorship Prospectus</a></li>
-                  </ul>
-                </li>
-                <li><a href="http://bigapplepy.org">Big Apple Py</a></li>
-                <li class="registration has-dropdown">
-                  <a href="#">Registration</a>
-                  <ul class="dropdown">
-                    <li><a href="{{ url_for('registration.information') }}">Information</a></li>
-                    {% if current_event.is_registration_active %}
-                      <li><a href="{{ current_event.registration_url }}">Register</a></li>
-                    {% endif %}
-                  </ul>
-                </li>
+                {% endfor %}
                 {% if current_user.is_authenticated() %}
                   <li class="has-dropdown">
                     <a href="#"><strong>Hi, {{ current_user }}</strong></a>
