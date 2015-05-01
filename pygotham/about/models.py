@@ -4,6 +4,7 @@ from slugify import slugify
 from sqlalchemy_utils import observes
 
 from pygotham.core import db
+from pygotham.events.query import EventQuery
 
 __all__ = ('AboutPage',)
 
@@ -12,6 +13,7 @@ class AboutPage(db.Model):
     """About page."""
 
     __tablename__ = 'about_pages'
+    query_class = EventQuery
 
     id = db.Column(db.Integer, primary_key=True)
     # TODO: validate that the navbar_section / slug combination do not conflict

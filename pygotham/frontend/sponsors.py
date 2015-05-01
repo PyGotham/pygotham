@@ -13,7 +13,11 @@ from pygotham.models import Level, Sponsor
 
 __all__ = ('blueprint', 'get_nav_links')
 
-blueprint = Blueprint('sponsors', __name__, url_prefix='/sponsors')
+blueprint = Blueprint(
+    'sponsors',
+    __name__,
+    url_prefix='/<event_slug>/sponsors',
+)
 
 
 @route(blueprint, '/apply', methods=('GET', 'POST'))
