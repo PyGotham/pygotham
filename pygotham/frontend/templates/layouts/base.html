@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
-    <script src=" {{ url_for('static', filename='bower_components/modernizr/modernizr.js') }}"></script>
+    <script src="{{ url_for('static', filename='bower_components/modernizr/modernizr.js') }}"></script>
   </head>
   <body class="{% block body_class %}{% endblock %}">
     <nav class="top-bar" data-topbar data-options="mobile_show_parent_link: false">
