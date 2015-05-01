@@ -10,7 +10,7 @@ from pygotham.models import Sponsor, Talk
 
 __all__ = ('blueprint',)
 
-blueprint = Blueprint('profile', __name__, url_prefix='/profile')
+blueprint = Blueprint('profile', __name__, url_prefix='/<event_slug>/profile')
 
 
 @route(blueprint, '/dashboard')

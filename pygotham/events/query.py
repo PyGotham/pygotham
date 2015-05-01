@@ -1,3 +1,4 @@
+from flask import g
 from flask_sqlalchemy import BaseQuery
 
 
@@ -12,5 +13,4 @@ class EventQuery(BaseQuery):
     @property
     def current(self):
         # Circular import
-        from pygotham.events import get_current
-        return self.filter_by(event=get_current())
+        return self.filter_by(event=g.current_event)

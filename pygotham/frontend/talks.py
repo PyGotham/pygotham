@@ -1,17 +1,17 @@
 """PyGotham talks."""
 
-from flask import abort, Blueprint, flash, redirect, render_template, url_for
+from flask import (abort, Blueprint, g, flash, redirect, render_template,
+                   url_for)
 from flask.ext.login import current_user
 from flask.ext.security import login_required
 
 from pygotham.core import db
-from pygotham.events import get_current as get_current_event
 from pygotham.frontend import direct_to_template, route
 from pygotham.models import Day, Talk
 
 __all__ = ('blueprint', 'get_nav_links')
 
-blueprint = Blueprint('talks', __name__, url_prefix='/talks')
+blueprint = Blueprint('talks', __name__, url_prefix='/<event_slug>/talks')
 
 direct_to_template(
     blueprint,
@@ -24,7 +24,7 @@ direct_to_template(
 @route(blueprint, '/<int:pk>')
 def detail(pk):
     """Return the talk detail view."""
-    event = get_current_event()
+    event = g.current_event
     if not event.talks_are_published:
         abort(404)
 
@@ -38,7 +38,7 @@ def detail(pk):
 @route(blueprint, '')
 def index():
     """Return the talk list."""
-    event = get_current_event()
+    event = g.current_event
     if not event.talks_are_published:
         abort(404)
 
@@ -62,7 +62,7 @@ def proposal(pk=None):
         flash(message, 'warning')
         return redirect(url_for('profile.settings'))
 
-    event = get_current_event()
+    event = g.current_event
 
     if pk:
         talk = Talk.query.filter(
@@ -107,7 +107,7 @@ direct_to_template(
 
 @route(blueprint, '/schedule')
 def schedule():
-    event = get_current_event()
+    event = g.current_event
     if not event.talks_are_published:
         abort(404)
 
@@ -121,7 +121,7 @@ def get_nav_links():
 
     Omits certain urls based on talk submission status.
     """
-    event = get_current_event()
+    event = g.current_event
     links = {
         # FIXME: CFP should probably be database-backed reST content
         'Call For Proposals': url_for('talks.call_for_proposals'),

@@ -4,19 +4,18 @@ from collections import defaultdict
 
 from flask import Blueprint, render_template, url_for
 
-from pygotham.events import get_current
 from pygotham.models import AboutPage
 
 __all__ = ('blueprint', 'get_nav_links')
 
-blueprint = Blueprint('about', __name__, url_prefix='/about')
+blueprint = Blueprint('about', __name__, url_prefix='/<event_slug>/about')
 
 
 def get_nav_links():
     """Generates all about page titles and urls for use in the navbar."""
     links = defaultdict(dict)
-    for page in AboutPage.query.filter_by(
-            active=True, event=get_current()).order_by(AboutPage.slug):
+    for page in AboutPage.query.current.filter_by(
+            active=True).order_by(AboutPage.slug):
         url = url_for('about.rst_content', slug=page.slug)
         links[page.navbar_section.lower()][page.title] = url
     return links
@@ -28,9 +27,8 @@ def rst_content(slug):
 
     :param slug: the uniquely identifying slug portion of the url
     """
-    page = AboutPage.query.filter_by(
+    page = AboutPage.query.current.filter_by(
         slug=slug,
         active=True,
-        event=get_current(),
     ).first_or_404()
     return render_template('about/rst.html', page=page)
