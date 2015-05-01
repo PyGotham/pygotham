@@ -1,10 +1,10 @@
 {% extends 'layouts/base.html' %}
 
-{% from 'foundation_wtf.html' import horizontal_field %}
+{% from 'macros/forms.html' import horizontal_field %}
 
 {% block title %}Sign up - {{ super() }}{% endblock %}
 
-{% block main %}
+{% block content %}
   <div class="row">
     <div class="large-12 columns">
       <form action="{{ url_for('security.register') }}" method="POST" name="register_user_form">
