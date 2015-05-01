@@ -1,54 +1,28 @@
 {% extends 'layouts/base.html' %}
 
-{% block body_class %}{{ super() }} home{% endblock %}
+{% block body_class %}home{% endblock %}
 
-{% block main %}
-  <section class="jumbotron">
-    <div class="pg-logo"></div>
-    <div class="liberty"></div>
-    <div class="skyline">
-    </div>
-    <div class="river">
-      <div class="boat"></div>
-      <div class="waves"></div>
-      <div class="water"></div>
-    </div>
-    <div class="nj"></div>
-  </section>
-
-  {% if sponsors or announcements %}
+{% block content %}
+  <div class="jumbotron">
     <div class="row">
-      <section class="sponsors columns large-8">
-        {% if sponsors %}
-          <h2>Sponsors</h2>
-          <ul class="large-block-grid-4 medium-block-grid-3 small-block-grid-2">
-            {% for sponsor in sponsors %}
-              <li>
-                <a href="{{ url_for('sponsors.index') }}#{{ sponsor.slug }}">
-                  <img src="{{ sponsor.logo }}" alt="{{ sponsor.name }}">
-                </a>
-              </li>
-            {% endfor %}
-          </ul>
-        {% endif %}
-      </section>
-
-      <aside class="announcements columns offset-1 large-3">
-        {% if announcements %}
-          <h3>Announcements</h3>
-          <ol>
-            {% for announcement in announcements %}
-              <li>
-                <h4>{{ announcement }}</h4>
-                <time datetime="{{ announcement.published }}">
-                  {{ announcement.published.strftime('%m.%d.%y') }}
-                </time>
-                <p>{{ announcement.content|rst|safe }}</p>
-              </li>
-            {% endfor %}
-          </ol>
-        {% endif %}
-      </aside>
+      <h1>{{ current_event }}</h1>
+      <em>{{ current_event.dates }}</em>
     </div>
-  {% endif %}
+  </div>
+
+  <div class="row">
+    <div class="large-12 columns">
+      <div class="cta">
+        {% if current_event.is_call_for_proposals_active %}
+          <a href="{{ url_for('talks.call_for_proposals') }}">
+            Call for proposals now open!
+          </a>
+        {% else %}
+          The call for proposals opens on
+          {{ current_event.proposals_begin.strftime('%A, %B %-d') }}.  Be sure
+          to check back then.
+        {% endif %}
+      </div>
+    </div>
+  </div>
 {% endblock %}

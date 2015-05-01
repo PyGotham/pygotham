@@ -6,7 +6,7 @@ from flask.ext.security import login_required
 
 from pygotham.core import db
 from pygotham.frontend import route
-from pygotham.models import Sponsor, Talk
+from pygotham.models import Talk
 
 __all__ = ('blueprint',)
 
@@ -17,11 +17,10 @@ blueprint = Blueprint('profile', __name__, url_prefix='/<event_slug>/profile')
 @login_required
 def dashboard():
     """Return the user's dashboard."""
-    sponsors = Sponsor.query.current.filter(Sponsor.applicant == current_user)
     # TODO: Optionally, old proposals should be shown in a read-only mode.
     talks = Talk.query.current.filter(Talk.user == current_user)
     return render_template(
-        'profile/dashboard.html', talks=talks, sponsors=sponsors)
+        'profile/dashboard.html', talks=talks)
 
 
 @route(blueprint, '/settings', methods=('GET', 'POST'))

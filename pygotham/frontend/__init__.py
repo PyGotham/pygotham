@@ -7,8 +7,6 @@ import pkgutil
 import os
 
 from flask import g, render_template, url_for
-from flask.ext.assets import Bundle, Environment
-from flask.ext.foundation import Foundation
 from raven.contrib.flask import Sentry
 from sqlalchemy import or_
 
@@ -28,40 +26,7 @@ def create_app(settings_override=None):
     """
     app = factory.create_app(__name__, __path__, settings_override)
 
-    assets = Environment(app)
-    Foundation(app)
     Sentry(app)
-
-    css_screen = Bundle(
-        'css/screen.css',
-        filters='cssmin',
-        output='gen/css/screen.min.css',
-    )
-    css_print = Bundle(
-        'css/print.css',
-        filters='cssmin',
-        output='gen/css/print.min.css',
-    )
-
-    css_foundation = Bundle(
-        'foundation/css/normalize.css',
-        'foundation/css/foundation.css',
-        'foundation/css/app.css',
-        filters='cssmin',
-        output='gen/css/foundation.min.css',
-    )
-
-    js_foundation = Bundle(
-        'foundation/js/foundation.min.js',
-        'foundation/js/app.js',
-        filters='jsmin',
-        output='gen/js/foundation.min.js',
-    )
-
-    assets.register('css_screen', css_screen)
-    assets.register('css_print', css_print)
-    assets.register('css_foundation', css_foundation)
-    assets.register('js_foundation', js_foundation)
 
     @app.url_defaults
     def add_event_slug(endpoint, values):
@@ -143,6 +108,7 @@ def create_app(settings_override=None):
         nav.sort(key=lambda item: item[0])
         return {'navbar': nav}
 
+    app.jinja_env.filters['is_hidden_field'] = filters.is_hidden_field
     app.jinja_env.filters['rst'] = filters.rst_to_html
 
     if not app.debug:

@@ -94,7 +94,6 @@ def get_nav_links():
     """Return sponsor-related titles and urls for use in the navbar."""
     links = {
         'Sponsors': url_for('sponsors.index'),
-        'Apply to be a Sponsor': url_for('sponsors.apply'),
         'Sponsorship Prospectus': url_for('sponsors.prospectus'),
     }
     return {'Sponsors': links}

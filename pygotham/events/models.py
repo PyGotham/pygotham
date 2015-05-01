@@ -62,6 +62,18 @@ class Event(db.Model):
             self.slug = slugify(self.name)
 
     @property
+    def dates(self):
+        """Return the date(s) for the event."""
+        dates = ['{:%B %d}'.format(self.begins)]
+        if self.begins != self.ends:
+            if self.begins.month == self.ends.month:
+                format = '{:%d}'
+            else:
+                format = '{:%B %d}'
+            dates.append(format.format(self.ends))
+        return ' - '.join(dates)
+
+    @property
     def is_call_for_proposals_active(self):
         """Return whether the call for proposals for an event is active.
 
