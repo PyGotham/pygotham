@@ -92,28 +92,28 @@ table.schedule {
     font-size: $h5-font-size;
     padding: 0.25em 0.5em;
   }
-}
 
-.jumbotron {
-  background: $dark-blue;
-  color: $teal;
-  overflow: hidden;
-  padding: 2em;
-  text-align: center;
+  .jumbotron {
+    background: $dark-blue;
+    color: $teal;
+    overflow: hidden;
+    padding: 2em;
+    text-align: center;
 
-  h1 {
-    background: url(../img/home/logo.png) no-repeat 50% 50%;
-    text-indent: -9999px;
-    width: 100%;
+    h1 {
+      background: url(../img/home/logo.png) no-repeat 50% 50%;
+      text-indent: -9999px;
+      width: 100%;
 
-    @include tablet {
-      background-size: 80%;
+      @include tablet {
+        background-size: 80%;
+      }
     }
-  }
 
-  em {
-    font-size: $h3-font-size;
-    font-style: normal;
+    em {
+      font-size: $h3-font-size;
+      font-style: normal;
+    }
   }
 }
 
