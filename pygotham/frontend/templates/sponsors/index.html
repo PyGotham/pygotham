@@ -14,30 +14,30 @@
           url_for('sponsors.prospectus') }}">What to be the first to
           sponsor?</a>
       </p>
+    {% else %}
+      {% for level in levels %}
+        {% if level.accepted_sponsors.count() %}
+          <div class="row">
+            <h2>{{ level }}</h2>
+
+            <ul class="sponsors large-block-grid-3">
+              {% for sponsor in level.accepted_sponsors.order_by('name').all() %}
+                <li class="columns large-4">
+                  <a name="{{ sponsor.slug }}"></a>
+                  <div>
+                    <a href="{{ sponsor.url }}">
+                      <img src="{{ sponsor.logo }}" alt="{{ sponsor.name }}">
+                    </a>
+                    <h4>{{ sponsor }}</h4>
+                    <p><a href="{{ sponsor.url }}">{{ sponsor.url }}</a></p>
+                    {{ sponsor.description|rst|safe }}
+                  </div>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+      {% endfor %}
     {% endif %}
-
-    {% for level in levels %}
-      {% if level.accepted_sponsors.count() %}
-        <div class="row">
-          <h2>{{ level }}</h2>
-
-          <ul class="sponsors large-block-grid-3">
-            {% for sponsor in level.accepted_sponsors.order_by('name').all() %}
-              <li class="columns large-4">
-                <a name="{{ sponsor.slug }}"></a>
-                <div>
-                  <a href="{{ sponsor.url }}">
-                    <img src="{{ sponsor.logo }}" alt="{{ sponsor.name }}">
-                  </a>
-                  <h4>{{ sponsor }}</h4>
-                  <p><a href="{{ sponsor.url }}">{{ sponsor.url }}</a></p>
-                  {{ sponsor.description|rst|safe }}
-                </div>
-              </li>
-            {% endfor %}
-          </ul>
-        </div>
-      {% endif %}
-    {% endfor %}
   </div>
 {% endblock %}
