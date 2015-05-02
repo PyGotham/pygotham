@@ -47,3 +47,16 @@ class AboutPage(db.Model):
         """Create the slug for the page."""
         if not self.slug:
             self.slug = slugify(self.title)
+
+    @property
+    def rst_document(self):
+        """Return the full reST document, including the title.
+
+        The page's title was be used as the document heading, causing
+        any headings defined in the page's content to be used as
+        subheadings. To cut down on potential collisions, ``#`` symbols
+        will be placed on the lines before and after the title.
+        """
+        lines = ('{divider}', '{page.title}', '{divider}', '{page.content}')
+        return '\n'.join(lines).format(
+            divider='#' * len(self.title), page=self)

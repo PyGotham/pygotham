@@ -18,6 +18,14 @@ def is_hidden_field(field):
 
 def rst_to_html(value):
     """Return HTML generated from reStructuredText."""
-    parts = core.publish_parts(source=value, writer_name='html')
+    parts = core.publish_parts(
+        source=value,
+        writer_name='html',
+        settings_overrides={'doctitle_xform': False})
+
+    # Strip disallowed tags so the output doesn't appear broken.
     return bleach.clean(
-        parts['body_pre_docinfo'] + parts['fragment'], tags=_ALLOWED_TAGS)
+        parts['body_pre_docinfo'] + parts['fragment'],
+        tags=_ALLOWED_TAGS,
+        strip=True,
+    )
