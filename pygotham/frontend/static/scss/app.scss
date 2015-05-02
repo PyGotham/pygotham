@@ -1,6 +1,8 @@
 @import "settings";
 @import "foundation";
 
+@import url(http://fonts.googleapis.com/css?family=Titillium+Web);
+
 $dividing-width: 640px;
 
 @mixin tablet {
@@ -21,7 +23,6 @@ table.schedule {
 }
 
 .top-bar {
-
   li.name {
     background: url(../img/logo.png) no-repeat 50% 50%;
     background-size: 35px 35px;
@@ -46,6 +47,14 @@ table.schedule {
   ul li {
     &.login, &.register {
       background: $white;
+
+      a {
+        height: auto;
+
+        @include desktop {
+          border-radius: $global-radius;
+        }
+      }
     }
 
     &.login > a {
@@ -59,7 +68,30 @@ table.schedule {
 }
 
 #content {
-  border-top: 3px solid $teal;
+  border-top: 5px solid $teal;
+  padding-top: 20px;
+
+  h1,
+  h2 {
+    @include desktop {
+      border-radius: $global-radius;
+    }
+  }
+
+  h1 {
+    background: $dark-blue;
+    color: $white;
+    font-size: $h2-font-size;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    background: $teal;
+    color: $white;
+    font-size: $h5-font-size;
+    padding: 0.25em 0.5em;
+  }
 }
 
 .jumbotron {
