@@ -23,6 +23,10 @@ table.schedule {
 }
 
 .top-bar {
+  @include desktop {
+    padding: 0 2em;
+  }
+
   li.name {
     background: url(../img/logo.png) no-repeat 50% 50%;
     background-size: 35px 35px;
@@ -48,12 +52,28 @@ table.schedule {
     &.login, &.register {
       background: $white;
 
+      @include desktop {
+        margin-left: 1em;
+      }
+
+      @include tablet {
+        float: left;
+        width: 50%;
+      }
+
       a {
         height: auto;
+        text-transform: uppercase;
 
         @include desktop {
           border-radius: $global-radius;
         }
+      }
+    }
+
+    @include tablet {
+      &.login:last-child {
+        width: 100%;
       }
     }
 

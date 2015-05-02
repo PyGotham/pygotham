@@ -17,7 +17,7 @@
     {% else %}
       {% for level in levels %}
         {% if level.accepted_sponsors.count() %}
-          <div class="row">
+          <section class="level">
             <h2>{{ level }}</h2>
 
             <ul class="sponsors large-block-grid-3">
@@ -35,7 +35,7 @@
                 </li>
               {% endfor %}
             </ul>
-          </div>
+          </section>
         {% endif %}
       {% endfor %}
     {% endif %}
