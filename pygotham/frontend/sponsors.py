@@ -1,7 +1,7 @@
 """PyGotham sponsor profiles."""
 
 from flask import (
-    abort, Blueprint, flash, redirect, render_template, request, url_for,
+    abort, Blueprint, flash, g, redirect, render_template, request, url_for,
 )
 from flask.ext.login import current_user
 from flask.ext.security import login_required
@@ -77,7 +77,13 @@ def edit(pk):
 def index():
     """Return the sponsors."""
     levels = Level.query.current.order_by(Level.order)
-    return render_template('sponsors/index.html', levels=levels)
+    sponsors = Sponsor.query.filter(
+        Level.event == g.current_event,
+        Sponsor.accepted == True,
+    )
+    has_sponsors = db.session.query(sponsors.exists()).scalar()
+    return render_template(
+        'sponsors/index.html', levels=levels, has_sponsors=has_sponsors)
 
 
 @route(blueprint, '/prospectus')
