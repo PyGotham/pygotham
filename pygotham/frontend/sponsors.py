@@ -77,9 +77,9 @@ def edit(pk):
 def index():
     """Return the sponsors."""
     levels = Level.query.current.order_by(Level.order)
-    sponsors = Sponsor.query.filter(
-        Level.event == g.current_event,
+    sponsors = Sponsor.query.join(Level).filter(
         Sponsor.accepted == True,
+        Level.event == g.current_event,
     )
     has_sponsors = db.session.query(sponsors.exists()).scalar()
     return render_template(
