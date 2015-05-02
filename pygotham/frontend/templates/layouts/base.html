@@ -46,14 +46,14 @@
             </li>
 
             <li class="login">
-              <a href="{{ url_for('security.logout') }}" class="button radius">Log out</a>
+              <a href="{{ url_for('security.logout') }}" class="button">Log out</a>
             </li>
           {% else %}
             <li class="login">
-              <a href="{{ url_for('security.login') }}" class="button radius">Log in</a>
+              <a href="{{ url_for('security.login') }}" class="button">Log in</a>
             </li>
             <li class="register">
-              <a href="{{ url_for('security.register') }}" class="button radius">Sign up</a>
+              <a href="{{ url_for('security.register') }}" class="button">Sign up</a>
             </li>
           {% endif %}
         </ul>
