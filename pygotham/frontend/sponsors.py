@@ -77,7 +77,9 @@ def edit(pk):
 def index():
     """Return the sponsors."""
     levels = Level.query.current.order_by(Level.order)
-    return render_template('sponsors/index.html', levels=levels)
+    has_sponsors = any(l.accepted_sponsors.count() for l in levels)
+    return render_template(
+        'sponsors/index.html', levels=levels, has_sponsors=has_sponsors)
 
 
 @route(blueprint, '/prospectus')

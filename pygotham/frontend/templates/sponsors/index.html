@@ -8,6 +8,14 @@
   <div class="row">
     <h1>{{ current_event }} Sponsors</h1>
 
+    {% if not has_sponsors %}
+      <p>
+        There aren't any sponsors yet.  <a href="{{
+          url_for('sponsors.prospectus') }}">What to be the first to
+          sponsor?</a>
+      </p>
+    {% endif %}
+
     {% for level in levels %}
       {% if level.accepted_sponsors.count() %}
         <div class="row">
