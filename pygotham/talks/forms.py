@@ -29,8 +29,8 @@ class TalkSubmissionForm(ModelForm):
             'description': {
                 'label': 'Description',
                 'description': (
-                    'If your talk is accepted this will be made public. '
-                    'Should be one paragraph.'
+                    'If your talk is accepted this will be made public. It '
+                    'should be one paragraph.'
                 ),
             },
             'level': {'label': 'Experience Level'},
@@ -47,10 +47,18 @@ class TalkSubmissionForm(ModelForm):
                 'label': 'Outline',
                 'description': (
                     'Sections and key points of the talk meant to give the '
-                    'committee an overview.'
+                    'program committee an overview.'
                 ),
             },
-            'additional_requirements': {'label': 'Additional Requirements'},
+            'additional_requirements': {
+                'label': 'Additional Notes',
+                'description': (
+                    "Any other information you'd like the program committee "
+                    "to know, e.g., additional context and resources, "
+                    "previous speaking experiences, etc. This will not be "
+                    "shared publicly."
+                ),
+            },
             'recording_release': {
                 'label': 'Recording Release',
                 'validators': (Optional(),),
