@@ -79,11 +79,7 @@ def proposal(pk=None):
             flash(message, 'warning')
             return redirect(url_for('home.index'))
         talk = Talk(
-            user_id=current_user.id,
-            event_id=event.id,
-            recording_release=True,
-            type='talk',
-        )
+            user_id=current_user.id, event_id=event.id, recording_release=True)
 
     form = TalkSubmissionForm(obj=talk)
     if form.validate_on_submit():
