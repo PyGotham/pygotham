@@ -13,37 +13,21 @@
         {{ form.hidden_tag() }}
         {{ wtf.form_errors(form, False) }}
 
-        <div class="row">
-          {{ wtf.horizontal_field(form.name, placeholder='Title') }}
-        </div>
-        <div class="row">
-          {{ wtf.horizontal_field(form.description, placeholder='Description') }}
-        </div>
-        <div class="row">
-          {{ wtf.horizontal_field(form.level, placeholder='Level') }}
-        </div>
-        <div class="row">
-          {{ wtf.horizontal_field(form.duration, placeholder='Duration') }}
-        </div>
-        <div class="row">
-          {{ wtf.horizontal_field(form.abstract, placeholder='Abstract') }}
-        </div>
-        <div class="row">
-          {{ wtf.horizontal_field(form.outline, placeholder='Outline') }}
-        </div>
-        <div class="row">
-          {{ wtf.horizontal_field(form.additional_requirements, placeholder='Additional Requirements') }}
-        </div>
-        <div class="row">
-          {{ wtf.horizontal_field(form.recording_release, placeholder='Recording Release') }}
-          <small>
-            By submitting your talk proposal, you agree to give permission to
-            Big Apple Py to record, edit, and release audio and/or video of your
-            presentation. If you do not agree to this, please uncheck this box.
-            See <a href="{{ url_for('talks.recording_release') }}">Recording
-              Release</a> for details.
-          </small>
-        </div>
+        {{ wtf.horizontal_field(form.name, placeholder='Title') }}
+        {{ wtf.horizontal_field(form.description, placeholder='Description') }}
+        {{ wtf.horizontal_field(form.level, placeholder='Level') }}
+        {{ wtf.horizontal_field(form.duration, placeholder='Duration') }}
+        {{ wtf.horizontal_field(form.abstract, placeholder='Abstract') }}
+        {{ wtf.horizontal_field(form.outline, placeholder='Outline') }}
+        {{ wtf.horizontal_field(form.additional_requirements, placeholder='Additional Requirements') }}
+        {{ wtf.horizontal_field(form.recording_release, placeholder='Recording Release') }}
+        <small>
+          By submitting your talk proposal, you agree to give permission to
+          Big Apple Py to record, edit, and release audio and/or video of your
+          presentation. If you do not agree to this, please uncheck this box.
+          See <a href="{{ url_for('talks.recording_release') }}">Recording
+            Release</a> for details.
+        </small>
 
         <div class="form-actions">
           <button type="submit" class="button radius">Submit</button>
