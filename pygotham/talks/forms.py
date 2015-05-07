@@ -23,7 +23,7 @@ class TalkSubmissionForm(ModelForm):
 
     class Meta:
         model = Talk
-        exclude = ('status',)
+        exclude = ('status', 'type')
         field_args = {
             'name': {'label': 'Title'},
             'description': {
