@@ -34,7 +34,6 @@ class TalkSubmissionForm(ModelForm):
                 ),
             },
             'level': {'label': 'Experience Level'},
-            'type': {'label': 'Type'},
             'duration': {'label': 'Duration'},
             'abstract': {
                 'label': 'Abstract',
