@@ -1,5 +1,6 @@
 """WSGI application."""
 
+from werkzeug.contrib.fixers import ProxyFix
 from werkzeug.serving import run_simple
 from werkzeug.wsgi import DispatcherMiddleware
 
@@ -9,6 +10,8 @@ application = DispatcherMiddleware(
     frontend.create_app(),
     {'/admin': admin.create_app()},
 )
+
+application = ProxyFix(application)
 
 if __name__ == '__main__':
     run_simple(
