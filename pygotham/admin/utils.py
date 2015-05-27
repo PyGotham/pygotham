@@ -34,7 +34,7 @@ class NotAuthenticatedMenuLink(MenuLink):
 
 
 def menu_link(name, endpoint, authenticated):
-    """Return a subclass of :class:`~flask.ext.admin.base.MenuLink`.
+    """Return a subclass of :class:`~flask_admin.base.MenuLink`.
 
     :param name: name of the link.
     :param endpoint: endpoint of the view for the link.
