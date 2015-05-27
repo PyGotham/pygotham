@@ -1,8 +1,8 @@
 """Admin application helper utilities."""
 
-from flask.ext.admin.base import MenuLink
+from flask_admin.base import MenuLink
 from flask.ext.admin.contrib.sqla import ModelView
-from flask.ext.login import current_user
+from flask_login import current_user
 
 from pygotham.core import db
 
@@ -34,7 +34,7 @@ class NotAuthenticatedMenuLink(MenuLink):
 
 
 def menu_link(name, endpoint, authenticated):
-    """Return a subclass of :class:`~flask.ext.admin.base.MenuLink`.
+    """Return a subclass of :class:`~flask_admin.base.MenuLink`.
 
     :param name: name of the link.
     :param endpoint: endpoint of the view for the link.

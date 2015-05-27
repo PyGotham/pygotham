@@ -1,8 +1,8 @@
 """PyGotham user profiles."""
 
 from flask import Blueprint, flash, redirect, render_template, request, url_for
-from flask.ext.login import current_user
-from flask.ext.security import login_required
+from flask_login import current_user
+from flask_security import login_required
 
 from pygotham.core import db
 from pygotham.frontend import route

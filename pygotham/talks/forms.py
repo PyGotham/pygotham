@@ -1,7 +1,7 @@
 """Talks forms."""
 
-from flask.ext.wtf import Form
 from wtforms.ext.sqlalchemy.fields import QuerySelectField
+from flask_wtf import Form
 from wtforms.validators import Optional
 from wtforms_alchemy import model_form_factory
 

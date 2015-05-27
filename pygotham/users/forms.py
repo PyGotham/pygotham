@@ -1,6 +1,6 @@
 """Users forms."""
 
-from flask.ext.wtf import Form
+from flask_wtf import Form
 from wtforms.fields import HiddenField
 from wtforms.validators import Email
 from wtforms_alchemy import Unique, model_form_factory

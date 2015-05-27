@@ -10,3 +10,4 @@ The following folks have helped contribute to making this website possible.
 * Celia La (`@celiala <https://github.com/celiala>`_)
 * Paul Logston (`@logston <https://github.com/logston>`_)
 * Dean Silfen (`@deanrex <https://github.com/djds23>`_)
+* Piper Thunstrom (`@pathunstrom <https://github.com/pathunstrom>`_)

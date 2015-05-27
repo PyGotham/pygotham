@@ -1,9 +1,9 @@
 """Application core."""
 
-from flask.ext.mail import Mail
-from flask.ext.migrate import Migrate
-from flask.ext.security import Security
-from flask.ext.sqlalchemy import SQLAlchemy
+from flask_mail import Mail
+from flask_migrate import Migrate
+from flask_security import Security
+from flask_sqlalchemy import SQLAlchemy
 
 __all__ = ('db',)
 

@@ -1,6 +1,6 @@
 """Link helpers for the admin menu."""
 
-from flask.ext.admin.base import MenuLink
+from flask_admin.base import MenuLink
 
 from pygotham.admin.utils import menu_link
 

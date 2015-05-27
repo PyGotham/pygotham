@@ -1,6 +1,6 @@
 """Sponsors forms."""
 
-from flask.ext.wtf import Form
+from flask_wtf import Form
 from wtforms.ext.sqlalchemy.fields import QuerySelectField
 from wtforms.validators import Email
 from wtforms_alchemy import model_form_factory

@@ -1,7 +1,7 @@
 """Application factory."""
 
 from flask import Flask
-from flask.ext.security import SQLAlchemyUserDatastore
+from flask_security import SQLAlchemyUserDatastore
 
 from pygotham.core import db, mail, migrate, security
 from pygotham.models import Role, User
