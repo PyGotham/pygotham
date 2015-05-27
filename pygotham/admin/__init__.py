@@ -5,7 +5,7 @@ import pkgutil
 
 from flask_admin import Admin
 from flask_admin.base import AdminIndexView, MenuLink
-from flask_admin.contrib.sqla import ModelView
+from flask.ext.admin.contrib.sqla import ModelView
 from flask_login import current_user
 
 from pygotham import factory, filters
