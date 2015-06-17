@@ -111,6 +111,12 @@ table.schedule {
     color: $white;
     font-size: $h5-font-size;
     padding: 0.25em 0.5em;
+
+    body.home & {
+      margin: 10px 0;
+      text-align: center;
+      text-transform: uppercase;
+    }
   }
 
   .jumbotron {
@@ -141,6 +147,19 @@ table.schedule {
   font-size: $h1-font-size;
   padding: 2em;
   text-align: center;
+}
+
+body.home ul.sponsors li {
+  margin-top: 15px;
+}
+
+body.sponsors ul.sponsors li {
+  h4 {
+    margin: {
+      bottom: 0;
+      top: 15px;
+    }
+  }
 }
 
 footer {
