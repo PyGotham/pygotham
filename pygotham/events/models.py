@@ -92,6 +92,12 @@ class Event(db.Model):
         return True
 
     @property
+    def is_call_for_proposals_expired(self):
+        """Return whether the call for proposals has expired."""
+        now = arrow.utcnow().to('America/New_York').naive
+        return self.proposals_end and self.proposals_end.naive < now
+
+    @property
     def is_registration_active(self):
         """Return whether registration for an event is active.
 
