@@ -10,6 +10,23 @@
     </div>
   </div>
 
+  {% if sponsors %}
+    <div class="row">
+      <div class="large-offset-2 large-8 columns">
+        <h2>Sponsors</h2>
+        <ul class="sponsors large-block-grid-3 small-block-grid-2">
+          {% for sponsor in sponsors %}
+            <li>
+              <a href="{{ url_for('sponsors.index') }}#{{ sponsor.slug }}">
+                <img src="{{ sponsor.logo }}" alt="{{ sponsor.name }}">
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+    {% endif %}
+
   <div class="row">
     <div class="large-12 columns">
       <div class="cta">
