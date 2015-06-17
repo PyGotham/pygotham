@@ -1,7 +1,8 @@
 """Users models."""
 
 from cached_property import cached_property
-from flask_security import RoleMixin, UserMixin
+from flask_security import RoleMixin, UserMixin, recoverable
+from sqlalchemy import event
 
 from pygotham.core import db
 from pygotham.talks.models import Talk
@@ -89,3 +90,10 @@ class User(db.Model, UserMixin):
     def has_accepted_talks(self):
         """Return whether the user has accepted talks."""
         return self.accepted_talks.count() > 0
+
+    @event.listens_for(User, 'before_insert')
+    def receive_before_insert(mapper, connection, target):
+        "listen for the 'before_insert' event"
+        if not target.password:
+            target.password = "!!!"
+            recoverable.send_reset_password_instructions(target)
