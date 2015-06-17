@@ -60,6 +60,8 @@ class User(db.Model, UserMixin):
 
     bio = db.Column(db.Text)
 
+    twitter_handle = db.Column(db.String(15))
+
     roles = db.relationship(
         'Role',
         secondary=roles_users,
