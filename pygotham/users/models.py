@@ -1,5 +1,8 @@
 """Users models."""
 
+import random
+import string
+
 from cached_property import cached_property
 from flask_security import RoleMixin, UserMixin, recoverable
 from sqlalchemy import event
@@ -91,9 +94,11 @@ class User(db.Model, UserMixin):
         """Return whether the user has accepted talks."""
         return self.accepted_talks.count() > 0
 
-    @event.listens_for(User, 'before_insert')
-    def receive_before_insert(mapper, connection, target):
-        "listen for the 'before_insert' event"
-        if not target.password:
-            target.password = "!!!"
-            recoverable.send_reset_password_instructions(target)
+
+@event.listens_for(User, 'before_insert')
+def user_create_send_password_reset(mapper, connection, target):
+    """Send a password reset to users created without an email."""
+    if not target.password:
+        target.password = ''.join(
+            random.choice(string.printable) for _ in range(20))
+        recoverable.send_reset_password_instructions(target)
