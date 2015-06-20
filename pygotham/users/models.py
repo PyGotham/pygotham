@@ -1,5 +1,8 @@
 """Users models."""
 
+import random
+import string
+
 from cached_property import cached_property
 from flask_security import RoleMixin, UserMixin, recoverable
 from sqlalchemy import event
@@ -96,5 +99,6 @@ class User(db.Model, UserMixin):
 def user_create_send_password_reset(mapper, connection, target):
     """Send a password reset to users created without an email."""
     if not target.password:
-        target.password = "!!!"
+        target.password = ''.join(
+            random.choice(string.printable) for _ in range(20))
         recoverable.send_reset_password_instructions(target)
