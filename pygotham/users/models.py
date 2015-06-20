@@ -91,9 +91,10 @@ class User(db.Model, UserMixin):
         """Return whether the user has accepted talks."""
         return self.accepted_talks.count() > 0
 
-    @event.listens_for(User, 'before_insert')
-    def receive_before_insert(mapper, connection, target):
-        "listen for the 'before_insert' event"
-        if not target.password:
-            target.password = "!!!"
-            recoverable.send_reset_password_instructions(target)
+
+@event.listens_for(User, 'before_insert')
+def user_create_send_password_reset(mapper, connection, target):
+    """Send a password reset to users created without an email."""
+    if not target.password:
+        target.password = "!!!"
+        recoverable.send_reset_password_instructions(target)
