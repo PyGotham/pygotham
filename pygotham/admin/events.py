@@ -12,7 +12,14 @@ EventModelView = model_view(
     models.Event,
     'Events',
     column_list=('name', 'slug', 'begins', 'ends', 'active'),
-    form_excluded_columns=('talks,'),
+    form_excluded_columns=(
+        'about_pages',
+        'announcements',
+        'calls_to_action',
+        'days',
+        'sponsor_levels',
+        'talks',
+    ),
     form_overrides={
         'activity_begins': wtforms.DateTimeField,
         'activity_ends': wtforms.DateTimeField,
