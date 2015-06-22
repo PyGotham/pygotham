@@ -10,6 +10,16 @@
     </div>
   </div>
 
+  {% if cta %}
+    <div class="row">
+      <div class="large-12 columns">
+        <div class="cta">
+          <a href="{{ cta.url }}">{{ cta.title }}</a>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
   {% if sponsors %}
     <div class="row">
       <div class="large-offset-2 large-8 columns">
@@ -25,25 +35,5 @@
         </ul>
       </div>
     </div>
-    {% endif %}
-
-  <div class="row">
-    <div class="large-12 columns">
-      <div class="cta">
-        {% if current_event.is_call_for_proposals_active %}
-          <a href="{{ url_for('talks.call_for_proposals') }}">
-            Call for proposals now open!
-          </a>
-        {% elif current_event.is_call_for_proposals_expired %}
-          {% if current_event.is_registration_active %}
-            <a href="{{ current_event.registration_url }}">Registration is open!!</a>
-          {% endif %}
-        {% else %}
-          The call for proposals opens on
-          {{ current_event.proposals_begin.strftime('%A, %B %-d') }}.  Be sure
-          to check back then.
-        {% endif %}
-      </div>
-    </div>
-  </div>
+  {% endif %}
 {% endblock %}
