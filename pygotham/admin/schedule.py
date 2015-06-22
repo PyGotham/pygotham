@@ -14,6 +14,7 @@ DayModelView = model_view(
     'Days',
     CATEGORY,
     column_default_sort='date',
+    column_filters=('event',),
     column_list=('date', 'event'),
     form_columns=('event', 'date'),
 )
@@ -33,7 +34,7 @@ SlotModelView = model_view(
     'Slots',
     CATEGORY,
     column_default_sort='start',
-    column_filters=('day',),
+    column_filters=('day', 'day.event'),
     column_list=(
         'day', 'rooms', 'kind', 'start', 'end', 'presentation',
         'content_override',
