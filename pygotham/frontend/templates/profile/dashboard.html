@@ -43,4 +43,19 @@
       </div>
     </div>
   {% endif %}
+
+  <div class="row">
+    <div class="large-12 columns">
+      <h2>Your Volunteer Status</h2>
+      <p>
+        {% if current_user.is_volunteer %}
+          You are signed up to be a volunteer. Thanks!
+          <a href="{{ url_for('profile.unvolunteer') }}">I changed my mind.</a>
+        {% else %}
+          You aren't signed up to be a volunteer.
+          <a href="{{ url_for('profile.volunteer') }}">Sign me up!</a>
+        {% endif %}
+      </p>
+    </div>
+  </div>
 {% endblock %}

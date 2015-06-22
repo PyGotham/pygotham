@@ -7,9 +7,10 @@ from sqlalchemy_utils import observes
 from sqlalchemy_utils.types.arrow import ArrowType
 
 from pygotham.core import db
+from pygotham.events.query import EventQuery
 from pygotham.talks.models import Talk
 
-__all__ = ('Event',)
+__all__ = ('Event', 'Volunteer')
 
 
 class Event(db.Model):
@@ -137,3 +138,19 @@ class Event(db.Model):
         if not self.talk_list_begins or self.talk_list_begins.naive > now:
             return False
         return True
+
+
+class Volunteer(db.Model):
+
+    """Volunteer."""
+
+    __tablename__ = 'volunteers'
+    query_class = EventQuery
+
+    id = db.Column(db.Integer, primary_key=True)
+
+    event_id = db.Column(db.ForeignKey('events.id'))
+    event = db.relationship('Event', backref='volunteers')
+
+    user_id = db.Column(db.ForeignKey('users.id'))
+    user = db.relationship('User', uselist=False)

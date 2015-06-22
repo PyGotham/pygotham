@@ -7,10 +7,13 @@ from pygotham.events import models
 
 __all__ = ('EventModelView',)
 
+CATEGORY = 'Events'
+
 
 EventModelView = model_view(
     models.Event,
     'Events',
+    CATEGORY,
     column_list=('name', 'slug', 'begins', 'ends', 'active'),
     form_excluded_columns=('talks,'),
     form_overrides={
@@ -22,4 +25,12 @@ EventModelView = model_view(
         'registration_ends': wtforms.DateTimeField,
         'talk_list_begins': wtforms.DateTimeField,
     },
+)
+
+VolunteerModelView = model_view(
+    models.Volunteer,
+    'Volunteers',
+    CATEGORY,
+    column_filters=('event.slug', 'event.name'),
+    column_list=('event', 'user'),
 )
