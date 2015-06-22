@@ -15,7 +15,7 @@ AnnouncementModelView = model_view(
     'Announcements',
     CATEGORY,
     column_default_sort='published',
-    column_filters=('event',),
+    column_filters=('event.slug', 'event.name'),
     column_list=('title', 'published', 'active'),
     form_columns=('title', 'content', 'active', 'published'),
     form_overrides={
@@ -28,7 +28,7 @@ CallToActionModelView = model_view(
     'Calls to Action',
     CATEGORY,
     column_default_sort='begins',
-    column_filters=('event',),
+    column_filters=('event.slug', 'event.name'),
     column_list=('title', 'event', 'begins', 'ends', 'active'),
     form_columns=('title', 'url', 'event', 'begins', 'ends', 'active'),
     form_overrides={
