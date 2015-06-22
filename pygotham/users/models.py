@@ -8,6 +8,7 @@ from flask_security import RoleMixin, UserMixin, recoverable
 from sqlalchemy import event
 
 from pygotham.core import db
+from pygotham.events.models import Volunteer
 from pygotham.talks.models import Talk
 
 __all__ = ('Role', 'User')
@@ -95,6 +96,12 @@ class User(db.Model, UserMixin):
     def has_accepted_talks(self):
         """Return whether the user has accepted talks."""
         return self.accepted_talks.count() > 0
+
+    @cached_property
+    def is_volunteer(self):
+        """Return whether the user has signed up to volunteer."""
+        return Volunteer.query.current.filter(
+            Volunteer.user == self).count() > 0
 
 
 @event.listens_for(User, 'before_insert')
