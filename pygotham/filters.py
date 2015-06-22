@@ -1,5 +1,7 @@
 """Template filters for use across apps."""
 
+from urllib.parse import urlparse
+
 import bleach
 from docutils import core
 from wtforms.fields import HiddenField
@@ -9,6 +11,12 @@ __all__ = ('rst_to_html',)
 _ALLOWED_TAGS = bleach.ALLOWED_TAGS + [
     'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'dl', 'dt', 'dd', 'cite',
 ]
+
+
+def clean_url(value):
+    """Return a URL without the schema and query string."""
+    parts = urlparse(value)
+    return parts.netloc + parts.path
 
 
 def is_hidden_field(field):
