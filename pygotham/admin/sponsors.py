@@ -13,6 +13,7 @@ LevelModelView = model_view(
     'Levels',
     CATEGORY,
     column_default_sort=('order', 'name'),
+    column_filters=('event',),
     column_list=('name', 'order', 'event'),
     form_columns=('name', 'description', 'cost', 'order', 'limit', 'event'),
 )
@@ -22,7 +23,7 @@ SponsorModelView = model_view(
     models.Sponsor,
     'Sponsors',
     CATEGORY,
-    column_filters=('level', 'accepted'),
+    column_filters=('level', 'accepted', 'level.event'),
     column_list=(
         'name', 'level', 'contact_name', 'contact_email', 'accepted',
         'payment_received',
