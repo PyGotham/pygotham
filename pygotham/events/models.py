@@ -154,3 +154,8 @@ class Volunteer(db.Model):
 
     user_id = db.Column(db.ForeignKey('users.id'))
     user = db.relationship('User', uselist=False)
+
+    def __str__(self):
+        """Return a printable representation."""
+        return self.user.name
+
