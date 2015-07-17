@@ -4,6 +4,7 @@
 @import url(//fonts.googleapis.com/css?family=Titillium+Web);
 
 $dividing-width: 640px;
+$footer-height: rem-calc(125);
 
 @mixin tablet {
   @media only screen and (max-width: 640px) {
@@ -89,14 +90,14 @@ table.schedule {
 
 #content {
   border-top: 5px solid $teal;
-  margin-bottom: -125px;
+  margin-bottom: -$footer-height;
   min-height: 100%;
   padding-top: 20px;
 
   &:after {
     content: "";
     display: block;
-    height: 125px;
+    height: $footer-height;
   }
 
   h1,
@@ -193,7 +194,7 @@ footer {
   color: $white;
   display: block;
   font-size: 10pt;
-  height: 125px;
+  height: $footer-height;
   line-height: 1.5;
   text-align: center;
 
