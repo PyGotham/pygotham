@@ -3,10 +3,10 @@
 {% block title %}Dashboard - {{ super() }}{% endblock %}
 
 {% block content %}
-  {% if talks.count() %}
-    <div class="row">
-      <div class="large-12 columns">
-        <h2>Your Proposals</h2>
+  <div class="row">
+    <div class="large-12 columns">
+      <h2>Your Proposals</h2>
+      {% if talks.count() %}
         <table class="proposals">
           <thead>
             <tr>
@@ -32,17 +32,17 @@
             {% endfor %}
           </tbody>
         </table>
-      </div>
-    </div>
-  {% elif current_event.is_call_for_proposals_active %}
-    <div class="row">
-      <div class="large-12 columns">
-        <h2>Your Proposals</h2>
+      {% elif current_event.is_call_for_proposals_active %}
         The call for proposals is still open. Why not
         <a href="{{ url_for('talks.submit') }}">submit a talk</a>?
-      </div>
+      {% elif current_event.is_call_for_proposals_expired %}
+        You didn't submit any talks for {{ current_event }}. Hopefully you will
+        next time.
+      {% else %}
+        The call for proposals hasn't started yet.
+      {% endif %}
     </div>
-  {% endif %}
+  </div>
 
   <div class="row">
     <div class="large-12 columns">
