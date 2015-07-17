@@ -88,17 +88,20 @@ table.schedule {
   }
 }
 
-#content {
-  border-top: 5px solid $teal;
-  margin-bottom: -$footer-height;
+#non-semantic-div-containing-everything-but-the-footer {
+  margin-bottom: -125px;
   min-height: 100%;
-  padding-top: 20px;
 
   &:after {
     content: "";
     display: block;
     height: $footer-height;
   }
+}
+
+#content {
+  border-top: 5px solid $teal;
+  padding-top: 20px;
 
   h1,
   h2 {
