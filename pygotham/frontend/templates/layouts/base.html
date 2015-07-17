@@ -16,62 +16,64 @@
     <script src="{{ url_for('static', filename='bower_components/modernizr/modernizr.js') }}"></script>
   </head>
   <body class="{% block body_class %}{% endblock %}">
-    <nav class="top-bar" data-topbar data-options="mobile_show_parent_link: false">
-      <ul class="title-area">
-        <li class="name">
-          <h1><a href="{{ url_for('home.index') }}">{{ current_event }}</a></h1>
-        </li>
-        <li class="toggle-topbar menu-icon">
-          <a href="#"><span>Menu</span></a>
-        </li>
-      </ul>
-
-      <section class="top-bar-section">
-        <ul class="right">
-          {% for section, links in navbar %}
-            <li class="{{ section }} has-dropdown">
-              <a href="#">{{ section }}</a>
-              <ul class="dropdown">
-                {% for link, url in links %}
-                <li><a href="{{ url }}">{{ link }}</a></li>
-                {% endfor %}
-              </ul>
-            </li>
-          {% endfor %}
-
-          {% if current_user.is_authenticated() %}
-            <li class="has-dropdown">
-              <a href="#"><strong>Hi, {{ current_user }}</strong></a>
-              <ul class="dropdown">
-                <li><a href="{{ url_for('profile.dashboard') }}">Dashboard</a></li>
-                <li><a href="{{ url_for('profile.settings') }}">Settings</a></li>
-                {% if current_user.has_role('admin') %}
-                  <li><a href="/admin/">Admin</a></li>
-                {% endif %}
-              </ul>
-            </li>
-
-            <li class="login">
-              <a href="{{ url_for('security.logout') }}" class="button">Log out</a>
-            </li>
-          {% else %}
-            <li class="login">
-              <a href="{{ url_for('security.login') }}" class="button">Log in</a>
-            </li>
-            <li class="register">
-              <a href="{{ url_for('security.register') }}" class="button">Sign up</a>
-            </li>
-          {% endif %}
+    <div id="non-semantic-div-containing-everything-but-the-footer">
+      <nav class="top-bar" data-topbar data-options="mobile_show_parent_link: false">
+        <ul class="title-area">
+          <li class="name">
+            <h1><a href="{{ url_for('home.index') }}">{{ current_event }}</a></h1>
+          </li>
+          <li class="toggle-topbar menu-icon">
+            <a href="#"><span>Menu</span></a>
+          </li>
         </ul>
-      </section>
-    </nav>
 
-    <div id="content">
-      {% block messages %}
-        {{ messages() }}
-      {% endblock %}
+        <section class="top-bar-section">
+          <ul class="right">
+            {% for section, links in navbar %}
+              <li class="{{ section }} has-dropdown">
+                <a href="#">{{ section }}</a>
+                <ul class="dropdown">
+                  {% for link, url in links %}
+                  <li><a href="{{ url }}">{{ link }}</a></li>
+                  {% endfor %}
+                </ul>
+              </li>
+            {% endfor %}
 
-      {% block content %}{% endblock %}
+            {% if current_user.is_authenticated() %}
+              <li class="has-dropdown">
+                <a href="#"><strong>Hi, {{ current_user }}</strong></a>
+                <ul class="dropdown">
+                  <li><a href="{{ url_for('profile.dashboard') }}">Dashboard</a></li>
+                  <li><a href="{{ url_for('profile.settings') }}">Settings</a></li>
+                  {% if current_user.has_role('admin') %}
+                    <li><a href="/admin/">Admin</a></li>
+                  {% endif %}
+                </ul>
+              </li>
+
+              <li class="login">
+                <a href="{{ url_for('security.logout') }}" class="button">Log out</a>
+              </li>
+            {% else %}
+              <li class="login">
+                <a href="{{ url_for('security.login') }}" class="button">Log in</a>
+              </li>
+              <li class="register">
+                <a href="{{ url_for('security.register') }}" class="button">Sign up</a>
+              </li>
+            {% endif %}
+          </ul>
+        </section>
+      </nav>
+
+      <div id="content">
+        {% block messages %}
+          {{ messages() }}
+        {% endblock %}
+
+        {% block content %}{% endblock %}
+      </div>
     </div>
 
     <footer>
