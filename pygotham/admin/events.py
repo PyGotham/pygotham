@@ -22,6 +22,7 @@ EventModelView = model_view(
         'days',
         'sponsor_levels',
         'talks',
+        'volunteers',
     ),
     form_overrides={
         'activity_begins': wtforms.DateTimeField,
