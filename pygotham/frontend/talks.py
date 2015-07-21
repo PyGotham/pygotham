@@ -23,8 +23,12 @@ direct_to_template(
 )
 
 
-@route(blueprint, '/<int:pk>')
-def detail(pk):
+# This route is being kept around for backward compatibility. It should
+# never be used directly.
+@route(
+    blueprint, '/<int:pk>', defaults={'slug': None}, endpoint='old_detail')
+@route(blueprint, '/<int:pk>/<slug>')
+def detail(pk, slug):
     """Return the talk detail view."""
     event = g.current_event
     if not event.talks_are_published:
@@ -34,6 +38,10 @@ def detail(pk):
         Talk.id == pk,
         Talk.event == event,
         Talk.status == 'accepted').first_or_404()
+
+    if slug != talk.slug:
+        return redirect(url_for('talks.detail', pk=pk, slug=talk.slug))
+
     return render_template('talks/detail.html', talk=talk)
 
 

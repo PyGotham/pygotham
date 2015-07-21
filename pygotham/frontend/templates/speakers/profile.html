@@ -14,7 +14,11 @@
 
     <ul class="presentations">
       {% for talk in user.accepted_talks %}
-        <li><a href="{{ url_for('talks.detail', pk=talk.id) }}">{{ talk }}</a></li>
+        <li>
+          <a href="{{ url_for('talks.detail', pk=talk.id, slug=talk.slug) }}">
+            {{ talk }}
+          </a>
+        </li>
       {% endfor %}
     </ul>
   </div>

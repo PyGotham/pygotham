@@ -9,7 +9,11 @@
     <ol class="accepted-talks">
       {% for talk in current_event.accepted_talks %}
         <li>
-          <h3><a href="{{ url_for('talks.detail', pk=talk.id) }}">{{ talk }}</a></h3>
+          <h3>
+            <a href="{{ url_for('talks.detail', pk=talk.id, slug=talk.slug) }}">
+              {{ talk }}
+            </a>
+          </h3>
           <h4>
             {{ talk.user }}
             {% if talk.category %} in {{ talk.category }} {% endif %}
