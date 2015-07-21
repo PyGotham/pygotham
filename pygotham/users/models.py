@@ -4,6 +4,7 @@ import random
 import string
 
 from cached_property import cached_property
+from flask import g
 from flask_security import RoleMixin, UserMixin, recoverable
 from sqlalchemy import event
 
@@ -100,8 +101,12 @@ class User(db.Model, UserMixin):
     @cached_property
     def is_volunteer(self):
         """Return whether the user has signed up to volunteer."""
-        return Volunteer.query.current.filter(
-            Volunteer.user == self).count() > 0
+        volunteers = Volunteer.query.filter(
+            Volunteer.event_id == g.current_event.id,
+            Volunteer.user_id == self.id,
+        )
+
+        return db.session.query(volunteers.exists()).scalar()
 
 
 @event.listens_for(User, 'before_insert')
