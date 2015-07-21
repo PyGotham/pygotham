@@ -1,5 +1,7 @@
 """Talks models."""
 
+from slugify import slugify
+
 from pygotham.core import db
 from pygotham.events.query import EventQuery
 
@@ -100,3 +102,8 @@ class Talk(db.Model):
     def is_accepted(self):
         """Return whether the instance is accepted."""
         return self.status == 'accepted'
+
+    @property
+    def slug(self):
+        """Return a slug for the instance."""
+        return slugify(self.name, max_length=25)
