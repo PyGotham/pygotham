@@ -88,20 +88,25 @@ table.schedule {
   }
 }
 
-#non-semantic-div-containing-everything-but-the-footer {
-  margin-bottom: -125px;
+#content {
+  margin-bottom: -$footer-height;
+  margin-top: -$topbar-height;
   min-height: 100%;
+  padding-top: 20px;
+
+  &:before {
+    border-bottom: 5px solid $teal;
+    content: "";
+    display: block;
+    height: $topbar-height - 1;
+    margin-bottom: 20px;
+  }
 
   &:after {
     content: "";
     display: block;
     height: $footer-height;
   }
-}
-
-#content {
-  border-top: 5px solid $teal;
-  padding-top: 20px;
 
   h1,
   h2 {
