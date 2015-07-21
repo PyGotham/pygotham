@@ -38,6 +38,8 @@ class Event(db.Model):
 
     # When to publish the talks
     talk_list_begins = db.Column(ArrowType)
+    # When to publish the schedule
+    talk_schedule_begins = db.Column(ArrowType)
 
     # Registration information
     registration_closed = db.Column(
@@ -129,6 +131,15 @@ class Event(db.Model):
         if ends and ends.naive < now:
             return False
 
+        return True
+
+    @property
+    def schedule_is_published(self):
+        """Return whether the schedule for an event is published."""
+        now = arrow.utcnow().to('America/New_York').naive
+        talk_schedule_begins = self.talk_schedule_begins
+        if not talk_schedule_begins or talk_schedule_begins.naive > now:
+            return False
         return True
 
     @property

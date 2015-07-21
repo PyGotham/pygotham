@@ -118,7 +118,7 @@ direct_to_template(
 @route(blueprint, '/schedule')
 def schedule():
     event = g.current_event
-    if not event.talks_are_published:
+    if not event.schedule_is_published:
         abort(404)
 
     days = Day.query.filter(Day.event == event).order_by(Day.date)
@@ -144,6 +144,7 @@ def get_nav_links():
 
     if event.talks_are_published:
         links['Events']['Talk List'] = url_for('talks.index')
+    if event.schedule_is_published:
         links['Events']['Talk Schedule'] = url_for('talks.schedule')
 
     return links
