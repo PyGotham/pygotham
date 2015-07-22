@@ -6,6 +6,10 @@ PyGotham 2015
  :target: https://waffle.io/pygotham/pygotham
  :alt: 'Stories in Ready'
 
+.. image:: https://requires.io/github/PyGotham/pygotham/requirements.svg?branch=master
+ :target: https://requires.io/github/PyGotham/pygotham/requirements/?branch=master
+ :alt: Requirements Status
+
 Requirements
 ============
 
