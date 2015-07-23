@@ -69,11 +69,15 @@ talk_fields = {
     'language': MockField('English'),
     # TODO: How should this be generated?
     'summary': AttrField('description'),
-    # FIXME: rooms don't work at the moment.
-    'room': AttrField('presentation.slot.rooms'),
-    'room_alias': AttrField('presentation.slot.rooms'),
-    # NOTE: I think this will break because of the datetime. This should
-    # probably be nested instead of inlined this way.
+    'room': AttrField(
+        'presentation.slot.rooms',
+        lambda rooms: ' & '.join(room.name for room in rooms),
+    ),
+    'room_alias': AttrField(
+        'presentation.slot.rooms',
+        lambda rooms: ' & '.join(room.name for room in rooms),
+    ),
+    # NOTE: This should probably be nested instead of inlined this way.
     'start': AttrField(
         'presentation.slot',
         lambda slot: '{:%Y-%m-%d}T{:%H:%M:%S}'.format(slot.day.date, slot.start),
