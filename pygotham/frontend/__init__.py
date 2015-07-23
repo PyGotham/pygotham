@@ -47,6 +47,8 @@ def create_app(settings_override=None):
                 or_(Event.activity_begins == None, Event.activity_begins <= now),
                 or_(Event.activity_ends == None, Event.activity_ends > now),
             ).order_by(Event.activity_begins).first_or_404()
+        else:
+            g.current_event = Event.query.first()
 
     @app.context_processor
     def current_event():
