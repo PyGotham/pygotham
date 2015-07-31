@@ -16,7 +16,7 @@ _ALLOWED_TAGS = bleach.ALLOWED_TAGS + [
 def clean_url(value):
     """Return a URL without the schema and query string."""
     parts = urlparse(value)
-    return parts.netloc + parts.path
+    return parts.netloc + (parts.path if parts.path != '/' else '')
 
 
 def is_hidden_field(field):
