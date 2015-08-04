@@ -6,7 +6,7 @@
   <div class="row">
     <h1>{{ talk }}</h1>
 
-    {% if talk.presentation %}
+    {% if current_event.schedule_is_published and talk.presentation %}
       <small>{{ talk.presentation.slot }}</small>
     {% endif %}
 
