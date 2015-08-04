@@ -18,9 +18,36 @@ $footer-height: rem-calc(125);
   }
 }
 
-table.proposals,
+table.proposals {
+  width: 100%;
+}
+
 table.schedule {
   width: 100%;
+
+  th {
+    text-align: center;
+  }
+
+  td,
+  th {
+    border: 1px solid #ddd;
+  }
+
+  td {
+    &.time {
+      vertical-align: top;
+      width: 83px;
+    }
+
+    &.presentation {
+      text-align: center;
+
+      a.title {
+        display: block;
+      }
+    }
+  }
 }
 
 .top-bar {
