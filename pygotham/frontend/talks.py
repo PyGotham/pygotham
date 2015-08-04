@@ -118,7 +118,7 @@ direct_to_template(
 @route(blueprint, '/schedule')
 def schedule():
     event = g.current_event
-    if not event.schedule_is_published:
+    if not event.schedule_is_published and not current_user.has_role('admin'):
         abort(404)
 
     days = Day.query.filter(Day.event == event).order_by(Day.date)
