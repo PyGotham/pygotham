@@ -32,7 +32,8 @@ ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 """
 
-from itertools import chain, tee
+from bisect import bisect_right
+from itertools import tee
 
 from cached_property import cached_property
 from sqlalchemy import func
@@ -88,10 +89,18 @@ class Day(db.Model):
             raise StopIteration
 
         def rowspan(start, end):
-            return times.index(end) - times.index(start)
+            """Find the rowspan for an entry in the schedule table.
 
-        times = sorted(set(
-            chain(*[(slot.start, slot.end) for slot in self.slots])))
+            This uses a binary search for the given end time from a
+            sorted list of start times in order to find the index of the
+            first start time that occurs after the given end time. This
+            method is used to prevent issues that can occur with
+            overlapping start and end times being included in the same
+            list.
+            """
+            return bisect_right(times, end) - times.index(start)
+
+        times = sorted(set(slot.start for slot in self.slots))
 
         slots = db.session.query(
             Slot.id,
