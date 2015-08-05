@@ -28,7 +28,7 @@
                     {% if slot.content_override %}
                       {{ slot.content_override|rst|safe }}
                     {% elif slot.presentation and slot.presentation.talk %}
-                      <a href="{{ url_for('talks.detail', pk=slot.presentation.talk.id, slug=talk.slug) }}" class="title">
+                      <a href="{{ url_for('talks.detail', pk=slot.presentation.talk.id, slug=slot.presentation.talk.slug) }}" class="title">
                         {{ slot.presentation }}
                       </a>
                       {{ slot.presentation.talk.user }}
