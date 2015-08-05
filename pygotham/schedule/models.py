@@ -101,6 +101,12 @@ class Day(db.Model):
             return bisect_left(times, end) - times.index(start)
 
         times = sorted({slot.start for slot in self.slots})
+        # While we typically only care about the start times here, the
+        # list is iterated over two items at a time. Without adding a
+        # final element, the last time slot would be omitted. Any value
+        # could be used here as bisect_left only assumes the list is
+        # sorted, but using a meaningful value feels better.
+        times.append(self.slots[-1].end)
 
         slots = db.session.query(
             Slot.id,
