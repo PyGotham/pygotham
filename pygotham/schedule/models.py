@@ -32,7 +32,7 @@ ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 """
 
-from bisect import bisect_right
+from bisect import bisect_left
 from itertools import tee
 
 from cached_property import cached_property
@@ -98,9 +98,9 @@ class Day(db.Model):
             overlapping start and end times being included in the same
             list.
             """
-            return bisect_right(times, end) - times.index(start)
+            return bisect_left(times, end) - times.index(start)
 
-        times = sorted(set(slot.start for slot in self.slots))
+        times = sorted({slot.start for slot in self.slots})
 
         slots = db.session.query(
             Slot.id,
