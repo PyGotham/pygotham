@@ -2,6 +2,8 @@
 
 from flask_restful import fields
 
+__all__ = ('event_fields', 'user_fields', 'talk_fields')
+
 
 class MockField(fields.Raw):
 
@@ -62,8 +64,9 @@ user_fields = {
 
 talk_fields = {
     'id': fields.Integer,
-    'conf_key': AttrField('event_id'),
-    'conf_url': MockField('https://pygotham.org/2015/'),
+    # Here, conf_key simply refers to the id. this should be removed in
+    # the future in favor of simply using the `id` field above
+    'conf_key': AttrField('id'),
     'description': fields.String,
     'duration': AttrField('duration.duration'),
     'language': MockField('English'),
@@ -82,8 +85,15 @@ talk_fields = {
         'presentation.slot',
         lambda slot: '{:%Y-%m-%d}T{:%H:%M:%S}'.format(slot.day.date, slot.start),
     ),
-    # TODO: this should be based on the recording release
-    'priority': MockField(9),
+    # HACK: Generate the recording priority based on recording release
+    # We probably won't have any 5s, but this is about as correct as the
+    # mapping can be at the moment.
+    'priority': AttrField(
+        'recording_release',
+        lambda released: {True: 9, False: 0, None: 5}[released],
+    ),
+    # `released` refers to the talk's video recording release
+    'released': AttrField('recording_release'),
     # FIXME: What version are the talks to be licensed under?
     'license': MockField('Creative Commons'),
     'tags': MockField([]),
