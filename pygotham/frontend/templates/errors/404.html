@@ -1,0 +1,15 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}Page Not Found - {{ super() }}{% endblock %}
+
+{% block body_class %}error{% endblock %}
+
+{% block content %}
+  <div class="row">
+    <h1>Hmm</h1>
+
+    <p>There doesn't appear to be anything here. If something should've been
+      here, an email was just sent to many phones telling lots of people to fix
+      it!</p>
+  </div>
+{% endblock %}
