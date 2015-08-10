@@ -6,6 +6,6 @@
 
 {% block content %}
   <div class="row">
-    {{ page.rst_document|rst|safe }}
+    {{ page.rst_document|rst(['img'])|safe }}
   </div>
 {% endblock %}

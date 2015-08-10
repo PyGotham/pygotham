@@ -206,6 +206,14 @@ body.sponsors ul.sponsors li {
   }
 }
 
+body.venue #content .row {
+  margin-bottom: 2em;
+
+  p {
+    white-space: pre-line;
+  }
+}
+
 .accepted-talks {
   list-style: none;
   margin: 0;
