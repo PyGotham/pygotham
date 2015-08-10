@@ -1,0 +1,14 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}Error - {{ super() }}{% endblock %}
+
+{% block body_class %}error{% endblock %}
+
+{% block content %}
+  <div class="row">
+    <h1>Whoops</h1>
+
+    <p>This page appears to be broken. An email was just sent to many phones
+    telling lots of people to fix it!</p>
+  </div>
+{% endblock %}
