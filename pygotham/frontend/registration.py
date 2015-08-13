@@ -13,7 +13,7 @@ blueprint = Blueprint(
 )
 
 direct_to_template(
-    blueprint, '/information', template='registration/information.html')
+    blueprint, '/information/', template='registration/information.html')
 
 
 def get_nav_links():

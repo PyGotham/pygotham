@@ -15,7 +15,7 @@ __all__ = ('blueprint',)
 blueprint = Blueprint('profile', __name__, url_prefix='/<event_slug>/profile')
 
 
-@route(blueprint, '/dashboard')
+@route(blueprint, '/dashboard/')
 @login_required
 def dashboard():
     """Return the user's dashboard."""
@@ -25,7 +25,7 @@ def dashboard():
         'profile/dashboard.html', talks=talks)
 
 
-@route(blueprint, '/settings', methods=('GET', 'POST'))
+@route(blueprint, '/settings/', methods=('GET', 'POST'))
 @login_required
 def settings():
     """Return the user's settings."""
@@ -46,7 +46,7 @@ def settings():
     return render_template('profile/settings.html', form=form)
 
 
-@route(blueprint, '/unvolunteer')
+@route(blueprint, '/unvolunteer/')
 @login_required
 def unvolunteer():
     """Remove a user from being a volunteer."""
@@ -59,7 +59,7 @@ def unvolunteer():
     return redirect(url_for('profile.dashboard'))
 
 
-@route(blueprint, '/volunteer')
+@route(blueprint, '/volunteer/')
 @login_required
 def volunteer():
     """Sign up a user as a volunteer."""

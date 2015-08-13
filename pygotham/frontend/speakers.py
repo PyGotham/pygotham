@@ -14,7 +14,7 @@ blueprint = Blueprint(
 )
 
 
-@route(blueprint, '/profile/<int:pk>')
+@route(blueprint, '/profile/<int:pk>/')
 def profile(pk):
     """Return the speaker profile view."""
     if not g.current_event.talks_are_published:
