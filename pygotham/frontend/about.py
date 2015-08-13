@@ -21,7 +21,7 @@ def get_nav_links():
     return links
 
 
-@blueprint.route('/<slug>')
+@blueprint.route('/<slug>/')
 def rst_content(slug):
     """Renders database-backed restructured text content as html pages.
 

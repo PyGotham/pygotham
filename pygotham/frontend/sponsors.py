@@ -20,7 +20,7 @@ blueprint = Blueprint(
 )
 
 
-@route(blueprint, '/apply', methods=('GET', 'POST'))
+@route(blueprint, '/apply/', methods=('GET', 'POST'))
 @login_required
 def apply():
     """Return the sponsor application."""
@@ -49,7 +49,7 @@ def apply():
     return render_template('sponsors/apply.html', form=form)
 
 
-@route(blueprint, '/edit/<int:pk>', methods=('GET', 'POST'))
+@route(blueprint, '/edit/<int:pk>/', methods=('GET', 'POST'))
 @login_required
 def edit(pk):
     """Return the sponsor edit form."""
@@ -73,7 +73,7 @@ def edit(pk):
     return render_template('sponsors/edit.html', form=form, sponsor=sponsor)
 
 
-@route(blueprint, '')
+@route(blueprint, '/')
 def index():
     """Return the sponsors."""
     levels = Level.query.current.order_by(Level.order)
@@ -86,14 +86,14 @@ def index():
         'sponsors/index.html', levels=levels, has_sponsors=has_sponsors)
 
 
-@route(blueprint, '/prospectus')
+@route(blueprint, '/prospectus/')
 def prospectus():
     """Return the sponsorship prospectus."""
     levels = Level.query.current.order_by(Level.order)
     return render_template('sponsors/prospectus.html', levels=levels)
 
 
-direct_to_template(blueprint, '/terms', template='sponsors/terms.html')
+direct_to_template(blueprint, '/terms/', template='sponsors/terms.html')
 
 
 def get_nav_links():

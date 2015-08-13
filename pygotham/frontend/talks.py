@@ -17,7 +17,7 @@ blueprint = Blueprint('talks', __name__, url_prefix='/<event_slug>/talks')
 
 direct_to_template(
     blueprint,
-    '/call-for-proposals',
+    '/call-for-proposals/',
     template='talks/call-for-proposals.html',
     endpoint='call_for_proposals',
 )
@@ -26,8 +26,8 @@ direct_to_template(
 # This route is being kept around for backward compatibility. It should
 # never be used directly.
 @route(
-    blueprint, '/<int:pk>', defaults={'slug': None}, endpoint='old_detail')
-@route(blueprint, '/<int:pk>/<slug>')
+    blueprint, '/<int:pk>/', defaults={'slug': None}, endpoint='old_detail')
+@route(blueprint, '/<int:pk>/<slug>/')
 def detail(pk, slug):
     """Return the talk detail view."""
     event = g.current_event
@@ -45,7 +45,7 @@ def detail(pk, slug):
     return render_template('talks/detail.html', talk=talk)
 
 
-@route(blueprint, '')
+@route(blueprint, '/')
 def index():
     """Return the talk list."""
     event = g.current_event
@@ -57,11 +57,11 @@ def index():
 
 @route(
     blueprint,
-    '/new',
+    '/new/',
     defaults={'pk': None},
     endpoint='submit',
     methods=('GET', 'POST'))
-@route(blueprint, '/<int:pk>/edit', endpoint='edit', methods=('GET', 'POST',))
+@route(blueprint, '/<int:pk>/edit/', endpoint='edit', methods=('GET', 'POST',))
 @login_required
 def proposal(pk=None):
     """Return the talk proposal form."""
@@ -109,13 +109,13 @@ def proposal(pk=None):
 
 direct_to_template(
     blueprint,
-    '/recording',
+    '/recording/',
     template='talks/recording-release.html',
     endpoint='recording_release',
 )
 
 
-@route(blueprint, '/schedule')
+@route(blueprint, '/schedule/')
 def schedule():
     event = g.current_event
     if not (event.schedule_is_published or current_user.has_role('admin')):
