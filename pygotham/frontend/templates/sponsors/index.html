@@ -29,7 +29,7 @@
                       <img src="{{ sponsor.logo }}" alt="{{ sponsor.name }}">
                     </a>
                     <h4>{{ sponsor }}</h4>
-                    <p><a href="{{ sponsor.url }}">{{ sponsor.url|clean_url }}</a></p>
+                    <a href="{{ sponsor.url }}">{{ sponsor.url|clean_url }}</a>
                     {{ sponsor.description|rst|safe }}
                   </div>
                 </li>
