@@ -198,6 +198,17 @@ body.home ul.sponsors li {
 }
 
 body.sponsors ul.sponsors li {
+  text-align: center;
+
+  p {
+    margin: {
+      bottom: 0;
+      top: 15px;
+    }
+
+    text-align: left;
+  }
+
   h4 {
     margin: {
       bottom: 0;
