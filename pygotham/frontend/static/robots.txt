@@ -1,0 +1,2 @@
+User-agents: *
+Disallow: /admin/
