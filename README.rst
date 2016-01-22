@@ -75,8 +75,8 @@ When you first get started, you'll need to create the database::
 
     $ createdb pygotham
 
-.. note:: If you are using Docker, you'll also need to specify the host
-   ``docker-compose run web createdb pygotham -h db``.
+.. note:: If you are using Compose, this is automatically taken care of for
+   you.
 
 Then you'll need to create the tables::
 
