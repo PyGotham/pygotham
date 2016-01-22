@@ -3,12 +3,16 @@ PyGotham 2015
 =============
 
 .. image:: https://badge.waffle.io/pygotham/pygotham.png?label=ready&title=Ready
- :target: https://waffle.io/pygotham/pygotham
- :alt: 'Stories in Ready'
+   :target: https://waffle.io/pygotham/pygotham
+   :alt: 'Stories in Ready'
 
 .. image:: https://requires.io/github/PyGotham/pygotham/requirements.svg?branch=master
- :target: https://requires.io/github/PyGotham/pygotham/requirements/?branch=master
- :alt: Requirements Status
+   :target: https://requires.io/github/PyGotham/pygotham/requirements/?branch=master
+   :alt: Requirements Status
+
+.. image:: https://badges.gitter.im/PyGotham/pygotham.svg
+   :alt: Join the chat at https://gitter.im/PyGotham/pygotham
+   :target: https://gitter.im/PyGotham/pygotham?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
 
 Requirements
 ============
@@ -103,8 +107,3 @@ If you're using Docker, Compose will take care of running the site for you.
 .. _pyenv: https://github.com/yyuu/pyenv
 .. _pyenv-virtualenvwrapper: https://github.com/yyuu/pyenv-virtualenvwrapper
 .. _virtualenvwrapper: https://virtualenvwrapper.rtfd.org
-
-
-.. image:: https://badges.gitter.im/PyGotham/pygotham.svg
-   :alt: Join the chat at https://gitter.im/PyGotham/pygotham
-   :target: https://gitter.im/PyGotham/pygotham?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
