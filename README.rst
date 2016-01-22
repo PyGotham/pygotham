@@ -82,10 +82,21 @@ Then you'll need to create the tables::
 
     $ python manage.py db upgrade
 
-The last thing you'll need to do is create a user account. To create a user with
+Next, you'll need to create a user account. To create a user with
 access to the admin::
 
     $ python manage.py create_admin
+
+The last step is to create an event::
+
+    $ python manage.py create_event
+    Name: <name>
+    Slug (optional): <name-slug>
+    Event start date: <YYYY-MM-DD>
+    Event end date: <YYYY-MM-DD>
+    CFP start date: <YYYY-MM-DD HH:MM:SS>
+    Activate the event [n]: <y|n>
+
 
 Running the site locally
 ========================
