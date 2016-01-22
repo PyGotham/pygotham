@@ -103,3 +103,8 @@ If you're using Docker, Compose will take care of running the site for you.
 .. _pyenv: https://github.com/yyuu/pyenv
 .. _pyenv-virtualenvwrapper: https://github.com/yyuu/pyenv-virtualenvwrapper
 .. _virtualenvwrapper: https://virtualenvwrapper.rtfd.org
+
+
+.. image:: https://badges.gitter.im/PyGotham/pygotham.svg
+   :alt: Join the chat at https://gitter.im/PyGotham/pygotham
+   :target: https://gitter.im/PyGotham/pygotham?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
