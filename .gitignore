@@ -13,6 +13,7 @@ instance/settings.cfg
 *.sw?
 *#*
 .DS*
+.idea/
 
 # Python .gitignore from https://github.com/github/gitignore
 
