@@ -2,6 +2,7 @@
 
 import sys
 
+import arrow
 from flask_script import Command, prompt, prompt_bool
 from werkzeug.datastructures import MultiDict
 
@@ -11,7 +12,6 @@ from pygotham.models import Event
 
 
 class CreateEvent(Command):
-
     """Management command to create an :class:`~pygotham.models.Event`.
 
     In addition to asking for certain values, the event can also be
@@ -43,6 +43,10 @@ class CreateEvent(Command):
             # Save the new event.
             event = Event()
             form.populate_obj(event)
+
+            if event.active:
+                now = arrow.utcnow().to('America/New_York').naive
+                event.activity_begins = now
 
             db.session.add(event)
             db.session.commit()
