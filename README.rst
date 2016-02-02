@@ -53,6 +53,10 @@ We recommend using a virtual environment to install PyGotham's dependencies. The
 easiest way to manage your virtual environments is with virtualenvwrapper_. If
 you are using pyenv, you'll want to install pyenv-virtualenvwrapper_.
 
+You'll also need to install the project's requirements::
+
+    $ python -m pip install -r dev-requirements.txt
+
 Project configuration
 =====================
 
@@ -118,6 +122,13 @@ management command.
 .. note:: If you're using Docker, Compose will take care of running the site
    for you.
 
+Adding requirements
+===================
+
+New requirements should be added to ``requirements.in``. An updated
+``requirements.txt`` can be generated using::
+
+    $ pip-compile requirements.in
 
 .. _Docker: https://www.docker.com/
 .. _Docker Compose: https://docs.docker.com/compose/
