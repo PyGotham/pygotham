@@ -1,6 +1,6 @@
-=============
-PyGotham 2015
-=============
+========
+PyGotham
+========
 
 .. image:: https://badge.waffle.io/pygotham/pygotham.png?label=ready&title=Ready
    :target: https://waffle.io/pygotham/pygotham
@@ -9,10 +9,6 @@ PyGotham 2015
 .. image:: https://requires.io/github/PyGotham/pygotham/requirements.svg?branch=master
    :target: https://requires.io/github/PyGotham/pygotham/requirements/?branch=master
    :alt: Requirements Status
-
-.. image:: https://badges.gitter.im/PyGotham/pygotham.svg
-   :alt: Join the chat at https://gitter.im/PyGotham/pygotham
-   :target: https://gitter.im/PyGotham/pygotham?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
 
 Requirements
 ============
@@ -106,13 +102,13 @@ Running the site locally
 
 Now you're ready to start your PyGotham server::
 
-    python wsgi.py
+    $ python wsgi.py
 
 You should see the PyGotham site at::
 
     http://0.0.0.0:5000/<slug>/
 
-where ``<slug>>`` is the slug of the event created by the ``create_event``
+where ``<slug>`` is the slug of the event created by the ``create_event``
 management command.
 
 .. note:: If you're using Docker, Compose will take care of running the site
