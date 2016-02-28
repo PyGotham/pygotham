@@ -12,3 +12,4 @@ The following folks have helped contribute to making this website possible.
 * Dean Silfen (`@deanrex <https://github.com/djds23>`_)
 * Piper Thunstrom (`@pathunstrom <https://github.com/pathunstrom>`_)
 * Nigel Harsch (`@nharsch <https://github.com/nharsch>`_)
+* Marcus Willock (`@crazcalm <https://github.com/crazcalm>`_)
