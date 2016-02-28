@@ -1,18 +1,17 @@
 """Frontend application."""
 
-from collections import defaultdict
 from functools import wraps
-import importlib
-import pkgutil
 import os
 
-from flask import g, render_template, url_for
+from flask import g, render_template
 from raven.contrib.flask import Sentry
 from sqlalchemy import or_
 
 import arrow
 
 from pygotham import factory, filters
+from pygotham.core import copilot
+from pygotham.about.models import AboutPage
 from pygotham.events.models import Event
 
 __all__ = ('create_app', 'route')
@@ -54,61 +53,15 @@ def create_app(settings_override=None):
     def current_event():
         return {'current_event': g.current_event}
 
-    @app.context_processor
-    def generate_navbar():
-        """Autodiscover links that should populate the site's navbar."""
-        # navbar_links is a dict of the form
-        # {section_name: {link_name: link_value, ...}, ...}
-        navbar_links = defaultdict(dict)
-
-        # First, autogenerate a list based on available routes
-        # Available routes are any that have a GET method and have all
-        # arguments (if any) provided default values
-        for rule in app.url_map.iter_rules():
-            section_name = rule.endpoint.split('.')[0]
-            get_allowed = 'get' in (method.lower() for method in rule.methods)
-            required_args = set(rule.arguments)
-            try:
-                provided_args = set(rule.defaults.keys())
-            except AttributeError:
-                provided_args = set()
-            missing_args = required_args.difference(provided_args)
-            if get_allowed and not missing_args:
-                rule_name = rule.endpoint.split('.')[1]
-                rule_name = rule_name.replace('_', ' ').title()
-                navbar_links[section_name][rule_name] = url_for(rule.endpoint)
-
-        # Find module-specific overrides and update the routes
-        for _, name, _ in pkgutil.iter_modules(__path__):
-            m = importlib.import_module('{}.{}'.format(__name__, name))
-            if hasattr(m, 'get_nav_links'):
-                try:
-                    del navbar_links[name]
-                except KeyError:
-                    # We need to do this before the update in case the
-                    # section name has been changed
-                    pass
-                navbar_links.update(m.get_nav_links())
-
-        # Exclude certain sections whose links are exposed elsewhere
-        for section in ('home', 'security', 'profile'):
-            try:
-                del navbar_links[section]
-            except KeyError:
-                # This links are displayed elsewhere, so remove the sections
-                # from the navbar entirely
-                pass
-
-        nav = []
-        # Normalize, hoist, and sort
-        for section, links in navbar_links.items():
-            index_link = links.pop('Index', None) or links.pop('Home', None)
-            subnav = sorted(links.items(), key=lambda item: item[0])
-            if index_link:
-                subnav.insert(0, ('Home', index_link))
-            nav.append((section.title(), subnav))
-        nav.sort(key=lambda item: item[0])
-        return {'navbar': nav}
+    @app.before_request
+    def register_about_page_navbar_links():
+        """Generate all about page titles and URLs for use in the navbar."""
+        for page in AboutPage.query.current.filter_by(active=True):
+            copilot.register_entry({
+                'path': (page.navbar_section, page.title),
+                'endpoint': 'about.rst_content',
+                'url_for_kwargs': {'slug': page.slug},
+            })
 
     app.jinja_env.filters['clean_url'] = filters.clean_url
     app.jinja_env.filters['is_hidden_field'] = filters.is_hidden_field

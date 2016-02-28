@@ -3,7 +3,7 @@
 from flask import Flask
 from flask_security import SQLAlchemyUserDatastore
 
-from pygotham.core import db, mail, migrate, security
+from pygotham.core import copilot, db, mail, migrate, security
 from pygotham.models import Role, User
 from pygotham.utils import check_required_settings, register_blueprints
 
@@ -29,6 +29,7 @@ def create_app(package_name, package_path, settings_override=None,
 
     check_required_settings(app.config)
 
+    copilot.init_app(app)
     db.init_app(app)
     mail.init_app(app)
     migrate.init_app(app, db)

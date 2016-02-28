@@ -13,7 +13,11 @@ blueprint = Blueprint(
 )
 
 direct_to_template(
-    blueprint, '/information/', template='registration/information.html')
+    blueprint,
+    '/information/',
+    template='registration/information.html',
+    navbar_kwargs={'path': ('Registration', 'Information')},
+)
 
 
 def get_nav_links():

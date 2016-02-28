@@ -1,24 +1,12 @@
 """About PyGotham."""
 
-from collections import defaultdict
-
-from flask import Blueprint, render_template, url_for
+from flask import Blueprint, render_template
 
 from pygotham.models import AboutPage
 
-__all__ = ('blueprint', 'get_nav_links')
+__all__ = ('blueprint',)
 
 blueprint = Blueprint('about', __name__, url_prefix='/<event_slug>/about')
-
-
-def get_nav_links():
-    """Generates all about page titles and urls for use in the navbar."""
-    links = defaultdict(dict)
-    for page in AboutPage.query.current.filter_by(
-            active=True).order_by(AboutPage.slug):
-        url = url_for('about.rst_content', slug=page.slug)
-        links[page.navbar_section.lower()][page.title] = url
-    return links
 
 
 @blueprint.route('/<slug>/')

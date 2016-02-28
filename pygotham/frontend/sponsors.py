@@ -11,7 +11,7 @@ from pygotham.core import db
 from pygotham.frontend import direct_to_template, route
 from pygotham.models import Level, Sponsor
 
-__all__ = ('blueprint', 'get_nav_links')
+__all__ = ('blueprint',)
 
 blueprint = Blueprint(
     'sponsors',
@@ -73,7 +73,7 @@ def edit(pk):
     return render_template('sponsors/edit.html', form=form, sponsor=sponsor)
 
 
-@route(blueprint, '/')
+@route(blueprint, '/', navbar_kwargs={'path': ('Sponsors', 'Sponsors')})
 def index():
     """Return the sponsors."""
     levels = Level.query.current.order_by(Level.order)
@@ -86,20 +86,17 @@ def index():
         'sponsors/index.html', levels=levels, has_sponsors=has_sponsors)
 
 
-@route(blueprint, '/prospectus/')
+@route(
+    blueprint,
+    '/prospectus/',
+    navbar_kwargs={'path': ('Sponsors', 'Sponsorship Prospectus')})
 def prospectus():
     """Return the sponsorship prospectus."""
     levels = Level.query.current.order_by(Level.order)
     return render_template('sponsors/prospectus.html', levels=levels)
 
 
+# TODO: Add this to the navbar.
+# FIXME: This content seems to be missing. Probably a template issue.
+# This is a good candidate for switching to an AboutPage.
 direct_to_template(blueprint, '/terms/', template='sponsors/terms.html')
-
-
-def get_nav_links():
-    """Return sponsor-related titles and urls for use in the navbar."""
-    links = {
-        'Sponsors': url_for('sponsors.index'),
-        'Sponsorship Prospectus': url_for('sponsors.prospectus'),
-    }
-    return {'Sponsors': links}
