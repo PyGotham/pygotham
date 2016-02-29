@@ -1,5 +1,6 @@
 """Application core."""
 
+from flask_copilot import Copilot
 from flask_mail import Mail
 from flask_migrate import Migrate
 from flask_security import Security
@@ -7,6 +8,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 __all__ = ('db',)
 
+copilot = Copilot()
 db = SQLAlchemy()
 # NOTE: It would be cleaner to simply pass in a MetaData object to SQLAlchemy.
 # Flask-SQLAlchemy supports this starting with version 2.1, which is not out at

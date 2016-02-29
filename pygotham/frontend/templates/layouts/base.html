@@ -28,14 +28,16 @@
 
       <section class="top-bar-section">
         <ul class="right">
-          {% for section, links in navbar %}
-            <li class="{{ section }} has-dropdown">
-              <a href="#">{{ section }}</a>
+          {% for entry in navbar %}
+          <li class="{{ entry.name }} {% if entry.children %}has-dropdown{% endif %}">
+              <a href="{{ entry.url() }}">{{ entry.name }}</a>
+              {% if entry.children %}
               <ul class="dropdown">
-                {% for link, url in links %}
-                <li><a href="{{ url }}">{{ link }}</a></li>
+                {% for child in entry.children %}
+                <li><a href="{{ child.url() }}">{{ child.name }}</a></li>
                 {% endfor %}
               </ul>
+              {% endif %}
             </li>
           {% endfor %}
 

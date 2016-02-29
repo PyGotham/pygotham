@@ -5,6 +5,7 @@ cached-property
 docutils
 Flask==0.10.1
 Flask-Admin
+Flask-Copilot
 Flask-Login==0.2.11
 Flask-Mail
 Flask-Migrate

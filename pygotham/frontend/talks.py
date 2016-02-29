@@ -1,7 +1,5 @@
 """PyGotham talks."""
 
-from collections import defaultdict
-
 from flask import (abort, Blueprint, g, flash, redirect, render_template,
                    url_for)
 from flask_login import current_user
@@ -11,7 +9,7 @@ from pygotham.core import db
 from pygotham.frontend import direct_to_template, route
 from pygotham.models import Day, Talk
 
-__all__ = ('blueprint', 'get_nav_links')
+__all__ = ('blueprint',)
 
 blueprint = Blueprint('talks', __name__, url_prefix='/<event_slug>/talks')
 
@@ -20,6 +18,7 @@ direct_to_template(
     '/call-for-proposals/',
     template='talks/call-for-proposals.html',
     endpoint='call_for_proposals',
+    navbar_kwargs={'path': ('Speaking', 'Call for Proposals')},
 )
 
 
@@ -45,7 +44,13 @@ def detail(pk, slug):
     return render_template('talks/detail.html', talk=talk)
 
 
-@route(blueprint, '/')
+@route(
+    blueprint,
+    '/',
+    navbar_kwargs={
+        'path': ('Events', 'Talk List'),
+        'when': lambda: g.current_event.talks_are_published,
+    })
 def index():
     """Return the talk list."""
     event = g.current_event
@@ -60,7 +65,11 @@ def index():
     '/new/',
     defaults={'pk': None},
     endpoint='submit',
-    methods=('GET', 'POST'))
+    methods=('GET', 'POST'),
+    navbar_kwargs={
+        'path': ('Speaking', 'Submit a Talk'),
+        'when': lambda: g.current_event.is_call_for_proposals_active,
+    })
 @route(blueprint, '/<int:pk>/edit/', endpoint='edit', methods=('GET', 'POST',))
 @login_required
 def proposal(pk=None):
@@ -115,7 +124,13 @@ direct_to_template(
 )
 
 
-@route(blueprint, '/schedule/')
+@route(
+    blueprint,
+    '/schedule/',
+    navbar_kwargs={
+        'path': ('Events', 'Talk Schedule'),
+        'when': lambda: g.current_event.schedule_is_published,
+    })
 def schedule():
     event = g.current_event
     if not (event.schedule_is_published or current_user.has_role('admin')):
@@ -124,27 +139,3 @@ def schedule():
     days = Day.query.filter(Day.event == event).order_by(Day.date)
 
     return render_template('talks/schedule.html', schedule=days)
-
-
-def get_nav_links():
-    """Generates talk-related titles and urls for use in the navbar.
-
-    Omits certain urls based on talk submission status.
-    """
-    event = g.current_event
-
-    links = defaultdict(dict)
-
-    links['Speaking'] = {
-        # FIXME: CFP should probably be database-backed reST content
-        'Call For Proposals': url_for('talks.call_for_proposals'),
-    }
-    if event.is_call_for_proposals_active:
-        links['Speaking']['Submit a Talk'] = url_for('talks.submit')
-
-    if event.talks_are_published:
-        links['Events']['Talk List'] = url_for('talks.index')
-    if event.schedule_is_published:
-        links['Events']['Talk Schedule'] = url_for('talks.schedule')
-
-    return links
