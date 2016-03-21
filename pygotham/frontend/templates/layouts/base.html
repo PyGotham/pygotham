@@ -19,7 +19,9 @@
     <nav class="top-bar" data-topbar data-options="mobile_show_parent_link: false">
       <ul class="title-area">
         <li class="name">
-          <h1><a href="{{ url_for('home.index') }}">{{ current_event }}</a></h1>
+          <a href="{{ url_for('home.index') }}" title="{{ current_event }} Home">
+            <img src="{{ url_for('static', filename='img/logo-notext.svg') }}" alt="{{ current_event }} logo">
+          </a>
         </li>
         <li class="toggle-topbar menu-icon">
           <a href="#"><span>Menu</span></a>
@@ -79,7 +81,7 @@
     <footer>
       <section class="credits">
         {{ current_event }} is a production of <a href="http://bigapplepy.org">Big Apple Py</a>.<br>
-        Design by <a href="http://www.jessiesima.com">Jessie Sima</a>. Hosting provided by <a href="http://www.rackspace.com">Rackspace</a>.<br>
+        Artwork by <a href="http://www.jessiesima.com">Jessie Sima</a>. UX by Allison Cameron. Hosting provided by <a href="http://www.rackspace.com">Rackspace</a>.<br>
         Questions? Comments? Please contact <a href="mailto:organizers@pygotham.org">organizers@pygotham.org</a>.<br>
       </section>
     </footer>
