@@ -6,7 +6,8 @@
   <div class="jumbotron">
     <div class="row">
       <h1>{{ current_event }}</h1>
-      <em>{{ current_event.dates }}</em>
+      <img src="{{ url_for('static', filename='img/home/logo.svg') }}">
+      <h3>New York City &middot; {{ current_event.dates }}</h3>
     </div>
   </div>
 

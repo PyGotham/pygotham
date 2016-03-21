@@ -117,10 +117,10 @@ $white       : #FFFFFF;
 // $oil         : #333333;
 // $jet         : #222222;
 // $black       : #000000;
-$light-blue: #d0eaf4;
-$dark-blue: #182833;
-$gold: #aca034;
-$teal: #376b7a;
+$light-blue: #3f6b9d;
+$dark-blue: #21314d;
+$gold: #e5c247;
+$orange: #dd6527;
 
 // We use these as default colors throughout
 // $primary-color: #008CBA;
@@ -1398,7 +1398,7 @@ $topbar-bg-color: $white;
 // $topbar-title-font-size: rem-calc(17);
 
 // Set the link colors and styles for top-level nav
-$topbar-link-color: $teal;
+$topbar-link-color: $dark-blue;
 // $topbar-link-color-hover: $white;
 // $topbar-link-color-active: $white;
 // $topbar-link-color-active-hover: $white;
@@ -1419,11 +1419,11 @@ $topbar-link-color: $teal;
 // $topbar-button-top: 7px;
 
 // Style the top bar dropdown elements
-$topbar-dropdown-bg: $dark-blue;
+$topbar-dropdown-bg: $light-blue;
 // $topbar-dropdown-link-color: $white;
 // $topbar-dropdown-link-color-hover: $topbar-link-color-hover;
-// $topbar-dropdown-link-bg: $oil;
-$topbar-dropdown-link-bg-hover: $dark-blue;
+$topbar-dropdown-link-bg: $dark-blue;
+$topbar-dropdown-link-bg-hover: $light-blue;
 // $topbar-dropdown-link-weight: $font-weight-normal;
 // $topbar-dropdown-toggle-size: 5px;
 // $topbar-dropdown-toggle-color: $white;
@@ -1439,8 +1439,8 @@ $topbar-dropdown-link-bg-hover: $dark-blue;
 // $topbar-menu-link-transform: uppercase;
 // $topbar-menu-link-font-size: rem-calc(13);
 // $topbar-menu-link-weight: $font-weight-bold;
-$topbar-menu-link-color: $teal;
-$topbar-menu-icon-color: $teal;
+$topbar-menu-link-color: $dark-blue;
+$topbar-menu-icon-color: $dark-blue;
 // $topbar-menu-link-color-toggled: $jumbo;
 // $topbar-menu-icon-color-toggled: $jumbo;
 // $topbar-menu-icon-position: $opposite-direction; // Change to $default-float for a left menu icon
