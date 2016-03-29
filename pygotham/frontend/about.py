@@ -6,7 +6,12 @@ from pygotham.models import AboutPage
 
 __all__ = ('blueprint',)
 
-blueprint = Blueprint('about', __name__, url_prefix='/<event_slug>/about')
+blueprint = Blueprint(
+    'about',
+    __name__,
+    subdomain='<event_slug>',
+    url_prefix='/about',
+)
 
 
 @blueprint.route('/<slug>/')

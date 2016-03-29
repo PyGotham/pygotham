@@ -3,16 +3,12 @@
 from functools import wraps
 import os
 
-from flask import g, render_template
+from flask import render_template
 from raven.contrib.flask import Sentry
-from sqlalchemy import or_
-
-import arrow
 
 from pygotham import factory, filters
 from pygotham.core import copilot
-from pygotham.about.models import AboutPage
-from pygotham.events.models import Event
+from pygotham.models import AboutPage
 
 __all__ = ('create_app', 'route')
 
@@ -26,32 +22,6 @@ def create_app(settings_override=None):
     app = factory.create_app(__name__, __path__, settings_override)
 
     Sentry(app)
-
-    @app.url_defaults
-    def add_event_slug(endpoint, values):
-        if 'event_slug' in values or not g.current_event:
-            return
-        if app.url_map.is_endpoint_expecting(endpoint, 'event_slug'):
-            values['event_slug'] = g.current_event.slug
-
-    @app.url_value_preprocessor
-    def current_event_from_url(endpoint, values):
-        if values is None:
-            values = {}
-        if endpoint and app.url_map.is_endpoint_expecting(endpoint, 'event_slug'):
-            now = arrow.utcnow().to('America/New_York').naive
-            g.current_event = Event.query.filter(
-                Event.slug == values.pop('event_slug', None),
-                Event.active == True,
-                or_(Event.activity_begins == None, Event.activity_begins <= now),
-                or_(Event.activity_ends == None, Event.activity_ends > now),
-            ).order_by(Event.activity_begins).first_or_404()
-        else:
-            g.current_event = Event.query.first()
-
-    @app.context_processor
-    def current_event():
-        return {'current_event': g.current_event}
 
     @app.before_request
     def register_about_page_navbar_links():

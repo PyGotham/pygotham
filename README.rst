@@ -103,6 +103,11 @@ The last step is to create an event::
 
 Running the site locally
 ========================
+The ``SERVER_NAME`` environment variable must be set to develop locally.
+Because of how web browsers treat cookies on domains, this value must have a
+``.`` in it. Before launching a development server::
+
+    $ export SERVER_NAME=pygotham.local:5000
 
 Now you're ready to start your PyGotham server::
 
@@ -110,7 +115,7 @@ Now you're ready to start your PyGotham server::
 
 You should see the PyGotham site at::
 
-    http://0.0.0.0:5000/<slug>/
+    http://<slug>.$SERVER_NAME
 
 where ``<slug>`` is the slug of the event created by the ``create_event``
 management command.
