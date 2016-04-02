@@ -40,3 +40,9 @@ def rst_to_html(value, extra_tags=None):
         attributes=_ALLOWED_ATTRIBUTES,
         strip=True,
     )
+
+
+def time_zone(value):
+    """Return the local time zone for the given datetime."""
+    tz = value.to('America/New_York')
+    return tz.tzname()
