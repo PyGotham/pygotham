@@ -10,7 +10,8 @@ __all__ = ('blueprint',)
 blueprint = Blueprint(
     'speakers',
     __name__,
-    url_prefix='/<event_slug>/speakers',
+    subdomain='<event_slug>',
+    url_prefix='/speakers',
 )
 
 

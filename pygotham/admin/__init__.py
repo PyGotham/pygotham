@@ -38,6 +38,7 @@ def create_app(settings_override=None):
     admin = Admin(
         app, name='PyGotham',
         static_url_path='/admin',
+        subdomain='<event_slug>',
         index_view=HomeView(endpoint='', url='/'),
     )
 

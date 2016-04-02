@@ -17,3 +17,4 @@ web:
     - db
   environment:
     - PYTHONUNBUFFERED=1
+    - SERVER_NAME

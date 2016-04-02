@@ -9,7 +9,8 @@ __all__ = ('blueprint', 'get_nav_links')
 blueprint = Blueprint(
     'registration',
     __name__,
-    url_prefix='/<event_slug>/registration',
+    subdomain='<event_slug>',
+    url_prefix='/registration',
 )
 
 direct_to_template(

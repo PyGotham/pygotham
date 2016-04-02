@@ -11,7 +11,12 @@ from pygotham.models import Day, Talk
 
 __all__ = ('blueprint',)
 
-blueprint = Blueprint('talks', __name__, url_prefix='/<event_slug>/talks')
+blueprint = Blueprint(
+    'talks',
+    __name__,
+    subdomain='<event_slug>',
+    url_prefix='/talks',
+)
 
 direct_to_template(
     blueprint,

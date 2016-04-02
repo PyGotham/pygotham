@@ -12,7 +12,7 @@ blueprint = Blueprint(
     __name__,
     static_folder='static',
     static_url_path='/frontend/static',
-    url_prefix='/<event_slug>'
+    subdomain='<event_slug>',
 )
 
 

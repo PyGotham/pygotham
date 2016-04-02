@@ -16,7 +16,8 @@ __all__ = ('blueprint',)
 blueprint = Blueprint(
     'sponsors',
     __name__,
-    url_prefix='/<event_slug>/sponsors',
+    subdomain='<event_slug>',
+    url_prefix='/sponsors',
 )
 
 

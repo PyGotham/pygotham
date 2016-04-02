@@ -12,7 +12,12 @@ from pygotham.models import Talk, Volunteer
 
 __all__ = ('blueprint',)
 
-blueprint = Blueprint('profile', __name__, url_prefix='/<event_slug>/profile')
+blueprint = Blueprint(
+    'profile',
+    __name__,
+    subdomain='<event_slug>',
+    url_prefix='/profile',
+)
 
 
 @route(blueprint, '/dashboard/')
