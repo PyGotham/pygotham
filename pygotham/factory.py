@@ -23,7 +23,21 @@ def create_app(package_name, package_path, settings_override=None,
                                          Flask-Security blueprints.
 
     """
-    app = Flask(package_name, instance_relative_config=True)
+    # Disable the default static route and replace it with a new one
+    # using a subdomain. Credit to
+    # http://librelist.com/browser/flask/2011/8/25/static-files-subdomains/#be78a466ea8ec18d64d32911df4d29eb
+    app = Flask(
+        package_name,
+        instance_relative_config=True,
+        static_folder=None,
+    )
+    app.static_folder = 'static'
+    app.add_url_rule(
+        '/static/<path:filename>',
+        endpoint='static',
+        view_func=app.send_static_file,
+        subdomain='<event_slug>',
+    )
 
     app.config.from_object('pygotham.settings')
     app.config.from_pyfile('settings.cfg', silent=True)
