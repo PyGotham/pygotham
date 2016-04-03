@@ -36,6 +36,7 @@ def create_app(settings_override=None):
     app.jinja_env.filters['clean_url'] = filters.clean_url
     app.jinja_env.filters['is_hidden_field'] = filters.is_hidden_field
     app.jinja_env.filters['rst'] = filters.rst_to_html
+    app.jinja_env.filters['time_zone'] = filters.time_zone
 
     if not app.debug:
         for e in (404, 500):
