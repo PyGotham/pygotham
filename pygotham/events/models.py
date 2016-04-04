@@ -14,7 +14,6 @@ __all__ = ('Event', 'Volunteer')
 
 
 class Event(db.Model):
-
     """Event."""
 
     __tablename__ = 'events'
@@ -152,7 +151,6 @@ class Event(db.Model):
 
 
 class Volunteer(db.Model):
-
     """Volunteer."""
 
     __tablename__ = 'volunteers'
@@ -169,4 +167,3 @@ class Volunteer(db.Model):
     def __str__(self):
         """Return a printable representation."""
         return self.user.name
-

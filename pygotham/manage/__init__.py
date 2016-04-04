@@ -1,4 +1,4 @@
 """Management commands."""
 
-from pygotham.manage.events import *
-from pygotham.manage.users import *
+from pygotham.manage.events import *  # NOQA
+from pygotham.manage.users import *  # NOQA

@@ -14,7 +14,6 @@ __all__ = ('create_app',)
 
 
 class HomeView(AdminIndexView):
-
     """Only show the admin to authenticated admin users."""
 
     def is_accessible(self):
@@ -25,7 +24,6 @@ def create_app(settings_override=None):
     """Return the PyGotham admin application.
 
     :param settings_override: a ``dict`` of settings to override.
-
     """
     app = factory.create_app(__name__, __path__, settings_override)
 

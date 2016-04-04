@@ -14,7 +14,6 @@ ModelForm = model_form_factory(Form)
 
 
 class ProfileForm(ModelForm):
-
     """Form for editing :class:`~pygotham.models.User` instances."""
 
     id = HiddenField()

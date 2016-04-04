@@ -10,7 +10,6 @@ _all__ = 'Level', 'Sponsor'
 
 
 class Level(db.Model):
-
     """Sponsorship level."""
 
     __tablename__ = 'sponsor_levels'
@@ -35,7 +34,7 @@ class Level(db.Model):
     @cached_property
     def accepted_sponsors(self):
         """Return the accepted sponsors for the level."""
-        return self.sponsors.filter(Sponsor.accepted == True)
+        return self.sponsors.filter(Sponsor.accepted == True)  # NOQA
 
     @cached_property
     def is_sold_out(self):
@@ -44,7 +43,6 @@ class Level(db.Model):
 
 
 class Sponsor(db.Model):
-
     """Sponsor."""
 
     __tablename__ = 'sponsors'

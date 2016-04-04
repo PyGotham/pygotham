@@ -23,7 +23,8 @@ SponsorModelView = model_view(
     models.Sponsor,
     'Sponsors',
     CATEGORY,
-    column_filters=('level', 'accepted', 'level.event.slug', 'level.event.name'),
+    column_filters=(
+        'level', 'accepted', 'level.event.slug', 'level.event.name'),
     column_list=(
         'name', 'level', 'contact_name', 'contact_email', 'accepted',
         'payment_received',

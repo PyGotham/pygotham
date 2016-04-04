@@ -10,7 +10,6 @@ __all__ = ('menu_link', 'model_view')
 
 
 class AdminModelView(ModelView):
-
     """Base class for all protected admin model-based views."""
 
     def is_accessible(self):
@@ -18,7 +17,6 @@ class AdminModelView(ModelView):
 
 
 class AuthenticatedMenuLink(MenuLink):
-
     """Only show a link to authenticated users."""
 
     def is_accessible(self):
@@ -26,7 +24,6 @@ class AuthenticatedMenuLink(MenuLink):
 
 
 class NotAuthenticatedMenuLink(MenuLink):
-
     """Only show a link to unauthenticated users."""
 
     def is_accessible(self):
@@ -51,7 +48,7 @@ def menu_link(name, endpoint, authenticated):
 
 
 def model_view(model, name, category=None, **kwargs):
-    """Return a subclass of :class:`~flask.ext.admin.contrib.sql.ModelView`.
+    r"""Return a subclass of :class:`~flask.ext.admin.contrib.sql.ModelView`.
 
     :param model: model class to associate with the view.
     :param name: name of the menu item.

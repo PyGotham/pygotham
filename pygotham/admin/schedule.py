@@ -4,7 +4,7 @@ from pygotham.admin.utils import model_view
 from pygotham.schedule import models
 
 # This line is really long because pep257 needs it to be on one line.
-__all__ = ('DayModelView', 'RoomModelView', 'SlotModelView', 'PresentationModelView')
+__all__ = ('DayModelView', 'RoomModelView', 'SlotModelView', 'PresentationModelView')  # NOQA
 
 CATEGORY = 'Schedule'
 

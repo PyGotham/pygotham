@@ -14,7 +14,7 @@ def get_active_announcements():
 
     # TODO: Possibly display old announcements if the current event has none.
     return Announcement.query.current.filter(
-        Announcement.active == True,
+        Announcement.active == True,  # NOQA
         Announcement.published < now,
     ).order_by(db.desc(Announcement.published)).all()
 
@@ -24,7 +24,7 @@ def get_active_call_to_action():
     now = arrow.utcnow().to('America/New_York').naive
 
     return CallToAction.query.current.filter(
-        CallToAction.active == True,
+        CallToAction.active == True,  # NOQA
         CallToAction.begins < now,
         db.or_(CallToAction.ends > now, CallToAction.ends == None),
     ).order_by(CallToAction.begins, db.desc(CallToAction.ends)).first()
