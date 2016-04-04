@@ -16,10 +16,7 @@ blueprint = Blueprint(
 
 @blueprint.route('/<slug>/')
 def rst_content(slug):
-    """Renders database-backed restructured text content as html pages.
-
-    :param slug: the uniquely identifying slug portion of the url
-    """
+    """Render database-backed reStructuredText content as HTML pages."""
     page = AboutPage.query.current.filter_by(
         slug=slug,
         active=True,

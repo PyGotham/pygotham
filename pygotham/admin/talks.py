@@ -13,10 +13,10 @@ CATEGORY = 'Talks'
 
 
 class TalkModelView(ModelView, actions.ActionsMixin):
-
     """Admin view for :class:`~pygotham.models.Talk`."""
 
-    column_filters = ('status', 'duration', 'level', 'event.slug', 'event.name')
+    column_filters = (
+        'status', 'duration', 'level', 'event.slug', 'event.name')
     column_list = ('name', 'status', 'duration', 'level', 'type', 'user')
     column_searchable_list = ('name',)
     form_excluded_columns = ('presentation',)

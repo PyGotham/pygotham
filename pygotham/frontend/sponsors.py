@@ -79,7 +79,7 @@ def index():
     """Return the sponsors."""
     levels = Level.query.current.order_by(Level.order)
     sponsors = Sponsor.query.join(Level).filter(
-        Sponsor.accepted == True,
+        Sponsor.accepted == True,  # NOQA
         Level.event == g.current_event,
     )
     has_sponsors = db.session.query(sponsors.exists()).scalar()

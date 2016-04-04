@@ -9,7 +9,6 @@ __all__ = ('Category', 'Duration', 'Talk')
 
 
 class Category(db.Model):
-
     """Talk category."""
 
     __tablename__ = 'categories'
@@ -24,7 +23,6 @@ class Category(db.Model):
 
 
 class Duration(db.Model):
-
     """Talk duration."""
 
     __tablename__ = 'durations'
@@ -44,7 +42,6 @@ class Duration(db.Model):
 
 
 class Talk(db.Model):
-
     """Talk."""
 
     __tablename__ = 'talks'

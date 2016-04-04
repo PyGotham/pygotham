@@ -6,7 +6,6 @@ __all__ = ('event_fields', 'user_fields', 'talk_fields')
 
 
 class MockField(fields.Raw):
-
     """Return whatever is passed into the initializer."""
 
     def __init__(self, mock_value, **kwargs):
@@ -20,7 +19,6 @@ class MockField(fields.Raw):
 
 
 class AttrField(fields.Raw):
-
     """Return the value of an attribute of obj."""
 
     def __init__(self, attr, post_processor=None, **kwargs):
@@ -83,7 +81,7 @@ talk_fields = {
     # NOTE: This should probably be nested instead of inlined this way.
     'start': AttrField(
         'presentation.slot',
-        lambda slot: '{:%Y-%m-%d}T{:%H:%M:%S}'.format(slot.day.date, slot.start),
+        lambda s: '{:%Y-%m-%d}T{:%H:%M:%S}'.format(s.day.date, s.start),
     ),
     # HACK: Generate the recording priority based on recording release
     # We probably won't have any 5s, but this is about as correct as the

@@ -51,6 +51,4 @@ SECURITY_TRACKABLE = True
 # Flask-SQLAlchemy
 SQLALCHEMY_DATABASE_URI = env.get('DATABASE_URL')
 
-del bool_
-del env
 del DOES_NOT_EXIST

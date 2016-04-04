@@ -68,12 +68,16 @@ def create_app(package_name, package_path, settings_override=None,
     def current_event_from_url(endpoint, values):
         if values is None:
             values = {}
-        if endpoint and app.url_map.is_endpoint_expecting(endpoint, 'event_slug'):
+        if endpoint and app.url_map.is_endpoint_expecting(
+                endpoint, 'event_slug'):
             now = arrow.utcnow().to('America/New_York').naive
             g.current_event = Event.query.filter(
                 Event.slug == values.pop('event_slug', None),
-                Event.active == True,
-                or_(Event.activity_begins == None, Event.activity_begins <= now),
+                Event.active == True,  # NOQA
+                or_(
+                    Event.activity_begins == None,
+                    Event.activity_begins <= now
+                ),
                 or_(Event.activity_ends == None, Event.activity_ends > now),
             ).order_by(Event.activity_begins).first_or_404()
         else:

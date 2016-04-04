@@ -30,7 +30,7 @@ LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
 ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-"""
+"""  # NOQA
 
 from bisect import bisect_left
 from itertools import tee
@@ -61,7 +61,6 @@ rooms_slots = db.Table(
 
 
 class Day(db.Model):
-
     """Day of talks."""
 
     __tablename__ = 'days'
@@ -137,7 +136,6 @@ class Day(db.Model):
 
 
 class Room(db.Model):
-
     """Room of talks."""
 
     __tablename__ = 'rooms'
@@ -152,7 +150,6 @@ class Room(db.Model):
 
 
 class Slot(db.Model):
-
     """Time slot."""
 
     __tablename__ = 'slots'
@@ -191,7 +188,6 @@ class Slot(db.Model):
 
 
 class Presentation(db.Model):
-
     """Presentation of a talk."""
 
     __tablename__ = 'presentations'

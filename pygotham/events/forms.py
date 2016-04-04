@@ -11,7 +11,6 @@ ModelForm = model_form_factory(Form)
 
 
 class EventForm(ModelForm):
-
     """Form for creating :class:`~pygotham.models.Event` instances."""
 
     class Meta:

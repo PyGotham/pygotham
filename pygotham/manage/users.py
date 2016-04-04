@@ -10,7 +10,6 @@ from werkzeug.datastructures import MultiDict
 
 
 class RegisterUserMixin:
-
     """Mixin that provides functionality to register new users."""
 
     def register_user(self):
@@ -46,7 +45,6 @@ class RegisterUserMixin:
 
 
 class CreateAdmin(Command, RegisterUserMixin):
-
     """Management command to create a :class:`~pygotham.models.User`.
 
     Users created through this command will have the ``admin`` role
@@ -76,7 +74,6 @@ class CreateAdmin(Command, RegisterUserMixin):
 
 
 class CreateUser(Command, RegisterUserMixin):
-
     """Management command to create a :class:`~pygotham.models.User`."""
 
     def run(self):

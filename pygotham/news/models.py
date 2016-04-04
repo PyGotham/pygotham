@@ -12,7 +12,6 @@ __all__ = ('Announcement', 'CallToAction')
 
 
 class Announcement(db.Model):
-
     """News announcement."""
 
     __tablename__ = 'announcements'
@@ -42,7 +41,6 @@ class Announcement(db.Model):
 
 
 class CallToAction(db.Model):
-
     """Call to action."""
 
     __tablename__ = 'calls_to_action'

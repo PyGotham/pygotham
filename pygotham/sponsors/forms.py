@@ -13,7 +13,6 @@ ModelForm = model_form_factory(Form)
 
 
 class SponsorApplicationForm(ModelForm):
-
     """Form for creating :class:`~pygotham.models.Sponsor` instances."""
 
     level = QuerySelectField(query_factory=lambda: Level.query.current)
@@ -32,7 +31,6 @@ class SponsorApplicationForm(ModelForm):
 
 
 class SponsorEditForm(ModelForm):
-
     """Form for editing :class:`~pygotham.models.Sponsor` instances.
 
     The difference between this and

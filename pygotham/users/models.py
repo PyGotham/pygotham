@@ -22,7 +22,6 @@ roles_users = db.Table(
 
 
 class Role(db.Model, RoleMixin):
-
     """User role."""
 
     __tablename__ = 'roles'
@@ -46,7 +45,6 @@ class Role(db.Model, RoleMixin):
 
 
 class User(db.Model, UserMixin):
-
     """User."""
 
     __tablename__ = 'users'

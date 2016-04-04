@@ -6,7 +6,6 @@ __all__ = ('TwitterInput',)
 
 
 class TwitterInput(TextInput):
-
     """A widget for capturing Twitter handles."""
 
     def __call__(self, field, **kwargs):

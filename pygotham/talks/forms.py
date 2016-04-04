@@ -14,11 +14,10 @@ ModelForm = model_form_factory(Form)
 
 def duration_query_factory():
     """Return available :class:`~pygotha.models.Duration` instances."""
-    return Duration.query.filter(Duration.inactive == False)
+    return Duration.query.filter(Duration.inactive == False)  # NOQA
 
 
 class TalkSubmissionForm(ModelForm):
-
     """Form for editing :class:`~pygotham.models.Talk` instances."""
 
     class Meta:

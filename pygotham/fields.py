@@ -13,7 +13,6 @@ TWITTER_HANDLE_PATTERN = re.compile(r'^\w{1,15}$')
 
 
 class TwitterField(StringField):
-
     """A field for capturing a Twitter handle."""
 
     widget = TwitterInput()

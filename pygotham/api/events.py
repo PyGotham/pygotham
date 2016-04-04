@@ -14,7 +14,6 @@ api = Api(blueprint)
 
 @api.resource('/')
 class EventListResource(Resource):
-
     """Return all available event data."""
 
     @marshal_with(event_fields)
@@ -25,7 +24,6 @@ class EventListResource(Resource):
 
 @api.resource('/<int:event_id>/')
 class EventResource(Resource):
-
     """Return event core data."""
 
     @marshal_with(event_fields)
