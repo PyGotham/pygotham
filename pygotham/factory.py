@@ -1,7 +1,7 @@
 """Application factory."""
 
 import arrow
-from flask import Flask, g
+from flask import current_app, Flask, g
 from flask_security import SQLAlchemyUserDatastore
 from sqlalchemy import or_
 
@@ -70,7 +70,7 @@ def create_app(package_name, package_path, settings_override=None,
             values = {}
         if endpoint and app.url_map.is_endpoint_expecting(
                 endpoint, 'event_slug'):
-            now = arrow.utcnow().to('America/New_York').naive
+            now = arrow.utcnow().to(current_app.config['TIME_ZONE']).naive
             g.current_event = Event.query.filter(
                 Event.slug == values.pop('event_slug', None),
                 Event.active == True,  # NOQA

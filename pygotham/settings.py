@@ -13,6 +13,7 @@ def bool_(key, default):
 DEBUG = bool_('DEBUG', False)
 SECRET_KEY = env.get('SECRET_KEY', DOES_NOT_EXIST)
 SERVER_NAME = env.get('SERVER_NAME')
+TIME_ZONE = env.get('TIME_ZONE', 'UTC')
 
 GOOGLE_ANALYTICS_PROFILE_ID = env.get('GOOGLE_ANALYTICS_PROFILE_ID')
 
