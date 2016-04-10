@@ -3,6 +3,7 @@
 import sys
 
 import arrow
+from flask import current_app
 from flask_script import Command, prompt, prompt_bool
 from werkzeug.datastructures import MultiDict
 
@@ -45,7 +46,7 @@ class CreateEvent(Command):
             form.populate_obj(event)
 
             if event.active:
-                now = arrow.utcnow().to('America/New_York').naive
+                now = arrow.utcnow().to(current_app.config['TIME_ZONE']).naive
                 event.activity_begins = now
 
             db.session.add(event)

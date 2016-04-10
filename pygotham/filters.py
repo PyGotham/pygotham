@@ -4,6 +4,7 @@ from urllib.parse import urlparse
 
 import bleach
 from docutils import core
+from flask import current_app
 from wtforms.fields import HiddenField
 
 __all__ = ('rst_to_html',)
@@ -44,5 +45,5 @@ def rst_to_html(value, extra_tags=None):
 
 def time_zone(value):
     """Return the local time zone for the given datetime."""
-    tz = value.to('America/New_York')
+    tz = value.to(current_app.config['TIME_ZONE'])
     return tz.tzname()

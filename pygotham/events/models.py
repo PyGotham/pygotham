@@ -2,6 +2,7 @@
 
 import arrow
 from cached_property import cached_property
+from flask import current_app
 from slugify import slugify
 from sqlalchemy_utils import observes
 from sqlalchemy_utils.types.arrow import ArrowType
@@ -85,7 +86,7 @@ class Event(db.Model):
         less than
         :attribute:`~pygotham.events.models.Event.proposals_end`.
         """
-        now = arrow.utcnow().to('America/New_York').naive
+        now = arrow.utcnow().to(current_app.config['TIME_ZONE']).naive
         if not self.proposals_begin or now < self.proposals_begin.naive:
             return False
         if self.proposals_end and self.proposals_end.naive < now:
@@ -96,7 +97,7 @@ class Event(db.Model):
     @property
     def is_call_for_proposals_expired(self):
         """Return whether the call for proposals has expired."""
-        now = arrow.utcnow().to('America/New_York').naive
+        now = arrow.utcnow().to(current_app.config['TIME_ZONE']).naive
         return self.proposals_end and self.proposals_end.naive < now
 
     @property
@@ -122,7 +123,7 @@ class Event(db.Model):
         if not self.registration_url:
             return False
 
-        now = arrow.utcnow().to('America/New_York').naive
+        now = arrow.utcnow().to(current_app.config['TIME_ZONE']).naive
         begins = self.registration_begins
         if not begins or now < begins.naive:
             return False
@@ -135,7 +136,7 @@ class Event(db.Model):
     @property
     def schedule_is_published(self):
         """Return whether the schedule for an event is published."""
-        now = arrow.utcnow().to('America/New_York').naive
+        now = arrow.utcnow().to(current_app.config['TIME_ZONE']).naive
         talk_schedule_begins = self.talk_schedule_begins
         if not talk_schedule_begins or talk_schedule_begins.naive > now:
             return False
@@ -144,7 +145,7 @@ class Event(db.Model):
     @property
     def talks_are_published(self):
         """Return whether the talk list for an event is published."""
-        now = arrow.utcnow().to('America/New_York').naive
+        now = arrow.utcnow().to(current_app.config['TIME_ZONE']).naive
         if not self.talk_list_begins or self.talk_list_begins.naive > now:
             return False
         return True
