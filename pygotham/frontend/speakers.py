@@ -1,4 +1,4 @@
-"""PyGotha speakers."""
+"""PyGotham speakers."""
 
 from flask import abort, Blueprint, g, render_template
 
