@@ -14,6 +14,7 @@ blueprint = Blueprint(
 )
 
 
+@blueprint.route('/', defaults={'slug': ''})
 @blueprint.route('/<slug>/')
 def rst_content(slug):
     """Render database-backed reStructuredText content as HTML pages."""

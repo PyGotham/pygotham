@@ -1,6 +1,7 @@
 """About models."""
 
 from slugify import slugify
+from sqlalchemy.dialects import postgresql
 from sqlalchemy_utils import observes
 
 from pygotham.core import db
@@ -18,8 +19,13 @@ class AboutPage(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     # TODO: validate that the navbar_section / slug combination do not conflict
     # with an existing generated blueprint view route
-    navbar_section = db.Column(db.String(255), nullable=False)
-    slug = db.Column(db.String(255), nullable=False)
+
+    # The navbar_path dictates the location of this menu item in the
+    # navbar hierarchy.
+    navbar_path = db.Column(postgresql.ARRAY(db.String), nullable=False)
+    # A slug may be empty. If it is, the item will be placed at the
+    # root of the navbar hierarchy.
+    slug = db.Column(db.String(255), default='', nullable=False)
     title = db.Column(db.String(255), nullable=False)
     content = db.Column(db.Text, nullable=False)
     active = db.Column(db.Boolean, nullable=False)
@@ -33,8 +39,8 @@ class AboutPage(db.Model):
 
     __table_args__ = (
         db.UniqueConstraint(
-            'navbar_section', 'slug', 'event_id',
-            name='ix_about_pages_navbar_section_slug_event_id',
+            'navbar_path', 'slug', 'event_id',
+            name='ix_about_pages_navbar_path_slug_event_id',
         ),
     )
 
