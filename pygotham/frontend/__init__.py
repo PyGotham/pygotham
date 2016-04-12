@@ -5,6 +5,7 @@ import os
 
 from flask import render_template
 from raven.contrib.flask import Sentry
+from sqlalchemy import func
 
 from pygotham import factory, filters
 from pygotham.core import copilot
@@ -26,9 +27,14 @@ def create_app(settings_override=None):
     @app.before_request
     def register_about_page_navbar_links():
         """Generate all about page titles and URLs for use in the navbar."""
-        for page in AboutPage.query.current.filter_by(active=True):
+        # NOTE: Because of the unconventional usage of Flask-Copilot
+        # (i.e. not as a routing decorator and always assigning an
+        # endpoint), our shorter navbar_paths must come before longer
+        # ones.
+        for page in AboutPage.query.current.filter_by(active=True).order_by(
+                func.array_length(AboutPage.navbar_path, 1)):
             copilot.register_entry({
-                'path': (page.navbar_section, page.title),
+                'path': page.navbar_path,
                 'endpoint': 'about.rst_content',
                 'url_for_kwargs': {'slug': page.slug},
             })
