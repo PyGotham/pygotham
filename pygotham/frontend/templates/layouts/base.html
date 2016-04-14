@@ -16,7 +16,7 @@
     <script src="{{ url_for('static', filename='bower_components/modernizr/modernizr.js') }}"></script>
   </head>
   <body class="{% block body_class %}{% endblock %}">
-    <nav class="top-bar" data-topbar data-options="mobile_show_parent_link: false">
+    <nav class="top-bar" data-topbar data-options="mobile_show_parent_link: true">
       <ul class="title-area">
         <li class="name">
           <a href="{{ url_for('home.index') }}" title="{{ current_event }} Home">
