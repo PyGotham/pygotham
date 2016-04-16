@@ -38,6 +38,7 @@ def create_app(settings_override=None):
         static_url_path='/admin',
         subdomain='<event_slug>',
         index_view=HomeView(endpoint='', url='/'),
+        template_mode='bootstrap3',
     )
 
     # Iterate through all the modules of the current package. For each
