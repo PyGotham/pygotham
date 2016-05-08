@@ -15,6 +15,7 @@ CATEGORY = 'Talks'
 class TalkModelView(ModelView, actions.ActionsMixin):
     """Admin view for :class:`~pygotham.models.Talk`."""
 
+    column_default_sort = 'id'
     column_filters = (
         'status', 'duration', 'level', 'event.slug', 'event.name')
     column_list = ('name', 'status', 'duration', 'level', 'type', 'user')
@@ -66,6 +67,7 @@ TalkReviewModelView = model_view(
     CATEGORY,
     can_create=False,
     can_delete=False,
+    column_default_sort='id',
     column_filters=('event.slug', 'event.name'),
     column_list=('name', 'status', 'level', 'type', 'user'),
     column_searchable_list=('name',),
