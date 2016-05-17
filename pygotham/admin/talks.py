@@ -65,6 +65,7 @@ TalkReviewModelView = model_view(
     models.Talk,
     'Review',
     CATEGORY,
+    acceptable_roles=('reviewer',),
     can_create=False,
     can_delete=False,
     column_default_sort='id',
