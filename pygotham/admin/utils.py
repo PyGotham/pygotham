@@ -12,8 +12,13 @@ __all__ = ('menu_link', 'model_view')
 class AdminModelView(ModelView):
     """Base class for all protected admin model-based views."""
 
+    acceptable_roles = []
+
     def is_accessible(self):
-        return current_user.has_role('admin')
+        """Return ``True`` if any acceptable role is found."""
+        acceptable_roles = set(self.acceptable_roles)
+        acceptable_roles.add('admin')
+        return any(current_user.has_role(role) for role in acceptable_roles)
 
 
 class AuthenticatedMenuLink(MenuLink):
