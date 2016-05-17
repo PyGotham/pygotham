@@ -7,6 +7,7 @@ from flask_admin import Admin
 from flask_admin.base import AdminIndexView, MenuLink
 from flask.ext.admin.contrib.sqla import ModelView
 from flask_login import current_user
+from raven.contrib.flask import Sentry
 
 from pygotham import factory, filters
 
@@ -26,6 +27,8 @@ def create_app(settings_override=None):
     :param settings_override: a ``dict`` of settings to override.
     """
     app = factory.create_app(__name__, __path__, settings_override)
+
+    Sentry(app)
 
     app.jinja_env.filters['rst'] = filters.rst_to_html
 
