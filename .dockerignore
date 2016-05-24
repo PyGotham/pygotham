@@ -1,0 +1,15 @@
+# Docker's files
+Dockerfile
+.dockerignore
+
+# Documentation
+*.rst
+docs/
+LICENSE
+
+# Testing
+.travis.yml
+dev-requirements.txt
+requirements.in
+setup.cfg
+tox.ini
