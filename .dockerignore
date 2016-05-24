@@ -2,6 +2,9 @@
 Dockerfile
 .dockerignore
 
+# Data used by other containers
+data/
+
 # Documentation
 *.rst
 docs/
