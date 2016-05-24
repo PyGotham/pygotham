@@ -1,5 +1,4 @@
 # Docker's files
-Dockerfile
 .dockerignore
 
 # Data used by other containers
