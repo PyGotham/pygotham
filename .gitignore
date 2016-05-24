@@ -8,6 +8,9 @@ instance/settings.cfg
 
 .vagrant
 
+# Stuff used by Docker
+data/
+
 # These should go in a global .gitignore, but not everyone uses one.
 *~
 *.sw?
