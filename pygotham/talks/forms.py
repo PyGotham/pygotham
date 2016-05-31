@@ -29,7 +29,8 @@ class TalkSubmissionForm(ModelForm):
                 'label': 'Description',
                 'description': (
                     'If your talk is accepted this will be made public. It '
-                    'should be one paragraph.'
+                    'should be one paragraph. This field is rendered as '
+                    'reStructuredText.'
                 ),
             },
             'level': {'label': 'Experience Level'},
@@ -45,7 +46,8 @@ class TalkSubmissionForm(ModelForm):
                 'label': 'Outline',
                 'description': (
                     'Sections and key points of the talk meant to give the '
-                    'program committee an overview.'
+                    'program committee an overview.  This field is rendered '
+                    'as reStructuredText.'
                 ),
             },
             'additional_requirements': {
