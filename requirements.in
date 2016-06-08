@@ -18,7 +18,8 @@ Flask-WTF
 psycopg2
 python-slugify
 raven
-SQLAlchemy-Utils
+SQLAlchemy<1
+SQLAlchemy-Utils==0.30.0
 WTForms
-WTForms-Alchemy
-WTForms-Components
+WTForms-Alchemy==0.13.1
+WTForms-Components==0.9.7
