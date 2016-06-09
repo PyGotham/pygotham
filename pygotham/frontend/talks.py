@@ -35,7 +35,7 @@ direct_to_template(
 def detail(pk, slug):
     """Return the talk detail view."""
     event = g.current_event
-    if not event.talks_are_published:
+    if not (event.talks_are_published or current_user.has_role('admin')):
         abort(404)
 
     talk = Talk.query.filter(
@@ -59,7 +59,7 @@ def detail(pk, slug):
 def index():
     """Return the talk list."""
     event = g.current_event
-    if not event.talks_are_published:
+    if not (event.talks_are_published or current_user.has_role('admin')):
         abort(404)
 
     return render_template('talks/index.html', talks=event.accepted_talks)
