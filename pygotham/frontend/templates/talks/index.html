@@ -1,8 +1,14 @@
 {% extends 'layouts/base.html' %}
 
+{% from 'macros/common.html' import unpublished %}
+
 {% block title %}Talk List - {{ super() }}{% endblock %}
 
 {% block content %}
+  {% if not current_event.talks_are_published %}
+    {{ unpublished() }}
+  {% endif %}
+
   <div class="row">
     <h1>Accepted Talks</h1>
 
