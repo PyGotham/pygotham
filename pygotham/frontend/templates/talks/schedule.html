@@ -1,8 +1,14 @@
 {% extends 'layouts/base.html' %}
 
+{% from 'macros/common.html' import unpublished %}
+
 {% block title %}Talk Schedule - {{ super() }}{% endblock %}
 
 {% block content %}
+  {% if not current_event.schedule_is_published %}
+    {{ unpublished() }}
+  {% endif %}
+
   <div class="row">
     <div class="large-12 columns">
       <h1>Talk Schedule</h1>
