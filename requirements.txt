@@ -14,7 +14,7 @@ contextlib2==0.5.1        # via raven
 decorator==4.0.6          # via validators
 docutils==0.12
 Flask-Admin==1.4.0
-flask-copilot==0.1.0
+flask-copilot==0.2.0
 Flask-Login==0.2.11       # via flask-security
 Flask-Mail==0.9.1         # via flask-security
 Flask-Migrate==1.7.0
