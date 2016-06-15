@@ -9,7 +9,11 @@ from pygotham.talks.models import Talk
 from .fields import talk_fields
 
 blueprint = Blueprint(
-    'schedule', __name__, url_prefix='/events/<int:event_id>/schedule')
+    'schedule',
+    __name__,
+    subdomain='<event_slug>',
+    url_prefix='/events/<int:event_id>/schedule',
+)
 api = Api(blueprint)
 
 
