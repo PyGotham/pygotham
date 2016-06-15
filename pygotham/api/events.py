@@ -8,7 +8,8 @@ from pygotham.events.models import Event
 from .fields import event_fields
 
 
-blueprint = Blueprint('events', __name__, url_prefix='/events')
+blueprint = Blueprint(
+    'events', __name__, subdomain='<event_slug>', url_prefix='/events')
 api = Api(blueprint)
 
 
