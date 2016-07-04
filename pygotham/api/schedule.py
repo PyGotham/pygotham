@@ -1,12 +1,12 @@
 """Schedule-related API endpoints."""
 
 from flask import Blueprint
-from flask_restful import Api, Resource, marshal_with
+from flask_restful import Api, Resource
 
 from pygotham.events.models import Event
 from pygotham.talks.models import Talk
 
-from .fields import talk_fields
+from .schema import TalkSchema
 
 blueprint = Blueprint(
     'schedule',
@@ -21,9 +21,9 @@ api = Api(blueprint)
 class TalkResource(Resource):
     """Represents talks and their place on the schedule."""
 
-    @marshal_with(talk_fields)
     def get(self, event_id):
         """Return a list of accepted talks."""
         event = Event.query.get_or_404(event_id)
         talks = Talk.query.filter_by(event=event, status='accepted').all()
-        return talks
+        schema = TalkSchema(many=True)
+        return schema.jsonify(talks)

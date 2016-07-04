@@ -8,6 +8,7 @@ Flask-Admin
 Flask-Copilot
 Flask-Login==0.2.11
 Flask-Mail
+Flask-Marshmallow
 Flask-Migrate
 Flask-Principal
 Flask-RESTful

@@ -1,11 +1,11 @@
 """Event-related API endpoints."""
 
 from flask import Blueprint
-from flask_restful import Api, Resource, marshal_with
+from flask_restful import Api, Resource
 
 from pygotham.events.models import Event
 
-from .fields import event_fields
+from .schema import EventSchema
 
 
 blueprint = Blueprint(
@@ -17,17 +17,18 @@ api = Api(blueprint)
 class EventListResource(Resource):
     """Return all available event data."""
 
-    @marshal_with(event_fields)
     def get(self):
         """Event list."""
-        return Event.query.filter_by(active=True).all()
+        schema = EventSchema(many=True)
+        return schema.jsonify(Event.query.filter_by(active=True).all())
 
 
 @api.resource('/<int:event_id>/')
 class EventResource(Resource):
     """Return event core data."""
 
-    @marshal_with(event_fields)
     def get(self, event_id):
         """Event details."""
-        return Event.query.filter_by(active=True, id=event_id).first_or_404()
+        schema = EventSchema()
+        return schema.jsonify(
+            Event.query.filter_by(active=True, id=event_id).first_or_404())
