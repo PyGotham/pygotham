@@ -1,10 +1,10 @@
 """Fieldsets rendered via Flask-Restful."""
 
-from pygotham.models import Event, User, Talk
+from pygotham.models import Event, Level, Sponsor, Talk, User
 
 from .core import marshmallow
 
-__all__ = ('EventSchema', 'UserSchema', 'TalkSchema')
+__all__ = ('EventSchema', 'SponsorSchema', 'TalkSchema', 'UserSchema')
 
 
 class EventSchema(marshmallow.Schema):
@@ -25,6 +25,27 @@ class UserSchema(marshmallow.Schema):
     email = marshmallow.Function(lambda user: '<redacted>')
     picture_url = marshmallow.Function(lambda user: None)
     twitter_id = marshmallow.Function(lambda user: user.twitter_handle)
+
+
+class LevelSchema(marshmallow.Schema):
+    """Serialization rules for sponsorship Level objects."""
+
+    class Meta:
+        model = Level
+        # The highest sponsorship tiers have the lowest order.
+        # TODO: Have a real place to put documentation like the comment
+        # above.
+        additional = ('name', 'order')
+
+
+class SponsorSchema(marshmallow.Schema):
+    """Serialization rules for Sponsor objects."""
+
+    class Meta:
+        model = Sponsor
+        additional = ('description', 'logo', 'name', 'url')
+
+    level = marshmallow.Nested(LevelSchema)
 
 
 class TalkSchema(marshmallow.Schema):
