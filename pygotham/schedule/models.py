@@ -53,6 +53,7 @@ def pairwise(iterable):
     next(b, None)
     return zip(a, b)
 
+
 rooms_slots = db.Table(
     'rooms_slots',
     db.Column('slot_id', db.Integer, db.ForeignKey('slots.id')),
