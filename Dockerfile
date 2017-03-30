@@ -24,7 +24,14 @@ ENTRYPOINT ["/sbin/tini", "--"]
 # `pip install` whenever there was a change to the application, including things
 # like templates and assets.
 COPY requirements.txt /code/
-RUN python -m pip install --no-cache-dir -r requirements.txt
+# Upgrade Pip to take advantage of changes added after the outdated version that
+# ships with the base image. Since Pip will download everything before
+# installing anything, Pip will be upgraded in a separate command from
+# installing the requirements in case any new features improve the download
+# performance.
+RUN \
+    python -m pip install --no-cache-dir --upgrade pip \
+    && python -m pip install --no-cache-dir -r requirements.txt
 
 ADD . /code
 
