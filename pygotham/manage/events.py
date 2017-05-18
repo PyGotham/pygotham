@@ -24,9 +24,9 @@ class CreateEvent(Command):
         # Get the information.
         name = prompt('Name')
         slug = prompt('Slug (optional)')
-        begins = prompt('Event start date')
-        ends = prompt('Event end date')
-        proposals_begin = prompt('CFP start date')
+        begins = prompt('Event start date (YYYY-MM-DD)')
+        ends = prompt('Event end date (YYYY-MM-DD)')
+        proposals_begin = prompt('CFP start date (YYYY-MM-DD HH:MM:SS)')
         active = prompt_bool('Activate the event')
 
         data = MultiDict({
