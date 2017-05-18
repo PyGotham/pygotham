@@ -9,8 +9,8 @@
 
       {% if current_event.is_registration_active %}
         <p>To register for {{ current_event }}, visit the
-        <a href="{{ current_event.registration_url }}">registration
-          page</a>.</p>
+          <a href="{{ current_event.registration_url }}">registration
+            page</a>.</p>
       {% elif current_event.registration_closed %}
         <p>Registration for {{ current_event }} is no longer open.
       {% else %}
@@ -20,7 +20,7 @@
       <h2>Prices</h2>
 
       <p>The following ticket options are available. Select the one that is most
-      appropriate for your type of registration.</p>
+        appropriate for your type of registration.</p>
 
       <table>
         <thead>
@@ -60,7 +60,7 @@
       <h2>What's Included?</h2>
 
       <p>Along with your conference registration, attendees will receive
-      breakfast, lunch, and break refreshments.</p>
+        breakfast, lunch, and break refreshments.</p>
 
       <h2>Refund Policy</h2>
 
@@ -75,9 +75,9 @@
 
       {% if current_event.is_registration_active %}
         <p> In the event of cancellation, you may request a refund of your
-        registration by visiting the
-        <a href="{{ current_event.registration_url }}">registration
-          page</a>.</p>
+          registration by visiting the
+          <a href="{{ current_event.registration_url }}">registration
+            page</a>.</p>
       {% endif %}
     </div>
   </div>
