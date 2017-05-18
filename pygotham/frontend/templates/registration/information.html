@@ -9,18 +9,18 @@
 
       {% if current_event.is_registration_active %}
         <p>To register for {{ current_event }}, visit the
-        <a href="{{ current_event.registration_url }}">registration
-          page</a>.</p>
+          <a href="{{ current_event.registration_url }}">registration
+            page</a>.</p>
       {% elif current_event.registration_closed %}
         <p>Registration for {{ current_event }} is no longer open.
       {% else %}
         <p>Registration for {{ current_event}} is not open yet.</p>
       {% endif %}
 
-      <h2>Tickets</h2>
+      <h2>Prices</h2>
 
       <p>The following ticket options are available. Select the one that is most
-      appropriate for your type of registration.</p>
+        appropriate for your type of registration.</p>
 
       <table>
         <thead>
@@ -34,36 +34,33 @@
           <tr>
             <td>Corporate</td>
             <td></td>
-            <td>$200</td>
+            <td>$300</td>
           </tr>
           <tr>
             <td>Individual</td>
-            <td>$50</td>
             <td>$100</td>
+            <td>$200</td>
           </tr>
           <tr>
             <td>Student</td>
             <td></td>
-            <td>$50</td>
+            <td>$100</td>
           </tr>
         </tbody>
       </table>
 
-      <h2>Scholarships</h2>
+      <h2>Financial Aid</h2>
 
-      <p>We aim for PyGotham to be open to all to attend, and we strive to make
-        the conference as accessible as possible. If you aren't able to obtain a
-        ticket for financial or other reasons, please fill out the application
-        at <a href="https://goo.gl/forms/uEQ55S18V5">
-        https://goo.gl/forms/uEQ55S18V5</a>, and we'll arrange for a reduced
-        amount or a free scholarship ticket to ensure that you can attend. Feel
-        free to ping us at <a href="mailto:scholarships@pygotham.org">
-        scholarships@pygotham.org</a> if you have any questions.</p>
+      <p>We aim for {{ current_event }} to be open to all to attend, and we
+        strive to make the conference as accessible as possible. Please check
+        back soon for more information about our financial aid program.
+        Feel free to ping us at <a href="mailto:financialaid@pygotham.org">
+        financialaid@pygotham.org</a> if you have any questions.</p>
 
       <h2>What's Included?</h2>
 
       <p>Along with your conference registration, attendees will receive
-      breakfast, lunch, and break refreshments.</p>
+        breakfast, lunch, and break refreshments.</p>
 
       <h2>Refund Policy</h2>
 
@@ -78,9 +75,9 @@
 
       {% if current_event.is_registration_active %}
         <p> In the event of cancellation, you may request a refund of your
-        registration by visiting the
-        <a href="{{ current_event.registration_url }}">registration
-          page</a>.</p>
+          registration by visiting the
+          <a href="{{ current_event.registration_url }}">registration
+            page</a>.</p>
       {% endif %}
     </div>
   </div>
