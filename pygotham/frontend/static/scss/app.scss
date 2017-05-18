@@ -2,7 +2,7 @@
 @import "foundation";
 
 @import url(//fonts.googleapis.com/css?family=Titillium+Web);
-@import url(//fonts.googleapis.com/css?family=Aldrich);
+@import url(//fonts.googleapis.com/css?family=Poiret+One);
 
 $dividing-width: 640px;
 $footer-height: rem-calc(125);
@@ -17,6 +17,10 @@ $footer-height: rem-calc(125);
   @media only screen and (min-width: 640px) {
     @content;
   }
+}
+
+body.home {
+  background: $black;
 }
 
 table.proposals {
@@ -65,7 +69,7 @@ table.schedule {
 
 .top-bar-section {
   .has-dropdown > a:after {
-    border-color: $dark-blue rgba($black, 0) rgba($black, 0);
+    border-color: $gold rgba($black, 0) rgba($black, 0);
   }
 
   .has-dropdown > a:hover:after {
@@ -74,7 +78,7 @@ table.schedule {
 
   ul li {
     &.login, &.register {
-      background: $white;
+      background: $black;
 
       @include desktop {
         margin-left: 1em;
@@ -102,11 +106,12 @@ table.schedule {
     }
 
     &.login > a {
-      background: $light-blue;
+      background: $primary-color;
     }
 
     &.register > a {
-      background: $gold;
+      background: $white;
+      color: $black;
     }
   }
 }
@@ -118,7 +123,7 @@ table.schedule {
   padding-top: 20px;
 
   &:before {
-    border-bottom: 5px solid $light-blue;
+    border-bottom: 5px solid $white;
     content: "";
     display: block;
     height: $topbar-height - 1;
@@ -132,22 +137,22 @@ table.schedule {
   }
 
   h1 {
+    background: $black;
+    color: $gold;
+    font-family: $font-family-heading;
+    font-size: $h2-font-size;
+    text-align: center;
+    text-transform: uppercase;
+
     @include desktop {
       border-radius: $global-radius;
     }
   }
 
-  h1 {
-    background: $light-blue;
-    color: $white;
-    font-size: $h2-font-size;
-    text-align: center;
-    text-transform: uppercase;
-  }
-
   h2 {
-    color: $dark-blue;
+    color: $black;
     text-decoration: underline;
+    font-family: $font-family-heading;
     font-size: $h4-font-size;
 
     body.home & {
@@ -158,7 +163,6 @@ table.schedule {
   }
 
   .jumbotron {
-    background: $light-blue;
     overflow: hidden;
     padding: 2em;
     text-align: center;
@@ -166,16 +170,16 @@ table.schedule {
     img {
         display: block;
         margin: auto;
-        max-width: 66%;
+        max-height: 66%;
     }
 
     h1 {
-      font-family: Aldrich;
+      font-family: 'Poiret One';
       color: $gold;
     }
 
     h3 {
-      font-family: Aldrich;
+      font-family: 'Poiret One';
       color: $white;
     }
   }
@@ -238,7 +242,7 @@ body.venue #content .row {
 }
 
 footer {
-  background: $light-blue;
+  background: $black;
   color: $white;
   display: block;
   font-size: 10pt;
