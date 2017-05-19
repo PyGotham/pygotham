@@ -5,9 +5,8 @@
 {% block content %}
   <div class="jumbotron">
     <div class="row">
-      <h1>{{ current_event }}</h1>
-      <img src="{{ url_for('static', filename='img/home/logo.svg') }}">
-      <h3>New York City &middot; {{ current_event.dates }}</h3>
+      <img src="{{ url_for('static', filename='img/home/logo.svg') }}"
+        alt="{{ current_event }} &middot; New York City &middot; {{ current_event.dates }}">
     </div>
   </div>
 
