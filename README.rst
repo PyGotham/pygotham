@@ -2,6 +2,12 @@
 PyGotham
 ========
 
+.. note::
+
+    This repository is no longer maintained. The next iteration of the website
+    can be found at https://gitlab.com/pygotham/2017. Thanks to everyone who
+    contributed!
+
 .. image:: https://badge.waffle.io/pygotham/pygotham.png?label=ready&title=Ready
    :target: https://waffle.io/pygotham/pygotham
    :alt: 'Stories in Ready'
